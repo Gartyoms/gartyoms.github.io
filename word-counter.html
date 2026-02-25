@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Contatore di parole, caratteri, frasi e paragrafi online e gratuito. Calcola il tempo di lettura del tuo testo in tempo reale.">
+    <meta property="og:title" content="Contatore Parole Online Gratuito — ToolBox Online">
+    <meta property="og:description"
+        content="Conta parole, caratteri, frasi e paragrafi in tempo reale. Calcola il tempo di lettura.">
+    <title>Contatore Parole Online Gratuito — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg>
+                    <span class="logo-gradient">ToolBox Online</span>
+                </a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="word-counter.html" class="active">Contatore Parole</a></li>
+                    <li><a href="password-generator.html">Password</a></li>
+                    <li><a href="unit-converter.html">Convertitore</a></li>
+                    <li><a href="lorem-generator.html">Lorem Ipsum</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Ad Banner Top -->
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <!-- Tool Header -->
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span>Contatore Parole</span>
+                </div>
+                <h1>📝 Contatore di Parole e Caratteri</h1>
+                <p>Incolla o scrivi il tuo testo qui sotto. I conteggi si aggiornano in tempo reale.</p>
+            </div>
+        </div>
+
+        <!-- Tool Content -->
+        <div class="container">
+            <div class="tool-content">
+                <textarea id="textInput" placeholder="Inizia a scrivere o incolla il tuo testo qui..."
+                    oninput="updateCounts()"></textarea>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-value" id="wordCount">0</div>
+                        <div class="stat-label">Parole</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="charCount">0</div>
+                        <div class="stat-label">Caratteri</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="charNoSpaceCount">0</div>
+                        <div class="stat-label">Senza spazi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="sentenceCount">0</div>
+                        <div class="stat-label">Frasi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="paragraphCount">0</div>
+                        <div class="stat-label">Paragrafi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="readTime">0m 0s</div>
+                        <div class="stat-label">Tempo lettura</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group" style="justify-content: center;">
+                <button class="btn btn-secondary btn-sm"
+                    onclick="document.getElementById('textInput').value=''; updateCounts();">🗑️ Cancella</button>
+                <button class="btn btn-primary btn-sm" onclick="copyText()">📋 Copia Testo</button>
+            </div>
+        </div>
+
+        <!-- Ad Banner Inline -->
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-inline">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function updateCounts() {
+            const text = document.getElementById('textInput').value;
+
+            // Words
+            const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            document.getElementById('wordCount').textContent = words;
+
+            // Characters
+            document.getElementById('charCount').textContent = text.length;
+
+            // Characters without spaces
+            document.getElementById('charNoSpaceCount').textContent = text.replace(/\s/g, '').length;
+
+            // Sentences
+            const sentences = text.trim() === '' ? 0 : text.split(/[.!?]+/).filter(s => s.trim()).length;
+            document.getElementById('sentenceCount').textContent = sentences;
+
+            // Paragraphs
+            const paragraphs = text.trim() === '' ? 0 : text.split(/\n\s*\n|\n/).filter(p => p.trim()).length;
+            document.getElementById('paragraphCount').textContent = paragraphs;
+
+            // Reading time (avg 200 words/min)
+            const totalSeconds = Math.ceil((words / 200) * 60);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            document.getElementById('readTime').textContent = minutes + 'm ' + seconds + 's';
+        }
+
+        function copyText() {
+            const text = document.getElementById('textInput').value;
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => showToast('✅ Testo copiato!'));
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+    </script>
+</body>
+
+</html>

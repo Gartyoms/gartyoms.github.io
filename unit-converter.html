@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Convertitore di unità online gratuito: lunghezza, peso, temperatura e velocità. Risultati istantanei e precisi.">
+    <meta property="og:title" content="Convertitore di Unità Online — ToolBox Online">
+    <meta property="og:description"
+        content="Converti lunghezza, peso, temperatura e velocità in tempo reale. Gratuito e senza registrazione.">
+    <title>Convertitore di Unità Online — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg>
+                    <span class="logo-gradient">ToolBox Online</span>
+                </a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="word-counter.html">Contatore Parole</a></li>
+                    <li><a href="password-generator.html">Password</a></li>
+                    <li><a href="unit-converter.html" class="active">Convertitore</a></li>
+                    <li><a href="lorem-generator.html">Lorem Ipsum</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span>Convertitore Unità</span>
+                </div>
+                <h1>📏 Convertitore di Unità</h1>
+                <p>Scegli una categoria e converti tra diverse unità di misura in tempo reale.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <div class="category-tabs" id="categoryTabs">
+                    <button class="category-tab active" onclick="setCategory('length')">📐 Lunghezza</button>
+                    <button class="category-tab" onclick="setCategory('weight')">⚖️ Peso</button>
+                    <button class="category-tab" onclick="setCategory('temperature')">🌡️ Temperatura</button>
+                    <button class="category-tab" onclick="setCategory('speed')">🚀 Velocità</button>
+                </div>
+
+                <div class="converter-layout">
+                    <div class="converter-field">
+                        <label>Da</label>
+                        <div class="input-row">
+                            <input type="number" id="inputValue" value="1" oninput="convert()">
+                            <select id="fromUnit" onchange="convert()"></select>
+                        </div>
+                    </div>
+
+                    <button class="swap-btn" onclick="swapUnits()" title="Inverti unità">⇅</button>
+
+                    <div class="converter-field">
+                        <label>A</label>
+                        <div class="input-row">
+                            <input type="number" id="outputValue" readonly>
+                            <select id="toUnit" onchange="convert()"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const units = {
+            length: {
+                'Millimetri (mm)': 0.001,
+                'Centimetri (cm)': 0.01,
+                'Metri (m)': 1,
+                'Chilometri (km)': 1000,
+                'Pollici (in)': 0.0254,
+                'Piedi (ft)': 0.3048,
+                'Iarde (yd)': 0.9144,
+                'Miglia (mi)': 1609.344,
+            },
+            weight: {
+                'Milligrammi (mg)': 0.000001,
+                'Grammi (g)': 0.001,
+                'Chilogrammi (kg)': 1,
+                'Tonnellate (t)': 1000,
+                'Once (oz)': 0.028349523125,
+                'Libbre (lb)': 0.45359237,
+            },
+            temperature: 'special',
+            speed: {
+                'Metri/secondo (m/s)': 1,
+                'Chilometri/ora (km/h)': 0.277778,
+                'Miglia/ora (mph)': 0.44704,
+                'Nodi (kn)': 0.514444,
+            }
+        };
+
+        let currentCategory = 'length';
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            populateSelects();
+            convert();
+        }
+
+        function populateSelects() {
+            const fromSelect = document.getElementById('fromUnit');
+            const toSelect = document.getElementById('toUnit');
+            fromSelect.innerHTML = '';
+            toSelect.innerHTML = '';
+
+            let unitNames;
+            if (currentCategory === 'temperature') {
+                unitNames = ['Celsius (°C)', 'Fahrenheit (°F)', 'Kelvin (K)'];
+            } else {
+                unitNames = Object.keys(units[currentCategory]);
+            }
+
+            unitNames.forEach((name, i) => {
+                const opt1 = new Option(name, name);
+                const opt2 = new Option(name, name);
+                fromSelect.add(opt1);
+                toSelect.add(opt2);
+            });
+
+            if (unitNames.length > 1) toSelect.selectedIndex = 1;
+        }
+
+        function convert() {
+            const val = parseFloat(document.getElementById('inputValue').value);
+            const from = document.getElementById('fromUnit').value;
+            const to = document.getElementById('toUnit').value;
+
+            if (isNaN(val)) {
+                document.getElementById('outputValue').value = '';
+                return;
+            }
+
+            let result;
+
+            if (currentCategory === 'temperature') {
+                result = convertTemp(val, from, to);
+            } else {
+                const fromFactor = units[currentCategory][from];
+                const toFactor = units[currentCategory][to];
+                result = val * (fromFactor / toFactor);
+            }
+
+            document.getElementById('outputValue').value = parseFloat(result.toPrecision(10));
+        }
+
+        function convertTemp(val, from, to) {
+            // Convert to Celsius first
+            let celsius;
+            if (from.includes('Celsius')) celsius = val;
+            else if (from.includes('Fahrenheit')) celsius = (val - 32) * (5 / 9);
+            else celsius = val - 273.15;
+
+            // Convert from Celsius to target
+            if (to.includes('Celsius')) return celsius;
+            else if (to.includes('Fahrenheit')) return celsius * (9 / 5) + 32;
+            else return celsius + 273.15;
+        }
+
+        function swapUnits() {
+            const from = document.getElementById('fromUnit');
+            const to = document.getElementById('toUnit');
+            const tmp = from.value;
+            from.value = to.value;
+            to.value = tmp;
+            convert();
+        }
+
+        // Init
+        populateSelects();
+        convert();
+    </script>
+</body>
+
+</html>
