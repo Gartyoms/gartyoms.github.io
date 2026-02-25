@@ -49,6 +49,16 @@
 | **Frequenza / Periodo** | Hz ↔ periodo, omega, lunghezza d'onda EM e sonora |
 | **Potenza e Dissipazione** | Potenza resistori, regolatori lineari, temperatura di giunzione |
 
+### 📐 Geometria e Fisica
+
+| Strumento | Descrizione |
+|-----------|-------------|
+| **Area e Perimetro** | 8 forme: cerchio, rettangolo, triangolo, quadrato, trapezio, parallelogramma, esagono, ellisse |
+| **Volume e Superficie** | 7 solidi: cubo, parallelepipedo, sfera, cilindro, cono, piramide, toro |
+| **Teorema di Pitagora** | Ipotenusa o cateto, visualizzazione SVG, area, perimetro, angolo |
+| **Moto Rettilineo** | MRU e MRUA — velocità, accelerazione, spazio, tempo |
+| **Calcolatore Balistico** | Moto parabolico con drag, vento, 4 pianeti, grafico traiettoria |
+
 ### 📝 Blog di Elettronica
 
 | Articolo | Argomento |
@@ -98,6 +108,11 @@ gartyoms.github.io/
 ├── db-calculator.html      # Convertitore dB
 ├── frequency-calculator.html # Frequenza / Periodo
 ├── power-dissipation.html  # Potenza e dissipazione
+├── area-perimeter.html     # Area e perimetro (8 forme)
+├── volume-surface.html     # Volume e superficie (7 solidi)
+├── pythagoras.html         # Teorema di Pitagora
+├── motion.html             # Moto rettilineo (MRU/MRUA)
+├── ballistic.html          # Calcolatore balistico avanzato
 ├── blog.html               # Indice del blog
 ├── blog-partitore-tensione.html  # Articolo: Partitore
 ├── blog-555-timer-guida.html     # Articolo: 555 Timer
@@ -114,8 +129,7 @@ gartyoms.github.io/
 - **HTML5** — struttura semantica e SEO-friendly
 - **CSS3** — variabili custom, gradients, animazioni, glassmorphism
 - **JavaScript** — vanilla, nessun framework
-- **Google Fonts** — Inter per tipografia moderna
-- **Google AdSense** — predisposto per la monetizzazione
+
 
 ---
 
