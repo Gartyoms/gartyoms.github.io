@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Convertitore di basi numeriche online: binario, decimale, ottale, esadecimale. Conversione istantanea con tabella ASCII.">
+    <meta property="og:title" content="Convertitore Base Numerica — ToolBox Online">
+    <meta property="og:description"
+        content="Converti numeri tra binario, decimale, ottale ed esadecimale. Gratuito e istantaneo.">
+    <title>Convertitore Base Numerica — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .base-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .base-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .base-field {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .base-field:focus-within {
+            border-color: var(--accent-purple);
+        }
+
+        .base-field label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .base-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: rgba(124, 58, 237, 0.2);
+            color: var(--accent-purple);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .base-field input {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .bit-visual {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .bit-visual h3 {
+            margin-bottom: 12px;
+        }
+
+        .bit-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .bit-cell {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .bit-cell.one {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: #fff;
+        }
+
+        .bit-cell.zero {
+            background: var(--bg-card);
+            color: var(--text-muted);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .bit-labels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .bit-labels span {
+            width: 34px;
+            text-align: center;
+            font-size: 0.6rem;
+            color: var(--text-muted);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 0.85rem;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-row .lbl {
+            color: var(--text-muted);
+        }
+
+        .info-row .val {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="iva-calculator.html">IVA</a></li>
+                    <li><a href="compound-interest.html">Interessi</a></li>
+                    <li><a href="qr-generator.html">QR Code</a></li>
+                    <li><a href="base-converter.html" class="active">Basi</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Convertitore Base
+                        Numerica</span></div>
+                <h1>🔢 Convertitore Base Numerica</h1>
+                <p>Converti numeri tra binario, ottale, decimale ed esadecimale in tempo reale.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <div class="base-grid">
+                    <div class="base-field">
+                        <label>Binario <span class="base-badge">Base 2</span></label>
+                        <input type="text" id="bin" placeholder="es. 11111111" oninput="convert('bin')">
+                        <button class="copy-btn" onclick="copyField('bin')">📋 Copia</button>
+                    </div>
+                    <div class="base-field">
+                        <label>Ottale <span class="base-badge">Base 8</span></label>
+                        <input type="text" id="oct" placeholder="es. 377" oninput="convert('oct')">
+                        <button class="copy-btn" onclick="copyField('oct')">📋 Copia</button>
+                    </div>
+                    <div class="base-field">
+                        <label>Decimale <span class="base-badge">Base 10</span></label>
+                        <input type="text" id="dec" value="255" placeholder="es. 255" oninput="convert('dec')">
+                        <button class="copy-btn" onclick="copyField('dec')">📋 Copia</button>
+                    </div>
+                    <div class="base-field">
+                        <label>Esadecimale <span class="base-badge">Base 16</span></label>
+                        <input type="text" id="hex" placeholder="es. FF" oninput="convert('hex')"
+                            style="text-transform:uppercase">
+                        <button class="copy-btn" onclick="copyField('hex')">📋 Copia</button>
+                    </div>
+                </div>
+
+                <!-- Bit Visualizer -->
+                <div class="bit-visual">
+                    <h3>🔍 Visualizzazione Bit</h3>
+                    <div class="bit-row" id="bitRow"></div>
+                    <div class="bit-labels" id="bitLabels"></div>
+                </div>
+
+                <!-- Additional Info -->
+                <div
+                    style="background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:20px;margin-top:16px">
+                    <h3>📊 Informazioni Aggiuntive</h3>
+                    <div class="info-row">
+                        <span class="lbl">Numero di bit</span>
+                        <span class="val" id="infoBits">8</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="lbl">Massimo con N bit</span>
+                        <span class="val" id="infoMax">255</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="lbl">Complemento a 1</span>
+                        <span class="val" id="infoComp1">—</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="lbl">Complemento a 2 (se negativo)</span>
+                        <span class="val" id="infoComp2">—</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="lbl">Carattere ASCII</span>
+                        <span class="val" id="infoAscii">—</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
+                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                        4.0</a> | <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function convert(source) {
+            const val = document.getElementById(source).value.trim();
+            if (!val) {
+                ['bin', 'oct', 'dec', 'hex'].forEach(id => { if (id !== source) document.getElementById(id).value = ''; });
+                updateBitVisual(0);
+                updateInfo(0);
+                return;
+            }
+
+            let num;
+            try {
+                switch (source) {
+                    case 'bin':
+                        if (!/^[01]+$/.test(val)) return;
+                        num = parseInt(val, 2);
+                        break;
+                    case 'oct':
+                        if (!/^[0-7]+$/.test(val)) return;
+                        num = parseInt(val, 8);
+                        break;
+                    case 'dec':
+                        if (!/^\d+$/.test(val)) return;
+                        num = parseInt(val, 10);
+                        break;
+                    case 'hex':
+                        if (!/^[0-9a-fA-F]+$/.test(val)) return;
+                        num = parseInt(val, 16);
+                        break;
+                }
+            } catch (e) { return; }
+
+            if (isNaN(num) || num < 0) return;
+
+            // Update all fields except source
+            if (source !== 'bin') document.getElementById('bin').value = num.toString(2);
+            if (source !== 'oct') document.getElementById('oct').value = num.toString(8);
+            if (source !== 'dec') document.getElementById('dec').value = num.toString(10);
+            if (source !== 'hex') document.getElementById('hex').value = num.toString(16).toUpperCase();
+
+            updateBitVisual(num);
+            updateInfo(num);
+        }
+
+        function updateBitVisual(num) {
+            const bitRow = document.getElementById('bitRow');
+            const bitLabels = document.getElementById('bitLabels');
+
+            if (num === 0) {
+                const bits = '00000000';
+                bitRow.innerHTML = bits.split('').map(b =>
+                    `<div class="bit-cell zero">0</div>`
+                ).join('');
+                bitLabels.innerHTML = Array.from({ length: 8 }, (_, i) =>
+                    `<span>2<sup>${7 - i}</sup></span>`
+                ).join('');
+                return;
+            }
+
+            let binStr = num.toString(2);
+            // Pad to nearest multiple of 8
+            const padLen = Math.ceil(binStr.length / 8) * 8;
+            binStr = binStr.padStart(padLen, '0');
+
+            // Limit display to 32 bits max
+            if (binStr.length > 32) binStr = binStr.slice(-32);
+
+            bitRow.innerHTML = binStr.split('').map(b =>
+                `<div class="bit-cell ${b === '1' ? 'one' : 'zero'}">${b}</div>`
+            ).join('');
+
+            bitLabels.innerHTML = Array.from({ length: binStr.length }, (_, i) =>
+                `<span>2<sup>${binStr.length - 1 - i}</sup></span>`
+            ).join('');
+        }
+
+        function updateInfo(num) {
+            const binStr = num.toString(2);
+            const nBits = Math.max(8, Math.ceil(binStr.length / 8) * 8);
+
+            document.getElementById('infoBits').textContent = binStr.length + ' bit (' + nBits + ' bit allineati)';
+            document.getElementById('infoMax').textContent = (Math.pow(2, nBits) - 1).toLocaleString('it-IT');
+
+            // Complement 1: flip bits
+            const padded = binStr.padStart(nBits, '0');
+            const comp1 = padded.split('').map(b => b === '0' ? '1' : '0').join('');
+            document.getElementById('infoComp1').textContent = comp1 + ' (' + parseInt(comp1, 2) + ')';
+
+            // Complement 2: comp1 + 1
+            const comp2val = parseInt(comp1, 2) + 1;
+            document.getElementById('infoComp2').textContent = comp2val.toString(2).padStart(nBits, '0') + ' (-' + num + ')';
+
+            // ASCII
+            if (num >= 32 && num <= 126) {
+                document.getElementById('infoAscii').textContent = '"' + String.fromCharCode(num) + '" (codice ' + num + ')';
+            } else if (num >= 0 && num <= 127) {
+                const controlNames = ['NUL', 'SOH', 'STX', 'ETX', 'EOT', 'ENQ', 'ACK', 'BEL', 'BS', 'TAB', 'LF', 'VT', 'FF', 'CR', 'SO', 'SI', 'DLE', 'DC1', 'DC2', 'DC3', 'DC4', 'NAK', 'SYN', 'ETB', 'CAN', 'EM', 'SUB', 'ESC', 'FS', 'GS', 'RS', 'US'];
+                if (num < 32) {
+                    document.getElementById('infoAscii').textContent = controlNames[num] + ' (controllo)';
+                } else {
+                    document.getElementById('infoAscii').textContent = 'DEL (controllo)';
+                }
+            } else {
+                document.getElementById('infoAscii').textContent = '—';
+            }
+        }
+
+        function copyField(id) {
+            const val = document.getElementById(id).value;
+            if (val) navigator.clipboard.writeText(val);
+        }
+
+        // Init
+        convert('dec');
+    </script>
+</body>
+
+</html>

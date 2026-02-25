@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore IVA online gratuito. Aggiungi o scorpora l'IVA con aliquote italiane al 4%, 5%, 10% e 22%. Risultati istantanei.">
+    <meta property="og:title" content="Calcolatore IVA Online — ToolBox Online">
+    <meta property="og:description"
+        content="Calcola l'IVA: aggiungi o scorpora l'imposta. Aliquote italiane 4%, 5%, 10% e 22%.">
+    <title>Calcolatore IVA Online — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .iva-mode-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .iva-mode-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: var(--radius-md);
+            border: 2px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .iva-mode-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+        }
+
+        .iva-mode-btn.active {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .iva-rate-btns {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .iva-rate-btn {
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-family: var(--font);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .iva-rate-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+        }
+
+        .iva-rate-btn.active {
+            border-color: var(--accent-purple);
+            background: rgba(124, 58, 237, 0.15);
+            color: var(--accent-purple);
+        }
+
+        .iva-breakdown {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .iva-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .iva-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .iva-row-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .iva-row-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .iva-row.total .iva-row-value {
+            font-size: 1.4rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .iva-row.total .iva-row-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .iva-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .iva-info-card {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            text-align: center;
+        }
+
+        .iva-info-card .rate {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--accent-purple);
+        }
+
+        .iva-info-card .desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="iva-calculator.html" class="active">IVA</a></li>
+                    <li><a href="compound-interest.html">Interessi</a></li>
+                    <li><a href="qr-generator.html">QR Code</a></li>
+                    <li><a href="base-converter.html">Basi</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Calcolatore IVA</span>
+                </div>
+                <h1>🧾 Calcolatore IVA</h1>
+                <p>Aggiungi o scorpora l'IVA con le aliquote italiane. Risultati istantanei.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>Modalità</h3>
+                <div class="iva-mode-tabs">
+                    <button class="iva-mode-btn active" onclick="setMode('add', this)">➕ Aggiungi IVA</button>
+                    <button class="iva-mode-btn" onclick="setMode('remove', this)">➖ Scorpora IVA</button>
+                </div>
+
+                <h3>Aliquota IVA</h3>
+                <div class="iva-rate-btns">
+                    <button class="iva-rate-btn" onclick="setRate(4, this)">4%</button>
+                    <button class="iva-rate-btn" onclick="setRate(5, this)">5%</button>
+                    <button class="iva-rate-btn" onclick="setRate(10, this)">10%</button>
+                    <button class="iva-rate-btn active" onclick="setRate(22, this)">22%</button>
+                </div>
+
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+                    <div>
+                        <label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px"
+                            id="inputLabel">Importo senza IVA (€)</label>
+                        <input type="number" id="amount" value="100" step="0.01" min="0" oninput="calcIva()">
+                    </div>
+                    <div>
+                        <label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Aliquota
+                            personalizzata (%)</label>
+                        <input type="number" id="customRate" placeholder="es. 15" step="0.1" min="0" max="100"
+                            oninput="setCustomRate()">
+                    </div>
+                </div>
+
+                <!-- Breakdown -->
+                <div class="iva-breakdown">
+                    <div class="iva-row">
+                        <span class="iva-row-label" id="lblBase">Imponibile (senza IVA)</span>
+                        <span class="iva-row-value" id="resBase">€ 100,00</span>
+                    </div>
+                    <div class="iva-row">
+                        <span class="iva-row-label" id="lblIva">IVA (22%)</span>
+                        <span class="iva-row-value" id="resIva">€ 22,00</span>
+                    </div>
+                    <div class="iva-row total">
+                        <span class="iva-row-label" id="lblTotal">Totale IVA inclusa</span>
+                        <span class="iva-row-value" id="resTotal">€ 122,00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aliquote info -->
+            <div class="tool-content" style="margin-top:20px">
+                <h3>📖 Aliquote IVA in Italia</h3>
+                <div class="iva-info-grid">
+                    <div class="iva-info-card">
+                        <div class="rate">4%</div>
+                        <div class="desc">Beni di prima necessità: pane, latte, frutta, verdura, libri, giornali</div>
+                    </div>
+                    <div class="iva-info-card">
+                        <div class="rate">5%</div>
+                        <div class="desc">Erbe aromatiche, spezie, basilico, origano</div>
+                    </div>
+                    <div class="iva-info-card">
+                        <div class="rate">10%</div>
+                        <div class="desc">Alimentari, ristoranti, ristrutturazioni, farmaci, energia elettrica</div>
+                    </div>
+                    <div class="iva-info-card">
+                        <div class="rate">22%</div>
+                        <div class="desc">Aliquota ordinaria: elettronica, abbigliamento, servizi professionali</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
+                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                        4.0</a> | <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let mode = 'add';
+        let rate = 22;
+
+        function setMode(m, btn) {
+            mode = m;
+            document.querySelectorAll('.iva-mode-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('inputLabel').textContent =
+                m === 'add' ? 'Importo senza IVA (€)' : 'Importo IVA inclusa (€)';
+            calcIva();
+        }
+
+        function setRate(r, btn) {
+            rate = r;
+            document.querySelectorAll('.iva-rate-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('customRate').value = '';
+            calcIva();
+        }
+
+        function setCustomRate() {
+            const val = parseFloat(document.getElementById('customRate').value);
+            if (!isNaN(val) && val >= 0 && val <= 100) {
+                rate = val;
+                document.querySelectorAll('.iva-rate-btn').forEach(b => b.classList.remove('active'));
+                calcIva();
+            }
+        }
+
+        function fmt(n) {
+            return '€ ' + n.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function calcIva() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            if (isNaN(amount) || amount < 0) return;
+
+            let base, iva, total;
+
+            if (mode === 'add') {
+                // Amount is without IVA, add IVA
+                base = amount;
+                iva = amount * (rate / 100);
+                total = base + iva;
+            } else {
+                // Amount includes IVA, extract it
+                total = amount;
+                base = amount / (1 + rate / 100);
+                iva = total - base;
+            }
+
+            document.getElementById('resBase').textContent = fmt(base);
+            document.getElementById('resIva').textContent = fmt(iva);
+            document.getElementById('resTotal').textContent = fmt(total);
+            document.getElementById('lblIva').textContent = 'IVA (' + rate + '%)';
+        }
+
+        calcIva();
+    </script>
+</body>
+
+</html>
