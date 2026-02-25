@@ -2,7 +2,7 @@
 
 **Strumenti gratuiti online per tutti** — Un sito web statico, mobile-first e dark mode con calcolatori di utilità generale ed elettronica.
 
-🌐 **[Visita il sito →](https://gartyoms.github.io)**
+🌐 [**Visita il sito →**](https://gartyoms.github.io)
 
 ---
 
@@ -103,6 +103,7 @@ gartyoms.github.io/
 ├── blog-555-timer-guida.html     # Articolo: 555 Timer
 ├── blog-filtri-rc.html           # Articolo: Filtri RC
 ├── blog-resistore-led.html       # Articolo: Resistore LED
+├── privacy.html            # Informativa sulla Privacy (GDPR)
 └── ads.txt                 # File ads.txt per Google AdSense
 ```
 
