@@ -2,7 +2,8 @@
 
 **Strumenti gratuiti online per tutti** — Un sito web statico, mobile-first e dark mode con calcolatori di utilità generale ed elettronica.
 
-🌐 **Visita il sito →** https://toolboxonline.it
+🌐 **Visita il sito →** https://www.toolboxonline.it
+
 ---
 
 ## ✨ Caratteristiche
@@ -58,6 +59,15 @@
 | **Moto Rettilineo** | MRU e MRUA — velocità, accelerazione, spazio, tempo |
 | **Calcolatore Balistico** | Moto parabolico con drag, vento, 4 pianeti, grafico traiettoria |
 
+### 💰 Finanza & Utility
+
+| Strumento | Descrizione |
+|-----------|-------------|
+| **Calcolatore IVA** | Aggiungi o scorpora IVA con aliquote italiane (4%, 5%, 10%, 22%) |
+| **Interessi Composti** | Simulazione crescita investimenti con versamenti periodici e grafico |
+| **Generatore QR Code** | QR Code da testo, URL, email, telefono, WiFi — scarica in PNG |
+| **Convertitore Basi** | Binario ↔ Ottale ↔ Decimale ↔ Esadecimale con visualizzazione bit |
+
 ### 📝 Blog di Elettronica
 
 | Articolo | Argomento |
@@ -112,13 +122,18 @@ gartyoms.github.io/
 ├── pythagoras.html         # Teorema di Pitagora
 ├── motion.html             # Moto rettilineo (MRU/MRUA)
 ├── ballistic.html          # Calcolatore balistico avanzato
+├── iva-calculator.html     # Calcolatore IVA
+├── compound-interest.html  # Interessi composti
+├── qr-generator.html       # Generatore QR Code
+├── base-converter.html     # Convertitore basi numeriche
 ├── blog.html               # Indice del blog
 ├── blog-partitore-tensione.html  # Articolo: Partitore
 ├── blog-555-timer-guida.html     # Articolo: 555 Timer
 ├── blog-filtri-rc.html           # Articolo: Filtri RC
 ├── blog-resistore-led.html       # Articolo: Resistore LED
 ├── privacy.html            # Informativa sulla Privacy (GDPR)
-└── ads.txt                 # File ads.txt per Google AdSense
+├── ads.txt                 # File ads.txt per Google AdSense
+└── CNAME                   # Dominio personalizzato (toolboxonline.it)
 ```
 
 ---
@@ -143,4 +158,3 @@ Questo progetto è rilasciato con licenza **[CC BY-ND 4.0](https://creativecommo
 ---
 
 > Fatto con ❤️ per aiutare studenti, maker e appassionati di elettronica.
-
