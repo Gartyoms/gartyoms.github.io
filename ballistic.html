@@ -77,21 +77,73 @@
             border-radius: var(--radius-lg);
             padding: 16px;
             margin-bottom: 20px;
-            overflow: hidden
+            overflow: hidden;
+            position: relative
         }
 
-        .trajectory-container h3 {
+        .trajectory-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px
+        }
+
+        .trajectory-header h3 {
             font-size: 0.85rem;
             color: var(--text-primary);
-            margin-bottom: 12px;
-            text-align: center
+            margin: 0
+        }
+
+        .chart-view-btns {
+            display: flex;
+            gap: 4px
+        }
+
+        .chart-view-btn {
+            padding: 4px 10px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-input);
+            color: var(--text-muted);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: all 0.2s
+        }
+
+        .chart-view-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary)
+        }
+
+        .chart-view-btn.active {
+            background: var(--accent-purple);
+            color: #fff;
+            border-color: transparent
+        }
+
+        .fullscreen-btn {
+            padding: 4px 10px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-input);
+            color: var(--text-muted);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s
+        }
+
+        .fullscreen-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary)
         }
 
         .trajectory-container canvas {
             width: 100%;
-            height: 300px;
+            height: 400px;
             display: block;
-            border-radius: 8px
+            border-radius: 8px;
+            cursor: pointer
         }
 
         .legend {
@@ -113,11 +165,96 @@
             border-radius: 2px
         }
 
-        .legend .ideal::before {
-            background: rgba(124, 58, 237, 0.4)
+        .legend .leg-ideal::before {
+            background: rgba(124, 58, 237, 0.5);
+            border-top: 1px dashed rgba(124, 58, 237, 0.8)
         }
 
-        .legend .real::before {
+        .legend .leg-real::before {
+            background: #22d3ee
+        }
+
+        /* Fullscreen modal */
+        .chart-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px
+        }
+
+        .chart-modal-overlay.open {
+            display: flex
+        }
+
+        .chart-modal-overlay canvas {
+            width: 100%;
+            max-width: 1400px;
+            height: calc(100vh - 120px);
+            display: block;
+            border-radius: 12px
+        }
+
+        .chart-modal-overlay .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin-bottom: 12px
+        }
+
+        .chart-modal-overlay .modal-header h3 {
+            color: #fff;
+            font-size: 1rem;
+            margin: 0
+        }
+
+        .chart-modal-overlay .modal-close {
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s
+        }
+
+        .chart-modal-overlay .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2)
+        }
+
+        .chart-modal-overlay .modal-legend {
+            display: flex;
+            gap: 24px;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6)
+        }
+
+        .chart-modal-overlay .modal-legend span::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 3px;
+            margin-right: 8px;
+            vertical-align: middle;
+            border-radius: 2px
+        }
+
+        .chart-modal-overlay .modal-legend .leg-ideal::before {
+            background: rgba(124, 58, 237, 0.6)
+        }
+
+        .chart-modal-overlay .modal-legend .leg-real::before {
             background: #22d3ee
         }
 
@@ -286,7 +423,8 @@
 
         <div class="container">
             <div class="tool-page-header">
-                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Calcolatore Balistico</span>
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Calcolatore
+                        Balistico</span>
                 </div>
                 <h1>🎯 Calcolatore Balistico Avanzato</h1>
                 <p>Simula il moto parabolico con resistenza dell'aria e vento</p>
@@ -297,12 +435,20 @@
             <div class="tool-card" style="cursor:default">
 
                 <div class="preset-selector">
-                    <button class="preset-btn" onclick="setPreset(20,45,0,0.47,0.22,0.43)">⚽ Pallone (20m/s)</button>
-                    <button class="preset-btn" onclick="setPreset(12,50,3,0.47,0.24,0.62)">🏀 Basket (12m/s)</button>
-                    <button class="preset-btn" onclick="setPreset(70,55,1,0.3,0.07,0.046)">🎾 Tennis (70m/s)</button>
-                    <button class="preset-btn" onclick="setPreset(100,60,0,0.2,0.155,45)">💣 Cannone (100m/s)</button>
-                    <button class="preset-btn" onclick="setPreset(900,2,1.5,0.3,0.00785,0.0096)">🔫 Proiettile
-                        9mm</button>
+                    <button class="preset-btn" onclick="setPreset(20,45,0,0.47,0.22,0.43)">⚽ Pallone</button>
+                    <button class="preset-btn" onclick="setPreset(12,50,3,0.47,0.24,0.62)">🏀 Basket</button>
+                    <button class="preset-btn" onclick="setPreset(70,55,1,0.3,0.065,0.058)">🎾 Tennis</button>
+                    <button class="preset-btn" onclick="setPreset(100,60,0,0.2,0.155,45)">💣 Cannone</button>
+                    <button class="preset-btn" onclick="setPreset(70,20,1.7,0.4,0.006,0.025)">🏹 Freccia</button>
+                    <button class="preset-btn" onclick="setPreset(350,2,1.5,0.295,0.00901,0.008)">🔫 9mm 124gr</button>
+                    <button class="preset-btn" onclick="setPreset(940,1,1.5,0.3,0.00569,0.004)">🎯 5.56 NATO
+                        62gr</button>
+                    <button class="preset-btn" onclick="setPreset(860,0.5,1.5,0.39,0.00782,0.0097)">🎯 .308 Win
+                        150gr</button>
+                    <button class="preset-btn" onclick="setPreset(900,0.5,1.5,0.35,0.00859,0.0162)">🎯 .338 Lapua
+                        250gr</button>
+                    <button class="preset-btn" onclick="setPreset(890,0.8,1.5,0.3,0.01295,0.0428)">💥 .50 BMG
+                        660gr</button>
                 </div>
 
                 <div class="gravity-selector">
@@ -313,7 +459,6 @@
                     <button class="gravity-btn" onclick="setGravity(24.79,this)">Giove (24.79)</button>
                 </div>
 
-                <!-- Basic inputs -->
                 <div class="calc-grid">
                     <div>
                         <label class="input-label" for="v0">Velocità iniziale (v₀) — m/s</label>
@@ -335,7 +480,6 @@
                     </div>
                 </div>
 
-                <!-- Advanced toggle -->
                 <div class="advanced-toggle" id="advToggle" onclick="toggleAdvanced()">
                     <h4>🌬️ Parametri Avanzati (Drag + Vento)</h4>
                     <span class="arrow">▼</span>
@@ -365,7 +509,6 @@
                                 oninput="calculate()" step="any" min="0" value="1.225">
                         </div>
                     </div>
-
                     <div class="section-label">🌬️ Vento</div>
                     <div class="calc-grid">
                         <div>
@@ -386,13 +529,13 @@
                     <div class="res-card comparison">
                         <div class="lbl">Gittata reale</div>
                         <div class="val" id="resRange">—</div>
-                        <div class="unit">m</div>
+                        <div class="unit" id="resRangeUnit">m</div>
                         <div class="ideal" id="resRangeIdeal"></div>
                     </div>
                     <div class="res-card comparison">
                         <div class="lbl">Altezza massima</div>
                         <div class="val" id="resMaxH">—</div>
-                        <div class="unit">m</div>
+                        <div class="unit" id="resMaxHUnit">m</div>
                         <div class="ideal" id="resMaxHIdeal"></div>
                     </div>
                     <div class="res-card comparison">
@@ -429,11 +572,20 @@
                 </div>
 
                 <div class="trajectory-container">
-                    <h3>📈 Traiettoria del proiettile</h3>
-                    <canvas id="trajectoryCanvas"></canvas>
+                    <div class="trajectory-header">
+                        <h3>📈 Traiettoria del proiettile</h3>
+                        <div class="chart-view-btns">
+                            <button class="chart-view-btn active" onclick="setChartView('real',this)">Reale</button>
+                            <button class="chart-view-btn" onclick="setChartView('ideal',this)">Ideale</button>
+                            <button class="chart-view-btn" onclick="setChartView('both',this)">Confronto</button>
+                        </div>
+                        <button class="fullscreen-btn" onclick="openFullscreen()" title="Apri a schermo intero">🔍
+                            Zoom</button>
+                    </div>
+                    <canvas id="trajectoryCanvas" onclick="openFullscreen()"></canvas>
                     <div class="legend">
-                        <span class="ideal">Traiettoria ideale (no drag)</span>
-                        <span class="real">Traiettoria reale (con drag + vento)</span>
+                        <span class="leg-ideal">Traiettoria ideale (no drag)</span>
+                        <span class="leg-real">Traiettoria reale (con drag + vento)</span>
                     </div>
                 </div>
 
@@ -441,6 +593,19 @@
                     🎯 F_drag = ½ · ρ · Cd · A · v² &nbsp;|&nbsp; a_x = −(F_drag · vx/|v|) / m + vento &nbsp;|&nbsp;
                     a_y = −g − (F_drag · vy/|v|) / m
                 </div>
+            </div>
+        </div>
+
+        <!-- Fullscreen chart modal -->
+        <div class="chart-modal-overlay" id="chartModal">
+            <div class="modal-header">
+                <h3>📈 Traiettoria del proiettile</h3>
+                <button class="modal-close" onclick="closeFullscreen()">✕ Chiudi (Esc)</button>
+            </div>
+            <canvas id="modalCanvas"></canvas>
+            <div class="modal-legend">
+                <span class="leg-ideal">Traiettoria ideale (no drag)</span>
+                <span class="leg-real">Traiettoria reale (con drag + vento)</span>
             </div>
         </div>
 
@@ -458,6 +623,8 @@
 
     <script>
         let grav = 9.81;
+        let chartView = 'real'; // 'real', 'ideal', 'both'
+        let lastCalcData = null;
 
         function setGravity(val, btn) {
             grav = val;
@@ -478,10 +645,34 @@
         }
 
         function toggleAdvanced() {
-            const toggle = document.getElementById('advToggle');
-            const panel = document.getElementById('advPanel');
-            toggle.classList.toggle('open');
-            panel.classList.toggle('open');
+            document.getElementById('advToggle').classList.toggle('open');
+            document.getElementById('advPanel').classList.toggle('open');
+        }
+
+        function setChartView(view, btn) {
+            chartView = view;
+            document.querySelectorAll('.chart-view-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (lastCalcData) redraw();
+        }
+
+        function openFullscreen() {
+            if (!lastCalcData) return;
+            document.getElementById('chartModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            drawOnCanvas('modalCanvas', lastCalcData, true);
+        }
+
+        function closeFullscreen() {
+            document.getElementById('chartModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFullscreen(); });
+
+        function fmtDist(m) {
+            if (Math.abs(m) >= 1000) return { val: fmt(m / 1000), unit: 'km' };
+            return { val: fmt(m), unit: 'm' };
         }
 
         function calculate() {
@@ -501,7 +692,6 @@
             const vy0 = v0 * Math.sin(angleRad);
 
             // Ideal trajectory
-            const tUpIdeal = vy0 / grav;
             const maxHIdeal = h0 + (vy0 ** 2) / (2 * grav);
             const discIdeal = vy0 ** 2 + 2 * grav * h0;
             const tTotalIdeal = (vy0 + Math.sqrt(discIdeal)) / grav;
@@ -515,28 +705,27 @@
             const windSpeed = parseFloat(document.getElementById('wind').value) || 0;
             const windAngleDeg = parseFloat(document.getElementById('windAngle').value) || 0;
             const windAngleRad = windAngleDeg * Math.PI / 180;
-            const windX = windSpeed * Math.cos(windAngleRad); // positive = favorable
+            const windX = windSpeed * Math.cos(windAngleRad);
             const windY = windSpeed * Math.sin(windAngleRad);
-
             const area = Math.PI * (diameter / 2) ** 2;
             const hasDrag = cd > 0 && mass > 0 && diameter > 0;
 
-            // Numerical integration (Euler method) for real trajectory
+            // Numerical integration (Euler method)
             const dt = 0.001;
             const maxSteps = 500000;
             let x = 0, y = h0, vx = vx0, vy = vy0;
             let t = 0;
             let maxHReal = h0;
             let realPoints = [{ x: 0, y: h0 }];
-            const sampleEvery = Math.max(1, Math.floor(tTotalIdeal / dt / 500));
+            // Adaptive sampling: aim for ~400 points
+            const estTime = hasDrag ? Math.min(tTotalIdeal, 300) : tTotalIdeal;
+            const sampleEvery = Math.max(1, Math.floor(estTime / dt / 400));
 
             for (let i = 0; i < maxSteps; i++) {
-                // Relative velocity (accounting for wind)
                 const vRelX = vx - windX;
                 const vRelY = vy - windY;
                 const vRel = Math.sqrt(vRelX ** 2 + vRelY ** 2);
 
-                // Drag force magnitude
                 let ax = 0, ay = -grav;
                 if (hasDrag && vRel > 0) {
                     const Fdrag = 0.5 * rho * cd * area * vRel ** 2;
@@ -557,7 +746,6 @@
                 }
 
                 if (y <= 0 && t > dt) {
-                    // Interpolate to ground
                     const prevY = y - vy * dt;
                     const frac = prevY / (prevY - y);
                     x -= vx * dt * (1 - frac);
@@ -570,15 +758,19 @@
             const rangeReal = x;
             const tTotalReal = t;
             const vImpact = Math.sqrt(vx ** 2 + vy ** 2);
-
-            // Kinetic energy
             const keStart = 0.5 * mass * v0 ** 2;
             const keEnd = 0.5 * mass * vImpact ** 2;
             const dragLoss = keStart > 0 ? ((keStart - keEnd) / keStart * 100) : 0;
 
-            // Display results
-            document.getElementById('resRange').textContent = fmt(rangeReal);
-            document.getElementById('resMaxH').textContent = fmt(maxHReal);
+            // Display results with smart units
+            const rangeD = fmtDist(rangeReal);
+            document.getElementById('resRange').textContent = rangeD.val;
+            document.getElementById('resRangeUnit').textContent = rangeD.unit;
+
+            const maxHD = fmtDist(maxHReal);
+            document.getElementById('resMaxH').textContent = maxHD.val;
+            document.getElementById('resMaxHUnit').textContent = maxHD.unit;
+
             document.getElementById('resTof').textContent = fmt(tTotalReal);
             document.getElementById('resImpact').textContent = fmt(vImpact);
             document.getElementById('resVx').textContent = fmt(vx0);
@@ -586,11 +778,12 @@
             document.getElementById('resKE').textContent = fmt(keStart);
             document.getElementById('resDragLoss').textContent = hasDrag ? fmt(dragLoss) : '0';
 
-            // Comparison with ideal
             if (hasDrag) {
                 const rangeDiff = ((rangeReal - rangeIdeal) / rangeIdeal * 100);
-                document.getElementById('resRangeIdeal').textContent = `Ideale: ${fmt(rangeIdeal)}m (${rangeDiff > 0 ? '+' : ''}${fmt(rangeDiff)}%)`;
-                document.getElementById('resMaxHIdeal').textContent = `Ideale: ${fmt(maxHIdeal)}m`;
+                const idealD = fmtDist(rangeIdeal);
+                document.getElementById('resRangeIdeal').textContent = `Ideale: ${idealD.val} ${idealD.unit} (${rangeDiff > 0 ? '+' : ''}${fmt(rangeDiff)}%)`;
+                const idealHD = fmtDist(maxHIdeal);
+                document.getElementById('resMaxHIdeal').textContent = `Ideale: ${idealHD.val} ${idealHD.unit}`;
                 document.getElementById('resTofIdeal').textContent = `Ideale: ${fmt(tTotalIdeal)}s`;
             } else {
                 document.getElementById('resRangeIdeal').textContent = '';
@@ -600,7 +793,7 @@
 
             // Generate ideal points
             const idealPoints = [];
-            const idealSteps = 200;
+            const idealSteps = 300;
             for (let i = 0; i <= idealSteps; i++) {
                 const ti = (i / idealSteps) * tTotalIdeal;
                 const xi = vx0 * ti;
@@ -610,20 +803,25 @@
             }
             idealPoints.push({ x: rangeIdeal, y: 0 });
 
-            drawTrajectory(idealPoints, realPoints, rangeIdeal, rangeReal, maxHIdeal, maxHReal, h0, angleRad, hasDrag);
+            lastCalcData = {
+                idealPoints, realPoints, rangeIdeal, rangeReal,
+                maxHIdeal, maxHReal, h0, angleRad, hasDrag
+            };
+
+            redraw();
         }
 
-        function clearResults() {
-            ['resRange', 'resMaxH', 'resTof', 'resImpact', 'resVx', 'resVy', 'resKE', 'resDragLoss'].forEach(id => {
-                document.getElementById(id).textContent = '—';
-            });
-            ['resRangeIdeal', 'resMaxHIdeal', 'resTofIdeal'].forEach(id => {
-                document.getElementById(id).textContent = '';
-            });
+        function redraw() {
+            drawOnCanvas('trajectoryCanvas', lastCalcData, false);
+            if (document.getElementById('chartModal').classList.contains('open')) {
+                drawOnCanvas('modalCanvas', lastCalcData, true);
+            }
         }
 
-        function drawTrajectory(idealPts, realPts, rangeIdeal, rangeReal, maxHIdeal, maxHReal, h0, angleRad, hasDrag) {
-            const canvas = document.getElementById('trajectoryCanvas');
+        function drawOnCanvas(canvasId, data, isFullscreen) {
+            const { idealPoints, realPoints, rangeIdeal, rangeReal, maxHIdeal, maxHReal, h0, angleRad, hasDrag } = data;
+
+            const canvas = document.getElementById(canvasId);
             const dpr = window.devicePixelRatio || 1;
             const rect = canvas.getBoundingClientRect();
             canvas.width = rect.width * dpr;
@@ -634,23 +832,46 @@
             const H = rect.height;
             ctx.clearRect(0, 0, W, H);
 
-            const ml = 55, mr = 20, mt = 25, mb = 40;
+            const fontSize = isFullscreen ? 13 : 10;
+            const labelFontSize = isFullscreen ? 12 : 10;
+            const ml = isFullscreen ? 70 : 60;
+            const mr = isFullscreen ? 40 : 30;
+            const mt = isFullscreen ? 30 : 25;
+            const mb = isFullscreen ? 50 : 40;
             const pw = W - ml - mr;
             const ph = H - mt - mb;
 
-            const xMax = Math.max(rangeIdeal, rangeReal) * 1.1 || 10;
-            const yMax = Math.max(maxHIdeal, maxHReal) * 1.2 || 10;
+            // Determine scale based on chart view
+            let xMax, yMax;
+            if (chartView === 'real') {
+                xMax = rangeReal * 1.15 || 10;
+                yMax = maxHReal * 1.25 || 10;
+            } else if (chartView === 'ideal') {
+                xMax = rangeIdeal * 1.1 || 10;
+                yMax = maxHIdeal * 1.2 || 10;
+            } else {
+                // both - use the larger of the two
+                xMax = Math.max(rangeIdeal, rangeReal) * 1.1 || 10;
+                yMax = Math.max(maxHIdeal, maxHReal) * 1.2 || 10;
+            }
 
             const sx = (x) => ml + (x / xMax) * pw;
             const sy = (y) => mt + ph - (y / yMax) * ph;
 
+            // Nicer grid labels with smart units
+            function niceAxisLabel(val) {
+                if (Math.abs(val) >= 1000) return fmt(val / 1000) + 'km';
+                return fmt(val) + 'm';
+            }
+
             // Grid
             ctx.strokeStyle = 'rgba(124,58,237,0.08)';
             ctx.lineWidth = 1;
-            for (let i = 0; i <= 5; i++) {
-                const x = ml + (i / 5) * pw;
+            const gridLines = isFullscreen ? 8 : 5;
+            for (let i = 0; i <= gridLines; i++) {
+                const x = ml + (i / gridLines) * pw;
                 ctx.beginPath(); ctx.moveTo(x, mt); ctx.lineTo(x, mt + ph); ctx.stroke();
-                const y = mt + (i / 5) * ph;
+                const y = mt + (i / gridLines) * ph;
                 ctx.beginPath(); ctx.moveTo(ml, y); ctx.lineTo(ml + pw, y); ctx.stroke();
             }
 
@@ -660,105 +881,169 @@
             ctx.beginPath(); ctx.moveTo(ml, mt + ph); ctx.lineTo(ml + pw, mt + ph); ctx.stroke();
             ctx.beginPath(); ctx.moveTo(ml, mt); ctx.lineTo(ml, mt + ph); ctx.stroke();
 
-            // Labels
-            ctx.fillStyle = 'rgba(255,255,255,0.4)';
-            ctx.font = '10px Inter, sans-serif';
+            // Axis labels
+            ctx.fillStyle = 'rgba(255,255,255,0.45)';
+            ctx.font = `${fontSize}px Inter, sans-serif`;
             ctx.textAlign = 'center';
-            for (let i = 0; i <= 5; i++) {
-                ctx.fillText(fmt((i / 5) * xMax) + 'm', ml + (i / 5) * pw, mt + ph + 16);
+            for (let i = 0; i <= gridLines; i++) {
+                const xVal = (i / gridLines) * xMax;
+                ctx.fillText(niceAxisLabel(xVal), ml + (i / gridLines) * pw, mt + ph + (isFullscreen ? 22 : 16));
             }
             ctx.textAlign = 'right';
-            for (let i = 0; i <= 4; i++) {
-                ctx.fillText(fmt((i / 4) * yMax), ml - 6, mt + ph - (i / 4) * ph + 4);
+            const yLabels = isFullscreen ? 6 : 4;
+            for (let i = 0; i <= yLabels; i++) {
+                const yVal = (i / yLabels) * yMax;
+                ctx.fillText(niceAxisLabel(yVal), ml - 6, mt + ph - (i / yLabels) * ph + 4);
             }
 
-            // Ideal trajectory (dashed, faded)
-            ctx.beginPath();
-            ctx.setLineDash([6, 4]);
-            ctx.strokeStyle = 'rgba(124,58,237,0.35)';
-            ctx.lineWidth = 2;
-            idealPts.forEach((p, i) => {
-                if (i === 0) ctx.moveTo(sx(p.x), sy(p.y));
-                else ctx.lineTo(sx(p.x), sy(p.y));
-            });
-            ctx.stroke();
-            ctx.setLineDash([]);
+            // Draw ideal trajectory if showing
+            if (chartView === 'ideal' || chartView === 'both') {
+                ctx.beginPath();
+                ctx.setLineDash([6, 4]);
+                ctx.strokeStyle = chartView === 'both' ? 'rgba(124,58,237,0.4)' : 'rgba(124,58,237,0.7)';
+                ctx.lineWidth = chartView === 'ideal' ? 3 : 2;
+                idealPoints.forEach((p, i) => {
+                    const px = sx(p.x), py = sy(p.y);
+                    if (px >= ml && px <= ml + pw) {
+                        if (i === 0) ctx.moveTo(px, py);
+                        else ctx.lineTo(px, py);
+                    }
+                });
+                ctx.stroke();
+                ctx.setLineDash([]);
 
-            // Real trajectory (solid, bright)
-            // Glow
-            ctx.beginPath();
-            ctx.strokeStyle = 'rgba(34,211,238,0.2)';
-            ctx.lineWidth = 7;
-            realPts.forEach((p, i) => {
-                if (i === 0) ctx.moveTo(sx(p.x), sy(p.y));
-                else ctx.lineTo(sx(p.x), sy(p.y));
-            });
-            ctx.stroke();
-            // Main line
-            ctx.beginPath();
-            ctx.strokeStyle = '#22d3ee';
-            ctx.lineWidth = 2.5;
-            realPts.forEach((p, i) => {
-                if (i === 0) ctx.moveTo(sx(p.x), sy(p.y));
-                else ctx.lineTo(sx(p.x), sy(p.y));
-            });
-            ctx.stroke();
+                if (chartView === 'ideal') {
+                    // Max height marker for ideal
+                    const idealMax = idealPoints.reduce((a, b) => b.y > a.y ? b : a, idealPoints[0]);
+                    ctx.beginPath();
+                    ctx.arc(sx(idealMax.x), sy(idealMax.y), isFullscreen ? 6 : 4, 0, Math.PI * 2);
+                    ctx.fillStyle = '#f59e0b';
+                    ctx.fill();
+                    ctx.font = `bold ${labelFontSize}px Inter, sans-serif`;
+                    ctx.fillStyle = '#f59e0b';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(niceAxisLabel(idealMax.y), sx(idealMax.x), sy(idealMax.y) - (isFullscreen ? 14 : 10));
 
-            // Start point
-            ctx.beginPath();
-            ctx.arc(sx(0), sy(h0), 5, 0, Math.PI * 2);
-            ctx.fillStyle = '#22d3ee';
-            ctx.fill();
-
-            // Real max height point
-            let maxPt = realPts.reduce((a, b) => b.y > a.y ? b : a, realPts[0]);
-            ctx.beginPath();
-            ctx.arc(sx(maxPt.x), sy(maxPt.y), 4, 0, Math.PI * 2);
-            ctx.fillStyle = '#f59e0b';
-            ctx.fill();
-
-            // Real impact point
-            const impactPt = realPts[realPts.length - 1];
-            ctx.beginPath();
-            ctx.arc(sx(impactPt.x), sy(0), 5, 0, Math.PI * 2);
-            ctx.fillStyle = '#ef4444';
-            ctx.fill();
-
-            // Labels
-            ctx.font = 'bold 10px Inter, sans-serif';
-            ctx.fillStyle = '#f59e0b';
-            ctx.textAlign = 'center';
-            ctx.fillText(fmt(maxPt.y) + 'm', sx(maxPt.x), sy(maxPt.y) - 10);
-
-            ctx.fillStyle = '#ef4444';
-            ctx.textAlign = 'right';
-            ctx.fillText(fmt(impactPt.x) + 'm', sx(impactPt.x) - 4, sy(0) - 10);
-
-            if (hasDrag) {
-                ctx.fillStyle = 'rgba(124,58,237,0.5)';
-                ctx.textAlign = 'left';
-                ctx.font = '9px Inter, sans-serif';
-                ctx.fillText('ideale: ' + fmt(rangeIdeal) + 'm', sx(rangeIdeal) + 4, sy(0) + 14);
+                    // Impact for ideal
+                    ctx.beginPath();
+                    ctx.arc(sx(rangeIdeal), sy(0), isFullscreen ? 6 : 5, 0, Math.PI * 2);
+                    ctx.fillStyle = '#ef4444';
+                    ctx.fill();
+                    ctx.fillStyle = '#ef4444';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(niceAxisLabel(rangeIdeal), sx(rangeIdeal), sy(0) - (isFullscreen ? 14 : 10));
+                }
             }
 
-            // Velocity arrow
-            const arrowLen = 30;
-            const ax = sx(0) + arrowLen * Math.cos(-angleRad);
-            const ay = sy(h0) + arrowLen * Math.sin(-angleRad);
-            ctx.strokeStyle = '#22d3ee';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(sx(0), sy(h0));
-            ctx.lineTo(ax, ay);
-            ctx.stroke();
-            const headLen = 7;
-            const a1 = Math.atan2(ay - sy(h0), ax - sx(0));
-            ctx.beginPath();
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(ax - headLen * Math.cos(a1 - 0.4), ay - headLen * Math.sin(a1 - 0.4));
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(ax - headLen * Math.cos(a1 + 0.4), ay - headLen * Math.sin(a1 + 0.4));
-            ctx.stroke();
+            // Draw real trajectory if showing
+            if (chartView === 'real' || chartView === 'both') {
+                // Glow
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(34,211,238,0.15)';
+                ctx.lineWidth = isFullscreen ? 10 : 7;
+                realPoints.forEach((p, i) => {
+                    const px = sx(p.x), py = sy(p.y);
+                    if (i === 0) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                });
+                ctx.stroke();
+                // Main
+                ctx.beginPath();
+                ctx.strokeStyle = '#22d3ee';
+                ctx.lineWidth = isFullscreen ? 3.5 : 2.5;
+                realPoints.forEach((p, i) => {
+                    const px = sx(p.x), py = sy(p.y);
+                    if (i === 0) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                });
+                ctx.stroke();
+
+                // Start point
+                ctx.beginPath();
+                ctx.arc(sx(0), sy(h0), isFullscreen ? 7 : 5, 0, Math.PI * 2);
+                ctx.fillStyle = '#22d3ee';
+                ctx.fill();
+
+                // Max height point (real)
+                let maxPt = realPoints.reduce((a, b) => b.y > a.y ? b : a, realPoints[0]);
+                ctx.beginPath();
+                ctx.arc(sx(maxPt.x), sy(maxPt.y), isFullscreen ? 6 : 4, 0, Math.PI * 2);
+                ctx.fillStyle = '#f59e0b';
+                ctx.fill();
+
+                // Max height dashed line
+                ctx.setLineDash([3, 3]);
+                ctx.strokeStyle = 'rgba(245,158,11,0.3)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(sx(maxPt.x), sy(maxPt.y));
+                ctx.lineTo(sx(maxPt.x), sy(0));
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Labels
+                ctx.font = `bold ${labelFontSize}px Inter, sans-serif`;
+                ctx.fillStyle = '#f59e0b';
+                ctx.textAlign = 'center';
+                ctx.fillText(niceAxisLabel(maxPt.y), sx(maxPt.x), sy(maxPt.y) - (isFullscreen ? 14 : 10));
+
+                // Impact point
+                const impactPt = realPoints[realPoints.length - 1];
+                ctx.beginPath();
+                ctx.arc(sx(impactPt.x), sy(0), isFullscreen ? 7 : 5, 0, Math.PI * 2);
+                ctx.fillStyle = '#ef4444';
+                ctx.fill();
+                ctx.fillStyle = '#ef4444';
+                ctx.textAlign = 'center';
+                ctx.fillText(niceAxisLabel(impactPt.x), sx(impactPt.x), sy(0) - (isFullscreen ? 14 : 10));
+
+                // Velocity arrow at start
+                const arrowLen = isFullscreen ? 45 : 30;
+                const arx = sx(0) + arrowLen * Math.cos(-angleRad);
+                const ary = sy(h0) + arrowLen * Math.sin(-angleRad);
+                ctx.strokeStyle = '#22d3ee';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(sx(0), sy(h0));
+                ctx.lineTo(arx, ary);
+                ctx.stroke();
+                const headLen = isFullscreen ? 9 : 7;
+                const a1 = Math.atan2(ary - sy(h0), arx - sx(0));
+                ctx.beginPath();
+                ctx.moveTo(arx, ary);
+                ctx.lineTo(arx - headLen * Math.cos(a1 - 0.4), ary - headLen * Math.sin(a1 - 0.4));
+                ctx.moveTo(arx, ary);
+                ctx.lineTo(arx - headLen * Math.cos(a1 + 0.4), ary - headLen * Math.sin(a1 + 0.4));
+                ctx.stroke();
+            }
+
+            // Both view: show where ideal lands if off screen
+            if (chartView === 'both' && hasDrag) {
+                const ratio = rangeIdeal / rangeReal;
+                if (ratio > 3) {
+                    ctx.fillStyle = 'rgba(124,58,237,0.6)';
+                    ctx.font = `${isFullscreen ? 12 : 9}px Inter, sans-serif`;
+                    ctx.textAlign = 'right';
+                    ctx.fillText(`Ideale: ${niceAxisLabel(rangeIdeal)}`, ml + pw - 4, mt + 16);
+                }
+            }
+
+            // View mode label
+            ctx.fillStyle = 'rgba(255,255,255,0.2)';
+            ctx.font = `${isFullscreen ? 12 : 9}px Inter, sans-serif`;
+            ctx.textAlign = 'left';
+            const viewLabel = chartView === 'real' ? 'Vista: Reale' : chartView === 'ideal' ? 'Vista: Ideale' : 'Vista: Confronto';
+            ctx.fillText(viewLabel, ml + 6, mt + 14);
+        }
+
+        function clearResults() {
+            ['resRange', 'resMaxH', 'resTof', 'resImpact', 'resVx', 'resVy', 'resKE', 'resDragLoss'].forEach(id => {
+                document.getElementById(id).textContent = '—';
+            });
+            ['resRangeIdeal', 'resMaxHIdeal', 'resTofIdeal'].forEach(id => {
+                document.getElementById(id).textContent = '';
+            });
+            lastCalcData = null;
         }
 
         function fmt(n) {
@@ -770,7 +1055,9 @@
         }
 
         calculate();
-        window.addEventListener('resize', calculate);
+        window.addEventListener('resize', () => {
+            if (lastCalcData) redraw();
+        });
     </script>
 </body>
 
