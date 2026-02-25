@@ -3,6 +3,7 @@
 **Strumenti gratuiti online per tutti** — Un sito web statico, mobile-first e dark mode con calcolatori di utilità generale ed elettronica.
 
 🌐 **[Visita il sito →](#)** https://gartyoms.github.io
+
 ---
 
 ## ✨ Caratteristiche
@@ -48,6 +49,15 @@
 | **Frequenza / Periodo** | Hz ↔ periodo, omega, lunghezza d'onda EM e sonora |
 | **Potenza e Dissipazione** | Potenza resistori, regolatori lineari, temperatura di giunzione |
 
+### 📝 Blog di Elettronica
+
+| Articolo | Argomento |
+|----------|----------|
+| **Come Funziona il Partitore di Tensione** | Formula, esempi pratici 12V→5V, 5 errori comuni |
+| **Guida al 555 Timer** | Astabile, Monostabile, pinout, 5 errori da evitare |
+| **Filtri RC Spiegati Semplice** | Passa basso, passa alto, passa banda, notch |
+| **Resistore per LED** | Formula, tabella colori LED, FAQ |
+
 ---
 
 ## 🚀 Come Usare
@@ -87,7 +97,13 @@ Anti/
 ├── reactance.html          # Reattanza e impedenza
 ├── db-calculator.html      # Convertitore dB
 ├── frequency-calculator.html # Frequenza / Periodo
-└── power-dissipation.html  # Potenza e dissipazione
+├── power-dissipation.html  # Potenza e dissipazione
+├── blog.html               # Indice del blog
+├── blog-partitore-tensione.html  # Articolo: Partitore
+├── blog-555-timer-guida.html     # Articolo: 555 Timer
+├── blog-filtri-rc.html           # Articolo: Filtri RC
+├── blog-resistore-led.html       # Articolo: Resistore LED
+└── ads.txt                 # File ads.txt per Google AdSense
 ```
 
 ---
@@ -113,4 +129,3 @@ Questo progetto è rilasciato con licenza **[CC BY-ND 4.0](https://creativecommo
 ---
 
 > Fatto con ❤️ per aiutare studenti, maker e appassionati di elettronica.
-

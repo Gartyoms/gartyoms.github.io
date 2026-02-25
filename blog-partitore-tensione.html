@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Come funziona il partitore di tensione: formula, esempio pratico 12V→5V, errori comuni e come scegliere R1 e R2.">
+    <meta property="og:title" content="Come Funziona il Partitore di Tensione — ToolBox Online">
+    <meta property="og:description"
+        content="Guida completa al partitore di tensione resistivo con formula, esempi e calcolatore integrato.">
+    <title>Come Funziona il Partitore di Tensione — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .article-body {
+            max-width: 740px;
+            margin: 0 auto
+        }
+
+        .article-body h2 {
+            color: var(--text-primary);
+            margin-top: 32px;
+            margin-bottom: 12px;
+            font-size: 1.3rem
+        }
+
+        .article-body h3 {
+            color: var(--accent-purple);
+            margin-top: 24px;
+            margin-bottom: 8px;
+            font-size: 1.05rem
+        }
+
+        .article-body p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 0.92rem
+        }
+
+        .article-body ul,
+        .article-body ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 24px;
+            margin-bottom: 16px;
+            font-size: 0.92rem
+        }
+
+        .article-body li {
+            margin-bottom: 6px
+        }
+
+        .formula-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            margin: 20px 0;
+            font-family: 'Inter', monospace
+        }
+
+        .tip-box {
+            background: rgba(52, 211, 153, 0.08);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7
+        }
+
+        .tip-box strong {
+            color: var(--accent-green)
+        }
+
+        .warning-box {
+            background: rgba(251, 146, 60, 0.08);
+            border: 1px solid rgba(251, 146, 60, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7
+        }
+
+        .warning-box strong {
+            color: var(--accent-orange)
+        }
+
+        .cta-tool {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 16px 0;
+            transition: transform 0.2s, box-shadow 0.2s
+        }
+
+        .cta-tool:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="voltage-divider.html">Calcolatore</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <a href="blog.html">Blog</a>
+                    <span>›</span> <span>Partitore di Tensione</span></div>
+                <h1>🔌 Come Funziona il Partitore di Tensione</h1>
+                <p style="font-size:0.8rem;color:var(--text-muted)">📅 25 Febbraio 2026 · ⏱️ 4 min di lettura · Scritto
+                    da Gionni Sportelli</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="article-body">
+
+                <h2>Cos'è un Partitore di Tensione?</h2>
+                <p>Il <strong>partitore di tensione</strong> (o voltage divider) è uno dei circuiti più semplici e utili
+                    in elettronica. È formato da due resistenze collegate in serie tra una tensione di ingresso (Vin) e
+                    massa (GND). La tensione di uscita (Vout) si preleva nel punto tra le due resistenze.</p>
+                <p>Si usa ovunque: per adattare livelli logici (5V → 3.3V), leggere sensori con un microcontrollore,
+                    creare tensioni di riferimento e molto altro.</p>
+
+                <h2>La Formula</h2>
+                <div class="formula-box">Vout = Vin × R2 / (R1 + R2)</div>
+                <p>Dove:</p>
+                <ul>
+                    <li><strong>Vin</strong> = tensione di ingresso</li>
+                    <li><strong>R1</strong> = resistenza superiore (collegata a Vin)</li>
+                    <li><strong>R2</strong> = resistenza inferiore (collegata a GND)</li>
+                    <li><strong>Vout</strong> = tensione di uscita (tra R1 e R2)</li>
+                </ul>
+
+                <h2>Esempio Pratico: 12V → 5V</h2>
+                <p>Vuoi ottenere 5V da un alimentatore da 12V? Ecco come:</p>
+                <ol>
+                    <li>Scegli R2 = 5kΩ</li>
+                    <li>Calcola R1: R1 = R2 × (Vin/Vout − 1) = 5000 × (12/5 − 1) = 5000 × 1.4 = <strong>7kΩ</strong>
+                    </li>
+                    <li>Verifica: Vout = 12 × 5000 / (7000 + 5000) = 12 × 0.4167 = <strong>5V</strong> ✅</li>
+                </ol>
+
+                <a href="voltage-divider.html" class="cta-tool">🔌 Prova il Calcolatore Partitore →</a>
+
+                <h2>5 Errori Comuni</h2>
+                <ol>
+                    <li><strong>Invertire R1 e R2</strong> — R1 è in alto (Vin), R2 è in basso (GND). Se li inverti, il
+                        risultato è sbagliato.</li>
+                    <li><strong>Ignorare il carico</strong> — Se colleghi un carico a Vout, assorbe corrente e la
+                        tensione cala. Usa resistenze basse (1kΩ-10kΩ) per minimizzare l'effetto.</li>
+                    <li><strong>Usare resistenze troppo alte</strong> — Con R1 = R2 = 1MΩ il divisore funziona, ma è
+                        sensibilissimo al rumore.</li>
+                    <li><strong>Dimenticare la potenza</strong> — Con 12V e R1+R2 = 1kΩ, la corrente è 12mA e la potenza
+                        dissipata è 144mW. Con tensioni alte, verifica!</li>
+                    <li><strong>Usarlo come alimentatore</strong> — Il partitore NON è un regolatore di tensione. Se il
+                        carico varia, anche Vout varia.</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>⚠️ Attenzione:</strong> Il partitore di tensione non è adatto per alimentare circuiti che
+                    assorbono corrente variabile. Per quello, usa un regolatore lineare (es. LM7805) o un convertitore
+                    DC-DC.
+                </div>
+
+                <h2>Usi Comuni</h2>
+                <div class="stats-row">
+                    <div class="stat-item" style="text-align:left;padding:14px">
+                        <div style="font-weight:600;margin-bottom:4px;font-size:0.85rem">5V → 3.3V</div>
+                        <div style="font-size:0.75rem;color:var(--text-muted)">R1=1.7kΩ, R2=3.3kΩ — Adattamento livelli
+                            Arduino → ESP32</div>
+                    </div>
+                    <div class="stat-item" style="text-align:left;padding:14px">
+                        <div style="font-weight:600;margin-bottom:4px;font-size:0.85rem">Lettura batteria</div>
+                        <div style="font-size:0.75rem;color:var(--text-muted)">R1=10kΩ, R2=10kΩ — Dimezza la tensione
+                            per leggere fino a 6.6V con ADC a 3.3V</div>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <strong>💡 Consiglio:</strong> Usa sempre valori di resistenze della serie E24 (1kΩ, 1.5kΩ, 2.2kΩ,
+                    3.3kΩ, 4.7kΩ, 10kΩ...) per trovare facilmente i componenti.
+                </div>
+
+                <p style="margin-top:32px"><a href="voltage-divider.html" class="cta-tool">🔌 Calcola il tuo Partitore
+                        →</a></p>
+                <p style="text-align:center;margin-top:16px"><a href="blog.html"
+                        style="color:var(--accent-purple);font-size:0.85rem">← Torna al Blog</a></p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
+                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                        4.0</a></p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

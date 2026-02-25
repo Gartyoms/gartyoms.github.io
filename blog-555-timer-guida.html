@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Guida completa al 555 Timer: come funziona, modalità Astabile e Monostabile, schemi di collegamento e 5 errori da evitare.">
+    <meta property="og:title" content="Guida al 555 Timer — ToolBox Online">
+    <meta property="og:description" content="Tutto sul NE555: Astabile, Monostabile, formule, schemi e errori comuni.">
+    <title>Guida al 555 Timer: Astabile e Monostabile — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .article-body {
+            max-width: 740px;
+            margin: 0 auto
+        }
+
+        .article-body h2 {
+            color: var(--text-primary);
+            margin-top: 32px;
+            margin-bottom: 12px;
+            font-size: 1.3rem
+        }
+
+        .article-body h3 {
+            color: var(--accent-purple);
+            margin-top: 24px;
+            margin-bottom: 8px;
+            font-size: 1.05rem
+        }
+
+        .article-body p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 0.92rem
+        }
+
+        .article-body ul,
+        .article-body ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 24px;
+            margin-bottom: 16px;
+            font-size: 0.92rem
+        }
+
+        .article-body li {
+            margin-bottom: 6px
+        }
+
+        .formula-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            margin: 20px 0;
+            font-family: 'Inter', monospace
+        }
+
+        .tip-box {
+            background: rgba(52, 211, 153, 0.08);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7
+        }
+
+        .tip-box strong {
+            color: var(--accent-green)
+        }
+
+        .warning-box {
+            background: rgba(251, 146, 60, 0.08);
+            border: 1px solid rgba(251, 146, 60, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7
+        }
+
+        .warning-box strong {
+            color: var(--accent-orange)
+        }
+
+        .cta-tool {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 16px 0;
+            transition: transform 0.2s, box-shadow 0.2s
+        }
+
+        .cta-tool:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3)
+        }
+
+        .pin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.85rem
+        }
+
+        .pin-table th,
+        .pin-table td {
+            padding: 10px 14px;
+            border: 1px solid var(--border-subtle);
+            text-align: left
+        }
+
+        .pin-table th {
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-weight: 600
+        }
+
+        .pin-table td {
+            color: var(--text-secondary)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="555-timer.html">Calcolatore</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <a href="blog.html">Blog</a>
+                    <span>›</span> <span>555 Timer</span></div>
+                <h1>🕐 Guida al 555 Timer: Astabile e Monostabile</h1>
+                <p style="font-size:0.8rem;color:var(--text-muted)">📅 25 Febbraio 2026 · ⏱️ 5 min di lettura · Scritto
+                    da Gionni Sportelli</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="article-body">
+
+                <h2>Cos'è il 555 Timer?</h2>
+                <p>Il <strong>NE555</strong> è uno degli integrati più venduti nella storia dell'elettronica. Inventato
+                    nel 1972, è ancora oggi usato in migliaia di progetti. È un circuito versatile che può generare
+                    impulsi, onde quadre, ritardi e oscillazioni.</p>
+                <p>Ha solo <strong>8 pin</strong> e funziona con alimentazione da 4.5V a 16V, il che lo rende perfetto
+                    per progetti con Arduino, batterie e alimentatori standard.</p>
+
+                <h2>Piedinatura (Pinout)</h2>
+                <table class="pin-table">
+                    <tr>
+                        <th>Pin</th>
+                        <th>Nome</th>
+                        <th>Funzione</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>GND</td>
+                        <td>Massa</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>TRIGGER</td>
+                        <td>Avvia il ciclo (attivo basso)</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>OUTPUT</td>
+                        <td>Uscita (0V o Vcc)</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>RESET</td>
+                        <td>Reset (attivo basso, collegare a Vcc se non usato)</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>CONTROL</td>
+                        <td>Tensione di controllo (mettere condensatore 10nF a GND)</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>THRESHOLD</td>
+                        <td>Soglia superiore (2/3 Vcc)</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>DISCHARGE</td>
+                        <td>Scarica del condensatore</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Vcc</td>
+                        <td>Alimentazione (4.5V - 16V)</td>
+                    </tr>
+                </table>
+
+                <h2>Modo Astabile (Oscillatore)</h2>
+                <p>In modo <strong>astabile</strong>, il 555 oscilla continuamente generando un'onda quadra. Non serve
+                    nessun trigger esterno: parte da solo all'accensione.</p>
+                <div class="formula-box">f = 1.44 / ((R1 + 2×R2) × C)</div>
+                <p>Il duty cycle dipende dal rapporto tra R1 e R2:</p>
+                <div class="formula-box">Duty = (R1 + R2) / (R1 + 2×R2) × 100%</div>
+
+                <h3>Esempio: LED lampeggiante a 1Hz</h3>
+                <ol>
+                    <li>Vogliamo f = 1Hz</li>
+                    <li>Scegliamo C = 10μF e R2 = 68kΩ</li>
+                    <li>R1 = 1.44/(f×C) − 2×R2 = 1.44/(1×0.00001) − 136000 = 144000 − 136000 = <strong>8kΩ</strong></li>
+                    <li>Usiamo R1 = 10kΩ (valore standard) → f ≈ 0.95Hz ✅</li>
+                </ol>
+
+                <a href="555-timer.html" class="cta-tool">🕐 Prova il Calcolatore 555 Timer →</a>
+
+                <h2>Modo Monostabile (One-Shot)</h2>
+                <p>In modo <strong>monostabile</strong>, il 555 genera un singolo impulso di durata precisa quando
+                    riceve un trigger. Perfetto per ritardi, temporizzatori e anti-rimbalzo.</p>
+                <div class="formula-box">T = 1.1 × R × C</div>
+
+                <h3>Esempio: Ritardo di 5 secondi</h3>
+                <ol>
+                    <li>Vogliamo T = 5s</li>
+                    <li>Scegliamo C = 47μF</li>
+                    <li>R = T / (1.1 × C) = 5 / (1.1 × 0.000047) = <strong>96.7kΩ</strong></li>
+                    <li>Usiamo R = 100kΩ → T ≈ 5.17s ✅</li>
+                </ol>
+
+                <h2>5 Errori da Evitare</h2>
+                <ol>
+                    <li><strong>Dimenticare il condensatore sul pin 5</strong> — Metti sempre un condensatore da
+                        10nF-100nF tra pin 5 e GND per stabilità.</li>
+                    <li><strong>Non collegare il pin 4 (RESET)</strong> — Se lo lasci flottante, il 555 si resetta
+                        casualmente. Collegalo a Vcc!</li>
+                    <li><strong>Condensatori elettrolitici di bassa qualità</strong> — Causano imprecisioni nella
+                        temporizzazione. Usa condensatori con tolleranza ≤10%.</li>
+                    <li><strong>Carico troppo pesante sull'uscita</strong> — Il 555 può dare max 200mA. Per carichi
+                        maggiori, usa un transistor o un MOSFET.</li>
+                    <li><strong>Alimentazione non filtrata</strong> — Metti un condensatore da 100nF vicino ai pin 1 e 8
+                        per filtrare i disturbi.</li>
+                </ol>
+
+                <div class="tip-box">
+                    <strong>💡 Consiglio:</strong> Per frequenze precise sopra i 100kHz, considera il CMOS version 7555
+                    (TLC555) che è più veloce e consuma meno corrente.
+                </div>
+
+                <p style="margin-top:32px"><a href="555-timer.html" class="cta-tool">🕐 Calcola il tuo 555 Timer →</a>
+                </p>
+                <p style="text-align:center;margin-top:16px"><a href="blog.html"
+                        style="color:var(--accent-purple);font-size:0.85rem">← Torna al Blog</a></p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
+                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                        4.0</a></p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
