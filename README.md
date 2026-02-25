@@ -2,7 +2,7 @@
 
 **Strumenti gratuiti online per tutti** — Un sito web statico, mobile-first e dark mode con calcolatori di utilità generale ed elettronica.
 
-🌐 **[Visita il sito →](#)** https://gartyoms.github.io
+🌐 **[Visita il sito →](#)** *(inserisci il link di GitHub Pages qui)*
 
 ---
 
@@ -105,9 +105,12 @@ Anti/
 
 ## 📄 Licenza
 
-Questo progetto è rilasciato con licenza MIT. Sei libero di usarlo, modificarlo e distribuirlo.
+Questo progetto è rilasciato con licenza **[CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/)** (Creative Commons Attribution - NoDerivatives 4.0).
+
+- ✅ Puoi **visualizzare** e **condividere** il progetto
+- ✅ Devi dare **attribuzione** all'autore originale
+- ❌ **Non puoi modificare**, adattare o creare opere derivate
 
 ---
 
 > Fatto con ❤️ per aiutare studenti, maker e appassionati di elettronica.
-
