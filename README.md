@@ -2,7 +2,7 @@
 
 **Strumenti gratuiti online per tutti** — Un sito web statico, mobile-first e dark mode con calcolatori di utilità generale ed elettronica.
 
-🌐 **[Visita il sito →](#)** https://gartyoms.github.io
+🌐 **[Visita il sito →](https://gartyoms.github.io)**
 
 ---
 
@@ -67,8 +67,8 @@ Basta visitare il sito — tutto funziona nel browser!
 
 ### In Locale
 ```bash
-git clone https://github.com/TUO-USERNAME/Anti.git
-cd Anti
+git clone https://github.com/gartyoms/gartyoms.github.io.git
+cd gartyoms.github.io
 # Apri index.html nel browser oppure:
 npx -y http-server . -p 8080
 ```
@@ -78,7 +78,7 @@ npx -y http-server . -p 8080
 ## 📁 Struttura del Progetto
 
 ```
-Anti/
+gartyoms.github.io/
 ├── index.html              # Homepage con tutte le card
 ├── style.css               # Design system completo
 ├── favicon.svg             # Icona del sito
