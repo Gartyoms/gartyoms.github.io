@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore filtri RC online: passa basso, passa alto, passa banda e notch. Calcola frequenza di taglio e risposta in frequenza.">
+    <meta property="og:title" content="Calcolatore Filtri RC — ToolBox Online">
+    <meta property="og:description"
+        content="Progetta filtri passa basso, passa alto, passa banda e notch. Calcola frequenza di taglio.">
+    <title>Calcolatore Filtri RC — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .filter-diagram {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin: 16px 0;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .filter-diagram .hl {
+            color: var(--accent-purple);
+            font-weight: 700;
+        }
+
+        .filter-diagram .hl2 {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .response-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .response-item {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            text-align: center;
+        }
+
+        .response-item .freq {
+            font-weight: 700;
+            color: var(--accent-purple);
+        }
+
+        .response-item .db {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg>
+                    <span class="logo-gradient">ToolBox Online</span>
+                </a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Legge di Ohm</a></li>
+                    <li><a href="series-parallel.html">Serie/Parallelo</a></li>
+                    <li><a href="555-timer.html">555 Timer</a></li>
+                    <li><a href="filters.html" class="active">Filtri</a></li>
+                    <li><a href="reactance.html">Reattanza</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span>Filtri RC</span>
+                </div>
+                <h1>📡 Calcolatore Filtri RC</h1>
+                <p>Progetta filtri passa basso, passa alto, passa banda e elimina banda (notch).</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <div class="category-tabs">
+                    <button class="category-tab active" onclick="setFilter('lowpass', this)">Passa Basso</button>
+                    <button class="category-tab" onclick="setFilter('highpass', this)">Passa Alto</button>
+                    <button class="category-tab" onclick="setFilter('bandpass', this)">Passa Banda</button>
+                    <button class="category-tab" onclick="setFilter('notch', this)">Notch</button>
+                </div>
+
+                <!-- Single stage inputs -->
+                <div id="singleInputs">
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Resistenza
+                                (R)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="fR" value="10" step="0.1" oninput="calcFilter()">
+                                <select id="fRu" onchange="calcFilter()" style="width: 70px;">
+                                    <option value="1">Ω</option>
+                                    <option value="1000" selected>kΩ</option>
+                                    <option value="1000000">MΩ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Capacità
+                                (C)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="fC" value="100" step="0.1" oninput="calcFilter()">
+                                <select id="fCu" onchange="calcFilter()" style="width: 70px;">
+                                    <option value="1e-12">pF</option>
+                                    <option value="1e-9">nF</option>
+                                    <option value="1e-6" selected>μF</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bandpass/Notch extra inputs -->
+                <div id="bandInputs" style="display: none;">
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">R1
+                                (Stadio 1)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="bR1" value="10" step="0.1" oninput="calcFilter()">
+                                <select id="bR1u" onchange="calcFilter()" style="width: 70px;">
+                                    <option value="1">Ω</option>
+                                    <option value="1000" selected>kΩ</option>
+                                    <option value="1000000">MΩ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">C1
+                                (Stadio 1)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="bC1" value="100" step="0.1" oninput="calcFilter()">
+                                <select id="bC1u" onchange="calcFilter()" style="width: 70px;">
+                                    <option value="1e-12">pF</option>
+                                    <option value="1e-9">nF</option>
+                                    <option value="1e-6" selected>μF</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">R2
+                                (Stadio 2)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="bR2" value="1" step="0.1" oninput="calcFilter()">
+                                <select id="bR2u" onchange="calcFilter()" style="width: 70px;">
+                                    <option value="1">Ω</option>
+                                    <option value="1000" selected>kΩ</option>
+                                    <option value="1000000">MΩ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">C2
+                                (Stadio 2)</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="bC2" value="10" step="0.1" oninput="calcFilter()">
+                                <select id="bC2u" onchange="calcFilter()" style="width: 70px;">
+                                    <option value="1e-12">pF</option>
+                                    <option value="1e-9">nF</option>
+                                    <option value="1e-6" selected>μF</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="stats-row" style="margin-top: 24px;">
+                    <div class="stat-item">
+                        <div class="stat-value" id="resFc">—</div>
+                        <div class="stat-label" id="labelFc">Frequenza di Taglio (fc)</div>
+                    </div>
+                    <div class="stat-item" id="fc2box" style="display: none;">
+                        <div class="stat-value" id="resFc2">—</div>
+                        <div class="stat-label">Freq. Taglio Alta (fc2)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resTau">—</div>
+                        <div class="stat-label" id="labelTau">τ (tau)</div>
+                    </div>
+                </div>
+
+                <!-- Response at key frequencies -->
+                <div id="responseSection" style="margin-top: 20px;">
+                    <h3
+                        style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
+                        Risposta in Frequenza</h3>
+                    <div class="response-info" id="responseInfo"></div>
+                </div>
+            </div>
+
+            <!-- About filters -->
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>📖 Formule</h3>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 0.85rem;">fc = 1/(2π×R×C)</div>
+                        <div class="stat-label">Freq. di taglio</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 0.85rem;">-20 dB/decade</div>
+                        <div class="stat-label">Pendenza (1° ordine)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 0.85rem;">-3 dB @ fc</div>
+                        <div class="stat-label">Attenuazione a fc</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let filterType = 'lowpass';
+
+        function setFilter(type, btn) {
+            filterType = type;
+            document.querySelectorAll('.category-tabs .category-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            const isBand = (type === 'bandpass' || type === 'notch');
+            document.getElementById('singleInputs').style.display = isBand ? 'none' : '';
+            document.getElementById('bandInputs').style.display = isBand ? '' : 'none';
+            document.getElementById('fc2box').style.display = isBand ? '' : 'none';
+            calcFilter();
+        }
+
+        function fmtFreq(hz) {
+            if (hz >= 1e6) return (hz / 1e6).toFixed(2) + ' MHz';
+            if (hz >= 1e3) return (hz / 1e3).toFixed(2) + ' kHz';
+            return hz.toFixed(2) + ' Hz';
+        }
+        function fmtTime(s) {
+            if (s >= 1) return s.toFixed(3) + ' s';
+            if (s >= 1e-3) return (s * 1e3).toFixed(2) + ' ms';
+            if (s >= 1e-6) return (s * 1e6).toFixed(2) + ' μs';
+            return (s * 1e9).toFixed(2) + ' ns';
+        }
+
+        function calcFilter() {
+            const resp = document.getElementById('responseInfo');
+
+            if (filterType === 'lowpass' || filterType === 'highpass') {
+                const R = parseFloat(document.getElementById('fR').value) * parseFloat(document.getElementById('fRu').value);
+                const C = parseFloat(document.getElementById('fC').value) * parseFloat(document.getElementById('fCu').value);
+                if (isNaN(R) || isNaN(C) || R <= 0 || C <= 0) return;
+
+                const fc = 1 / (2 * Math.PI * R * C);
+                const tau = R * C;
+
+                document.getElementById('resFc').textContent = fmtFreq(fc);
+                document.getElementById('resTau').textContent = fmtTime(tau);
+                document.getElementById('labelFc').textContent = 'Frequenza di Taglio (fc)';
+                document.getElementById('labelTau').textContent = 'τ (tau)';
+
+                const multipliers = [0.1, 0.5, 1, 2, 5, 10];
+                const labels = filterType === 'lowpass'
+                    ? ['Passa tutto', 'Lieve att.', '-3 dB (taglio)', 'Attenuato', 'Molto att.', 'Bloccato']
+                    : ['Bloccato', 'Molto att.', '-3 dB (taglio)', 'Attenuato', 'Lieve att.', 'Passa tutto'];
+
+                resp.innerHTML = multipliers.map((m, i) => {
+                    const f = fc * m;
+                    const ratio = f / fc;
+                    let db;
+                    if (filterType === 'lowpass') {
+                        db = -10 * Math.log10(1 + ratio * ratio);
+                    } else {
+                        db = -10 * Math.log10(1 + 1 / (ratio * ratio));
+                    }
+                    return `<div class="response-item">
+            <div class="freq">${fmtFreq(f)}</div>
+            <div class="db">${db.toFixed(1)} dB — ${labels[i]}</div>
+          </div>`;
+                }).join('');
+
+            } else {
+                // Bandpass or Notch
+                const R1 = parseFloat(document.getElementById('bR1').value) * parseFloat(document.getElementById('bR1u').value);
+                const C1 = parseFloat(document.getElementById('bC1').value) * parseFloat(document.getElementById('bC1u').value);
+                const R2 = parseFloat(document.getElementById('bR2').value) * parseFloat(document.getElementById('bR2u').value);
+                const C2 = parseFloat(document.getElementById('bC2').value) * parseFloat(document.getElementById('bC2u').value);
+                if (isNaN(R1) || isNaN(C1) || isNaN(R2) || isNaN(C2)) return;
+
+                const fc1 = 1 / (2 * Math.PI * R1 * C1);
+                const fc2 = 1 / (2 * Math.PI * R2 * C2);
+                const fcLow = Math.min(fc1, fc2);
+                const fcHigh = Math.max(fc1, fc2);
+                const bw = fcHigh - fcLow;
+                const center = Math.sqrt(fcLow * fcHigh);
+
+                document.getElementById('resFc').textContent = fmtFreq(fcLow);
+                document.getElementById('resFc2').textContent = fmtFreq(fcHigh);
+                document.getElementById('resTau').textContent = fmtFreq(bw);
+                document.getElementById('labelFc').textContent = filterType === 'bandpass' ? 'Freq. Taglio Bassa' : 'Freq. Notch Bassa';
+                document.getElementById('labelTau').textContent = 'Larghezza di Banda';
+
+                resp.innerHTML = `
+          <div class="response-item"><div class="freq">${fmtFreq(fcLow)}</div><div class="db">Taglio basso</div></div>
+          <div class="response-item"><div class="freq">${fmtFreq(center)}</div><div class="db">Frequenza centrale</div></div>
+          <div class="response-item"><div class="freq">${fmtFreq(fcHigh)}</div><div class="db">Taglio alto</div></div>
+          <div class="response-item"><div class="freq">${fmtFreq(bw)}</div><div class="db">Larghezza di banda</div></div>
+        `;
+            }
+        }
+
+        calcFilter();
+    </script>
+</body>
+
+</html>

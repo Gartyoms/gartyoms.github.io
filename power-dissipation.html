@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore potenza dissipata e dimensionamento dissipatore. Calcola la potenza termica per resistori, transistor e regolatori.">
+    <title>Calcolatore Potenza e Dissipazione — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Legge di Ohm</a></li>
+                    <li><a href="filters.html">Filtri</a></li>
+                    <li><a href="db-calculator.html">dB</a></li>
+                    <li><a href="frequency-calculator.html">Frequenza</a></li>
+                    <li><a href="power-dissipation.html" class="active">Potenza</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Potenza e Dissipazione</span>
+                </div>
+                <h1>🔥 Calcolatore Potenza e Dissipazione Termica</h1>
+                <p>Calcola la potenza dissipata e la temperatura di giunzione per resistori, transistor e regolatori
+                    lineari.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Resistor Power -->
+            <div class="tool-content">
+                <h3>🔧 Potenza su Resistore</h3>
+                <div
+                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:8px">
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Tensione
+                            (V)</label><input type="number" id="rpV" value="12" step="0.1" oninput="calcRP()"></div>
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Corrente
+                            (mA)</label><input type="number" id="rpI" value="100" step="1" oninput="calcRP()"></div>
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Resistenza
+                            (Ω)</label><input type="number" id="rpR" value="120" step="1" oninput="calcRP()"></div>
+                </div>
+                <div class="stats-row" style="margin-top:16px">
+                    <div class="stat-item">
+                        <div class="stat-value" id="rpP">—</div>
+                        <div class="stat-label">Potenza (W)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="rpSize">—</div>
+                        <div class="stat-label">Taglia Minima Resistore</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voltage Regulator -->
+            <div class="tool-content" style="margin-top:20px">
+                <h3>⚡ Regolatore Lineare (es. LM7805)</h3>
+                <div
+                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:8px">
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Vin
+                            (V)</label><input type="number" id="vrVin" value="12" step="0.1" oninput="calcVR()"></div>
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Vout
+                            (V)</label><input type="number" id="vrVout" value="5" step="0.1" oninput="calcVR()"></div>
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Corrente
+                            (mA)</label><input type="number" id="vrI" value="500" step="10" oninput="calcVR()"></div>
+                </div>
+                <div class="stats-row" style="margin-top:16px">
+                    <div class="stat-item">
+                        <div class="stat-value" id="vrP">—</div>
+                        <div class="stat-label">Potenza Dissipata (W)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="vrEff">—</div>
+                        <div class="stat-label">Efficienza (%)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="vrHeat">—</div>
+                        <div class="stat-label">Dissipatore necessario?</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Junction Temperature -->
+            <div class="tool-content" style="margin-top:20px">
+                <h3>🌡️ Temperatura di Giunzione</h3>
+                <div
+                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:8px">
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Potenza
+                            (W)</label><input type="number" id="jtP" value="3.5" step="0.1" oninput="calcJT()"></div>
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">θ<sub>JA</sub>
+                            (°C/W)</label><input type="number" id="jtTheta" value="65" step="1" oninput="calcJT()">
+                        <div style="font-size:0.7rem;color:var(--text-muted);margin-top:4px">TO-220: ~65, TO-92: ~200,
+                            SOT-23: ~250</div>
+                    </div>
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">T
+                            ambiente (°C)</label><input type="number" id="jtTa" value="25" step="1" oninput="calcJT()">
+                    </div>
+                </div>
+                <div class="stats-row" style="margin-top:16px">
+                    <div class="stat-item">
+                        <div class="stat-value" id="jtTj">—</div>
+                        <div class="stat-label">Temp. Giunzione (°C)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="jtOk">—</div>
+                        <div class="stat-label">Stato</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function calcRP() {
+            const V = parseFloat(document.getElementById('rpV').value);
+            const I = parseFloat(document.getElementById('rpI').value) / 1000;
+            const R = parseFloat(document.getElementById('rpR').value);
+            if (isNaN(V) || isNaN(I)) return;
+            const P = V * I;
+            document.getElementById('rpP').textContent = P.toFixed(3) + ' W';
+            let size = '¼W (0.25W)';
+            if (P > 0.25) size = '½W (0.5W)'; if (P > 0.5) size = '1W'; if (P > 1) size = '2W'; if (P > 2) size = '5W+';
+            document.getElementById('rpSize').textContent = size;
+        }
+        function calcVR() {
+            const vi = parseFloat(document.getElementById('vrVin').value);
+            const vo = parseFloat(document.getElementById('vrVout').value);
+            const i = parseFloat(document.getElementById('vrI').value) / 1000;
+            if (isNaN(vi) || isNaN(vo) || isNaN(i)) return;
+            const p = (vi - vo) * i; const eff = (vo * i) / (vi * i) * 100;
+            document.getElementById('vrP').textContent = p.toFixed(2) + ' W';
+            document.getElementById('vrEff').textContent = eff.toFixed(1) + '%';
+            document.getElementById('vrHeat').textContent = p > 1 ? '⚠️ SÌ — Serve dissipatore' : '✅ No, ok senza dissipatore';
+            document.getElementById('vrHeat').style.color = p > 1 ? 'var(--accent-orange)' : 'var(--accent-green)';
+        }
+        function calcJT() {
+            const p = parseFloat(document.getElementById('jtP').value);
+            const theta = parseFloat(document.getElementById('jtTheta').value);
+            const ta = parseFloat(document.getElementById('jtTa').value);
+            if (isNaN(p) || isNaN(theta) || isNaN(ta)) return;
+            const tj = ta + p * theta;
+            document.getElementById('jtTj').textContent = tj.toFixed(1) + '°C';
+            let status, col;
+            if (tj < 85) { status = '✅ OK'; col = 'var(--accent-green)' }
+            else if (tj < 125) { status = '⚠️ Caldo — monitorare'; col = 'var(--accent-orange)' }
+            else { status = '🔥 TROPPO CALDO — rischio danno!'; col = 'var(--accent-pink)' }
+            document.getElementById('jtOk').textContent = status;
+            document.getElementById('jtOk').style.color = col;
+        }
+        calcRP(); calcVR(); calcJT();
+    </script>
+</body>
+
+</html>

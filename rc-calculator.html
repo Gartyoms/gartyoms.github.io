@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore costante di tempo RC online. Calcola tau, frequenza di taglio, e tempi di carica/scarica di un circuito RC.">
+    <meta property="og:title" content="Calcolatore RC Timer — ToolBox Online">
+    <meta property="og:description"
+        content="Calcola la costante di tempo RC, frequenza di taglio e tensione durante carica/scarica.">
+    <title>Calcolatore RC Timer — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .charge-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 0.85rem;
+        }
+
+        .charge-table th,
+        .charge-table td {
+            padding: 10px 14px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .charge-table th {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .charge-table td {
+            color: var(--text-secondary);
+        }
+
+        .charge-table tr:hover td {
+            background: var(--bg-card-hover);
+        }
+
+        .tau-highlight {
+            color: var(--accent-purple);
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg>
+                    <span class="logo-gradient">ToolBox Online</span>
+                </a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Legge di Ohm</a></li>
+                    <li><a href="resistor-colors.html">Colori Resistori</a></li>
+                    <li><a href="led-resistor.html">Resistore LED</a></li>
+                    <li><a href="voltage-divider.html">Partitore</a></li>
+                    <li><a href="rc-calculator.html" class="active">RC Timer</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span>RC Timer</span>
+                </div>
+                <h1>⏱️ Calcolatore Costante di Tempo RC</h1>
+                <p>Calcola τ (tau), frequenza di taglio e tempi di carica/scarica di un circuito RC.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>Parametri del circuito</h3>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px;">
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Resistenza
+                            (R)</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="number" id="rcR" value="10" step="0.1" oninput="calcRC()" style="flex: 2;">
+                            <select id="rcRunit" onchange="calcRC()" style="flex: 1;">
+                                <option value="1">Ω</option>
+                                <option value="1000" selected>kΩ</option>
+                                <option value="1000000">MΩ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Capacità
+                            (C)</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="number" id="rcC" value="100" step="0.1" oninput="calcRC()" style="flex: 2;">
+                            <select id="rcCunit" onchange="calcRC()" style="flex: 1;">
+                                <option value="0.000000000001">pF</option>
+                                <option value="0.000000001">nF</option>
+                                <option value="0.000001" selected>μF</option>
+                                <option value="0.001">mF</option>
+                                <option value="1">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Tensione
+                            Sorgente</label>
+                        <input type="number" id="rcV" value="5" step="0.1" oninput="calcRC()">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Volt</div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="stats-row" style="margin-top: 24px;">
+                    <div class="stat-item">
+                        <div class="stat-value" id="resTau">1.000</div>
+                        <div class="stat-label">τ (tau) in secondi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resFreq">159.2</div>
+                        <div class="stat-label">Freq. Taglio (Hz)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="res5tau">5.000</div>
+                        <div class="stat-label">Carica Completa (5τ)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charge/discharge table -->
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>📊 Tabella Carica / Scarica</h3>
+                <div style="overflow-x: auto;">
+                    <table class="charge-table">
+                        <thead>
+                            <tr>
+                                <th>Tempo</th>
+                                <th>Secondi</th>
+                                <th>% Carica</th>
+                                <th>V Carica</th>
+                                <th>% Scarica</th>
+                                <th>V Scarica</th>
+                            </tr>
+                        </thead>
+                        <tbody id="chargeTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Formulas -->
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>📖 Formule</h3>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 1rem;">τ = R × C</div>
+                        <div class="stat-label">Costante di tempo</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 0.85rem;">f = 1 / (2π × R × C)</div>
+                        <div class="stat-label">Freq. di taglio</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 0.85rem;">Vc = V(1 - e⁻ᵗ⁄τ)</div>
+                        <div class="stat-label">Carica</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 0.9rem;">Vd = V × e⁻ᵗ⁄τ</div>
+                        <div class="stat-label">Scarica</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function fmtTime(seconds) {
+            if (seconds >= 1) return seconds.toFixed(3) + ' s';
+            if (seconds >= 0.001) return (seconds * 1000).toFixed(2) + ' ms';
+            if (seconds >= 0.000001) return (seconds * 1e6).toFixed(2) + ' μs';
+            return (seconds * 1e9).toFixed(2) + ' ns';
+        }
+
+        function fmtFreq(hz) {
+            if (hz >= 1e6) return (hz / 1e6).toFixed(2) + ' MHz';
+            if (hz >= 1e3) return (hz / 1e3).toFixed(2) + ' kHz';
+            return hz.toFixed(2) + ' Hz';
+        }
+
+        function calcRC() {
+            const rVal = parseFloat(document.getElementById('rcR').value);
+            const rMult = parseFloat(document.getElementById('rcRunit').value);
+            const cVal = parseFloat(document.getElementById('rcC').value);
+            const cMult = parseFloat(document.getElementById('rcCunit').value);
+            const v = parseFloat(document.getElementById('rcV').value);
+
+            if (isNaN(rVal) || isNaN(cVal) || isNaN(v)) return;
+
+            const R = rVal * rMult;
+            const C = cVal * cMult;
+            const tau = R * C;
+            const freq = 1 / (2 * Math.PI * tau);
+            const fullCharge = 5 * tau;
+
+            document.getElementById('resTau').textContent = fmtTime(tau);
+            document.getElementById('resFreq').textContent = fmtFreq(freq);
+            document.getElementById('res5tau').textContent = fmtTime(fullCharge);
+
+            // Build table
+            const tbody = document.getElementById('chargeTable');
+            tbody.innerHTML = '';
+            const taus = [1, 2, 3, 4, 5];
+            taus.forEach(n => {
+                const t = n * tau;
+                const chargePct = (1 - Math.exp(-n)) * 100;
+                const dischargePct = Math.exp(-n) * 100;
+                const chargeV = v * (1 - Math.exp(-n));
+                const dischargeV = v * Math.exp(-n);
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+          <td><span class="tau-highlight">${n}τ</span></td>
+          <td>${fmtTime(t)}</td>
+          <td>${chargePct.toFixed(1)}%</td>
+          <td>${chargeV.toFixed(3)} V</td>
+          <td>${dischargePct.toFixed(1)}%</td>
+          <td>${dischargeV.toFixed(3)} V</td>
+        `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        calcRC();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore frequenza, periodo e lunghezza d'onda online. Converti tra Hz, periodo e lambda.">
+    <title>Frequenza / Periodo / Lunghezza d'Onda — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Legge di Ohm</a></li>
+                    <li><a href="filters.html">Filtri</a></li>
+                    <li><a href="db-calculator.html">dB</a></li>
+                    <li><a href="frequency-calculator.html" class="active">Frequenza</a></li>
+                    <li><a href="power-dissipation.html">Potenza</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Frequenza</span></div>
+                <h1>🔄 Frequenza / Periodo / Lunghezza d'Onda</h1>
+                <p>Inserisci un valore e ottieni gli altri. Supporta onde elettromagnetiche e sonore.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>Inserisci la Frequenza</h3>
+                <div
+                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:8px">
+                    <div>
+                        <label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Frequenza</label>
+                        <div style="display:flex;gap:8px">
+                            <input type="number" id="freq" value="1000" step="1" oninput="calcFreq()">
+                            <select id="freqU" onchange="calcFreq()" style="width:80px">
+                                <option value="1">Hz</option>
+                                <option value="1000" selected>kHz</option>
+                                <option value="1e6">MHz</option>
+                                <option value="1e9">GHz</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-row" style="margin-top:24px">
+                    <div class="stat-item">
+                        <div class="stat-value" id="resPeriod">—</div>
+                        <div class="stat-label">Periodo (T)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resOmega">—</div>
+                        <div class="stat-label">ω (rad/s)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resLambdaEM">—</div>
+                        <div class="stat-label">λ Elettromagnetica</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resLambdaSound">—</div>
+                        <div class="stat-label">λ Sonora (aria)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-content" style="margin-top:20px">
+                <h3>📻 Bande di Frequenza</h3>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size:0.9rem">20 Hz - 20 kHz</div>
+                        <div class="stat-label">Audio</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size:0.9rem">88 - 108 MHz</div>
+                        <div class="stat-label">FM Radio</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size:0.9rem">2.4 / 5 GHz</div>
+                        <div class="stat-label">Wi-Fi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size:0.9rem">50 / 60 Hz</div>
+                        <div class="stat-label">Rete Elettrica</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const c = 299792458, vs = 343;
+        function fmtTime(s) { if (s >= 1) return s.toFixed(4) + ' s'; if (s >= 1e-3) return (s * 1e3).toFixed(3) + ' ms'; if (s >= 1e-6) return (s * 1e6).toFixed(3) + ' μs'; if (s >= 1e-9) return (s * 1e9).toFixed(3) + ' ns'; return (s * 1e12).toFixed(3) + ' ps' }
+        function fmtLen(m) { if (m >= 1e3) return (m / 1e3).toFixed(2) + ' km'; if (m >= 1) return m.toFixed(3) + ' m'; if (m >= 1e-2) return (m * 100).toFixed(2) + ' cm'; if (m >= 1e-3) return (m * 1e3).toFixed(2) + ' mm'; if (m >= 1e-6) return (m * 1e6).toFixed(2) + ' μm'; return (m * 1e9).toFixed(2) + ' nm' }
+        function fmtFreq(hz) { if (hz >= 1e9) return (hz / 1e9).toFixed(3) + ' GHz'; if (hz >= 1e6) return (hz / 1e6).toFixed(3) + ' MHz'; if (hz >= 1e3) return (hz / 1e3).toFixed(3) + ' kHz'; return hz.toFixed(3) + ' Hz' }
+        function calcFreq() {
+            const f = parseFloat(document.getElementById('freq').value) * parseFloat(document.getElementById('freqU').value);
+            if (isNaN(f) || f <= 0) return;
+            document.getElementById('resPeriod').textContent = fmtTime(1 / f);
+            document.getElementById('resOmega').textContent = (2 * Math.PI * f).toExponential(3) + ' rad/s';
+            document.getElementById('resLambdaEM').textContent = fmtLen(c / f);
+            document.getElementById('resLambdaSound').textContent = fmtLen(vs / f);
+        }
+        calcFreq();
+    </script>
+</body>
+
+</html>

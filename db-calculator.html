@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convertitore dB online. Converti tra dB, tensione, potenza e dBm/Watt.">
+    <title>Convertitore dB — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Legge di Ohm</a></li>
+                    <li><a href="filters.html">Filtri</a></li>
+                    <li><a href="reactance.html">Reattanza</a></li>
+                    <li><a href="db-calculator.html" class="active">dB</a></li>
+                    <li><a href="frequency-calculator.html">Frequenza</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Convertitore dB</span></div>
+                <h1>📊 Convertitore Decibel (dB)</h1>
+                <p>Converti tra dB, rapporto di tensione/potenza, dBm e Watt.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>dB → Rapporto</h3>
+                <div style="max-width:300px;margin-top:8px">
+                    <label
+                        style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Valore
+                        in dB</label>
+                    <input type="number" id="dbVal" value="3" step="0.1" oninput="dbToRatio()">
+                </div>
+                <div class="stats-row" style="margin-top:16px">
+                    <div class="stat-item">
+                        <div class="stat-value" id="powerRatio">—</div>
+                        <div class="stat-label">Rapporto Potenza</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="voltageRatio">—</div>
+                        <div class="stat-label">Rapporto Tensione</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="percentGain">—</div>
+                        <div class="stat-label">Guadagno %</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-content" style="margin-top:20px">
+                <h3>Rapporto → dB</h3>
+                <div
+                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:8px">
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Ingresso</label><input
+                            type="number" id="inVal" value="1" step="0.01" oninput="ratioToDb()"></div>
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Uscita</label><input
+                            type="number" id="outVal" value="2" step="0.01" oninput="ratioToDb()"></div>
+                </div>
+                <div class="stats-row" style="margin-top:16px">
+                    <div class="stat-item">
+                        <div class="stat-value" id="dbPower">—</div>
+                        <div class="stat-label">dB (Potenza)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="dbVoltage">—</div>
+                        <div class="stat-label">dB (Tensione)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-content" style="margin-top:20px">
+                <h3>dBm ↔ Watt</h3>
+                <div
+                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:8px">
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">dBm</label><input
+                            type="number" id="dbmVal" value="0" step="0.1" oninput="dbmCalc('dbm')"></div>
+                    <div><label
+                            style="display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Potenza</label>
+                        <div style="display:flex;gap:8px"><input type="number" id="wattVal" value="1" step="0.01"
+                                oninput="dbmCalc('watt')">
+                            <select id="wattU" onchange="dbmCalc('watt')" style="width:70px">
+                                <option value="1e-6">μW</option>
+                                <option value="1e-3" selected>mW</option>
+                                <option value="1">W</option>
+                                <option value="1000">kW</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-content" style="margin-top:20px">
+                <h3>📖 Valori Comuni</h3>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size:1rem">+3 dB</div>
+                        <div class="stat-label">× 2 potenza</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size:1rem">+6 dB</div>
+                        <div class="stat-label">× 2 tensione</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size:1rem">+10 dB</div>
+                        <div class="stat-label">× 10 potenza</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size:1rem">-3 dB</div>
+                        <div class="stat-label">½ potenza</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size:1rem">0 dBm</div>
+                        <div class="stat-label">= 1 mW</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function dbToRatio() { const db = parseFloat(document.getElementById('dbVal').value); if (isNaN(db)) return; const p = Math.pow(10, db / 10), v = Math.pow(10, db / 20), pct = (p - 1) * 100; document.getElementById('powerRatio').textContent = p.toFixed(4) + '×'; document.getElementById('voltageRatio').textContent = v.toFixed(4) + '×'; document.getElementById('percentGain').textContent = (pct >= 0 ? '+' : '') + pct.toFixed(1) + '%' }
+        function ratioToDb() { const i = parseFloat(document.getElementById('inVal').value), o = parseFloat(document.getElementById('outVal').value); if (isNaN(i) || isNaN(o) || i <= 0 || o <= 0) return; const r = o / i; document.getElementById('dbPower').textContent = (10 * Math.log10(r)).toFixed(2) + ' dB'; document.getElementById('dbVoltage').textContent = (20 * Math.log10(r)).toFixed(2) + ' dB' }
+        function dbmCalc(s) { if (s === 'dbm') { const d = parseFloat(document.getElementById('dbmVal').value); if (isNaN(d)) return; const mw = Math.pow(10, d / 10), u = parseFloat(document.getElementById('wattU').value); document.getElementById('wattVal').value = parseFloat((mw * 0.001 / u).toPrecision(6)) } else { const w = parseFloat(document.getElementById('wattVal').value) * parseFloat(document.getElementById('wattU').value); if (isNaN(w) || w <= 0) return; document.getElementById('dbmVal').value = parseFloat((10 * Math.log10(w * 1000)).toFixed(2)) } }
+        dbToRatio(); ratioToDb();
+    </script>
+</body>
+
+</html>

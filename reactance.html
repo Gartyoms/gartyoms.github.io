@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore reattanza capacitiva e induttiva online. Calcola XC, XL e impedenza per circuiti AC.">
+    <meta property="og:title" content="Calcolatore Reattanza e Impedenza — ToolBox Online">
+    <meta property="og:description"
+        content="Calcola reattanza capacitiva (XC), induttiva (XL) e impedenza (Z) per circuiti in corrente alternata.">
+    <title>Calcolatore Reattanza e Impedenza — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg>
+                    <span class="logo-gradient">ToolBox Online</span>
+                </a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Legge di Ohm</a></li>
+                    <li><a href="series-parallel.html">Serie/Parallelo</a></li>
+                    <li><a href="555-timer.html">555 Timer</a></li>
+                    <li><a href="filters.html">Filtri</a></li>
+                    <li><a href="reactance.html" class="active">Reattanza</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span>Reattanza e Impedenza</span>
+                </div>
+                <h1>🌊 Calcolatore Reattanza e Impedenza</h1>
+                <p>Calcola reattanza capacitiva (XC), induttiva (XL) e impedenza (Z) per circuiti AC.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>Parametri</h3>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px;">
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Frequenza
+                            (f)</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="number" id="freq" value="1000" step="1" oninput="calcReact()">
+                            <select id="freqU" onchange="calcReact()" style="width: 70px;">
+                                <option value="1">Hz</option>
+                                <option value="1000" selected>kHz</option>
+                                <option value="1000000">MHz</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Capacità
+                            (C) — opzionale</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="number" id="cap" value="100" step="0.1" oninput="calcReact()">
+                            <select id="capU" onchange="calcReact()" style="width: 70px;">
+                                <option value="1e-12">pF</option>
+                                <option value="1e-9" selected>nF</option>
+                                <option value="1e-6">μF</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Induttanza
+                            (L) — opzionale</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="number" id="ind" value="10" step="0.1" oninput="calcReact()">
+                            <select id="indU" onchange="calcReact()" style="width: 70px;">
+                                <option value="1e-6">μH</option>
+                                <option value="1e-3" selected>mH</option>
+                                <option value="1">H</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Resistenza
+                            (R) — opzionale</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="number" id="res" value="1" step="0.1" oninput="calcReact()">
+                            <select id="resU" onchange="calcReact()" style="width: 70px;">
+                                <option value="1">Ω</option>
+                                <option value="1000" selected>kΩ</option>
+                                <option value="1000000">MΩ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-row" style="margin-top: 24px;">
+                    <div class="stat-item">
+                        <div class="stat-value" id="resXC">—</div>
+                        <div class="stat-label">XC — Reattanza Capacitiva (Ω)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resXL">—</div>
+                        <div class="stat-label">XL — Reattanza Induttiva (Ω)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resZ">—</div>
+                        <div class="stat-label">Z — Impedenza Totale (Ω)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resFr">—</div>
+                        <div class="stat-label">Frequenza di Risonanza (Hz)</div>
+                    </div>
+                </div>
+
+                <div class="stat-item" style="margin-top: 12px;">
+                    <div class="stat-value" id="resPhase" style="font-size: 1.2rem;">—</div>
+                    <div class="stat-label">Angolo di Fase (°)</div>
+                </div>
+            </div>
+
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>📖 Formule</h3>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 0.85rem;">XC = 1/(2π×f×C)</div>
+                        <div class="stat-label">Reattanza Capacitiva</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 0.9rem;">XL = 2π×f×L</div>
+                        <div class="stat-label">Reattanza Induttiva</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 0.75rem;">Z = √(R² + (XL-XC)²)</div>
+                        <div class="stat-label">Impedenza</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 0.8rem;">fr = 1/(2π√(LC))</div>
+                        <div class="stat-label">Risonanza</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function fmtOhm(v) {
+            if (v >= 1e6) return (v / 1e6).toFixed(2) + ' MΩ';
+            if (v >= 1e3) return (v / 1e3).toFixed(2) + ' kΩ';
+            if (v < 0.01) return (v * 1000).toFixed(2) + ' mΩ';
+            return v.toFixed(2) + ' Ω';
+        }
+        function fmtFreq(hz) {
+            if (hz >= 1e6) return (hz / 1e6).toFixed(2) + ' MHz';
+            if (hz >= 1e3) return (hz / 1e3).toFixed(2) + ' kHz';
+            return hz.toFixed(2) + ' Hz';
+        }
+
+        function calcReact() {
+            const f = parseFloat(document.getElementById('freq').value) * parseFloat(document.getElementById('freqU').value);
+            const C = parseFloat(document.getElementById('cap').value) * parseFloat(document.getElementById('capU').value);
+            const L = parseFloat(document.getElementById('ind').value) * parseFloat(document.getElementById('indU').value);
+            const R = parseFloat(document.getElementById('res').value) * parseFloat(document.getElementById('resU').value);
+
+            if (isNaN(f) || f <= 0) return;
+            const w = 2 * Math.PI * f;
+
+            // XC
+            let XC = 0;
+            if (!isNaN(C) && C > 0) {
+                XC = 1 / (w * C);
+                document.getElementById('resXC').textContent = fmtOhm(XC);
+            } else {
+                document.getElementById('resXC').textContent = '—';
+            }
+
+            // XL
+            let XL = 0;
+            if (!isNaN(L) && L > 0) {
+                XL = w * L;
+                document.getElementById('resXL').textContent = fmtOhm(XL);
+            } else {
+                document.getElementById('resXL').textContent = '—';
+            }
+
+            // Impedance Z = sqrt(R² + (XL - XC)²)
+            const Rval = (!isNaN(R) && R > 0) ? R : 0;
+            const Z = Math.sqrt(Rval * Rval + Math.pow(XL - XC, 2));
+            document.getElementById('resZ').textContent = fmtOhm(Z);
+
+            // Phase angle
+            const phase = Math.atan2(XL - XC, Rval) * (180 / Math.PI);
+            if (Rval > 0) {
+                document.getElementById('resPhase').textContent = phase.toFixed(1) + '°' +
+                    (phase > 0 ? ' (induttivo)' : phase < 0 ? ' (capacitivo)' : ' (resistivo)');
+            } else {
+                document.getElementById('resPhase').textContent = '—';
+            }
+
+            // Resonant frequency
+            if (!isNaN(L) && L > 0 && !isNaN(C) && C > 0) {
+                const fr = 1 / (2 * Math.PI * Math.sqrt(L * C));
+                document.getElementById('resFr').textContent = fmtFreq(fr);
+            } else {
+                document.getElementById('resFr').textContent = '—';
+            }
+        }
+
+        calcReact();
+    </script>
+</body>
+
+</html>

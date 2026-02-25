@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore codice colori resistori online. Leggi il valore di un resistore a 4 o 5 bande dai colori. Gratuito e preciso.">
+    <meta property="og:title" content="Codice Colori Resistori — ToolBox Online">
+    <meta property="og:description"
+        content="Calcola il valore di un resistore dai colori delle bande. Supporta resistori a 4 e 5 bande.">
+    <title>Codice Colori Resistori — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .resistor-visual {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .resistor-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin: 20px auto;
+            max-width: 360px;
+        }
+
+        .resistor-wire {
+            width: 40px;
+            height: 3px;
+            background: var(--text-muted);
+        }
+
+        .resistor-shape {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #d2b48c;
+            border-radius: 8px;
+            padding: 16px 20px;
+            min-height: 50px;
+            position: relative;
+        }
+
+        .band {
+            width: 14px;
+            height: 40px;
+            border-radius: 3px;
+            transition: background 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .band-gap {
+            width: 20px;
+        }
+
+        .color-selector {
+            margin-bottom: 12px;
+        }
+
+        .color-selector label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .color-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .color-btn:hover {
+            transform: scale(1.15);
+        }
+
+        .color-btn.selected {
+            border-color: #fff;
+            box-shadow: 0 0 0 2px var(--accent-purple), 0 0 12px rgba(124, 58, 237, 0.4);
+        }
+
+        .color-btn[data-color="black"] {
+            background: #1a1a1a;
+        }
+
+        .color-btn[data-color="brown"] {
+            background: #8B4513;
+        }
+
+        .color-btn[data-color="red"] {
+            background: #ef4444;
+        }
+
+        .color-btn[data-color="orange"] {
+            background: #f97316;
+        }
+
+        .color-btn[data-color="yellow"] {
+            background: #eab308;
+        }
+
+        .color-btn[data-color="green"] {
+            background: #22c55e;
+        }
+
+        .color-btn[data-color="blue"] {
+            background: #3b82f6;
+        }
+
+        .color-btn[data-color="violet"] {
+            background: #8b5cf6;
+        }
+
+        .color-btn[data-color="grey"] {
+            background: #9ca3af;
+        }
+
+        .color-btn[data-color="white"] {
+            background: #f5f5f5;
+        }
+
+        .color-btn[data-color="gold"] {
+            background: linear-gradient(135deg, #d4a017, #ffd700);
+        }
+
+        .color-btn[data-color="silver"] {
+            background: linear-gradient(135deg, #a0a0a0, #d4d4d4);
+        }
+
+        .color-btn[data-color="none"] {
+            background: var(--bg-card);
+            border: 2px dashed var(--border-subtle);
+        }
+
+        .result-big {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 8px 0;
+        }
+
+        .result-tolerance {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg>
+                    <span class="logo-gradient">ToolBox Online</span>
+                </a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Legge di Ohm</a></li>
+                    <li><a href="resistor-colors.html" class="active">Colori Resistori</a></li>
+                    <li><a href="led-resistor.html">Resistore LED</a></li>
+                    <li><a href="voltage-divider.html">Partitore</a></li>
+                    <li><a href="rc-calculator.html">RC Timer</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span>Codice Colori Resistori</span>
+                </div>
+                <h1>🎨 Codice Colori Resistori</h1>
+                <p>Seleziona i colori delle bande per calcolare il valore del resistore.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <!-- Resistor visual -->
+                <div class="resistor-visual">
+                    <div class="resistor-body">
+                        <div class="resistor-wire"></div>
+                        <div class="resistor-shape">
+                            <div class="band" id="band1" style="background: #8B4513;"></div>
+                            <div class="band" id="band2" style="background: #1a1a1a;"></div>
+                            <div class="band" id="band3" style="background: #ef4444;"></div>
+                            <div class="band-gap"></div>
+                            <div class="band" id="band4" style="background: #d4a017;"></div>
+                        </div>
+                        <div class="resistor-wire"></div>
+                    </div>
+                    <div class="result-big" id="resultValue">1 kΩ</div>
+                    <div class="result-tolerance" id="resultTolerance">±5% (Oro)</div>
+                </div>
+
+                <!-- Band selectors -->
+                <div class="color-selector">
+                    <label>Banda 1 — Prima Cifra</label>
+                    <div class="color-options" id="sel1"></div>
+                </div>
+                <div class="color-selector">
+                    <label>Banda 2 — Seconda Cifra</label>
+                    <div class="color-options" id="sel2"></div>
+                </div>
+                <div class="color-selector">
+                    <label>Banda 3 — Moltiplicatore</label>
+                    <div class="color-options" id="sel3"></div>
+                </div>
+                <div class="color-selector">
+                    <label>Banda 4 — Tolleranza</label>
+                    <div class="color-options" id="sel4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const digitColors = [
+            { name: 'black', value: 0, css: '#1a1a1a' },
+            { name: 'brown', value: 1, css: '#8B4513' },
+            { name: 'red', value: 2, css: '#ef4444' },
+            { name: 'orange', value: 3, css: '#f97316' },
+            { name: 'yellow', value: 4, css: '#eab308' },
+            { name: 'green', value: 5, css: '#22c55e' },
+            { name: 'blue', value: 6, css: '#3b82f6' },
+            { name: 'violet', value: 7, css: '#8b5cf6' },
+            { name: 'grey', value: 8, css: '#9ca3af' },
+            { name: 'white', value: 9, css: '#f5f5f5' },
+        ];
+
+        const multiplierColors = [
+            { name: 'black', value: 1, css: '#1a1a1a' },
+            { name: 'brown', value: 10, css: '#8B4513' },
+            { name: 'red', value: 100, css: '#ef4444' },
+            { name: 'orange', value: 1000, css: '#f97316' },
+            { name: 'yellow', value: 10000, css: '#eab308' },
+            { name: 'green', value: 100000, css: '#22c55e' },
+            { name: 'blue', value: 1000000, css: '#3b82f6' },
+            { name: 'violet', value: 10000000, css: '#8b5cf6' },
+            { name: 'gold', value: 0.1, css: '#d4a017' },
+            { name: 'silver', value: 0.01, css: '#b0b0b0' },
+        ];
+
+        const toleranceColors = [
+            { name: 'brown', value: '±1%', css: '#8B4513' },
+            { name: 'red', value: '±2%', css: '#ef4444' },
+            { name: 'green', value: '±0.5%', css: '#22c55e' },
+            { name: 'blue', value: '±0.25%', css: '#3b82f6' },
+            { name: 'violet', value: '±0.1%', css: '#8b5cf6' },
+            { name: 'grey', value: '±0.05%', css: '#9ca3af' },
+            { name: 'gold', value: '±5%', css: '#d4a017' },
+            { name: 'silver', value: '±10%', css: '#b0b0b0' },
+            { name: 'none', value: '±20%', css: 'transparent' },
+        ];
+
+        let selected = [1, 0, 2, 6]; // brown, black, red, gold => 1kΩ ±5%
+
+        function createButtons(containerId, colors, bandIndex) {
+            const container = document.getElementById(containerId);
+            colors.forEach((c, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'color-btn' + (i === selected[bandIndex] ? ' selected' : '');
+                btn.setAttribute('data-color', c.name);
+                btn.title = c.name.charAt(0).toUpperCase() + c.name.slice(1) + (c.value !== undefined ? ' (' + c.value + ')' : '');
+                btn.onclick = () => {
+                    selected[bandIndex] = i;
+                    container.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    updateResult();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function formatValue(ohms) {
+            if (ohms >= 1e6) return (ohms / 1e6).toFixed(ohms % 1e6 === 0 ? 0 : 2) + ' MΩ';
+            if (ohms >= 1e3) return (ohms / 1e3).toFixed(ohms % 1e3 === 0 ? 0 : 2) + ' kΩ';
+            if (ohms < 1) return ohms.toFixed(2) + ' Ω';
+            return ohms.toFixed(ohms % 1 === 0 ? 0 : 2) + ' Ω';
+        }
+
+        function updateResult() {
+            const d1 = digitColors[selected[0]].value;
+            const d2 = digitColors[selected[1]].value;
+            const mult = multiplierColors[selected[2]].value;
+            const tol = toleranceColors[selected[3]];
+
+            const ohms = (d1 * 10 + d2) * mult;
+
+            document.getElementById('band1').style.background = digitColors[selected[0]].css;
+            document.getElementById('band2').style.background = digitColors[selected[1]].css;
+            document.getElementById('band3').style.background = multiplierColors[selected[2]].css;
+            document.getElementById('band4').style.background = tol.css === 'transparent' ? 'rgba(255,255,255,0.1)' : tol.css;
+
+            document.getElementById('resultValue').textContent = formatValue(ohms);
+            document.getElementById('resultTolerance').textContent = tol.value + ' (' + tol.name.charAt(0).toUpperCase() + tol.name.slice(1) + ')';
+        }
+
+        createButtons('sel1', digitColors, 0);
+        createButtons('sel2', digitColors, 1);
+        createButtons('sel3', multiplierColors, 2);
+        createButtons('sel4', toleranceColors, 3);
+        updateResult();
+    </script>
+</body>
+
+</html>

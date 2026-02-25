@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore Legge di Ohm online. Calcola tensione (V), corrente (I), resistenza (R) e potenza (P) in modo semplice e veloce.">
+    <meta property="og:title" content="Calcolatore Legge di Ohm — ToolBox Online">
+    <meta property="og:description"
+        content="Calcola tensione, corrente, resistenza e potenza con la Legge di Ohm. Gratuito e online.">
+    <title>Calcolatore Legge di Ohm — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg>
+                    <span class="logo-gradient">ToolBox Online</span>
+                </a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html" class="active">Legge di Ohm</a></li>
+                    <li><a href="resistor-colors.html">Colori Resistori</a></li>
+                    <li><a href="led-resistor.html">Resistore LED</a></li>
+                    <li><a href="voltage-divider.html">Partitore</a></li>
+                    <li><a href="rc-calculator.html">RC Timer</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span>Legge di Ohm</span>
+                </div>
+                <h1>⚡ Calcolatore Legge di Ohm</h1>
+                <p>Inserisci due valori qualsiasi e calcola gli altri due automaticamente. V = I × R, P = V × I</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>Inserisci 2 valori qualsiasi</h3>
+
+                <div class="stats-row" style="margin-top: 0;">
+                    <div class="stat-item" style="text-align: left;">
+                        <label
+                            style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Tensione
+                            (V)</label>
+                        <input type="number" id="voltage" placeholder="Volt" oninput="calculate()"
+                            style="margin-top: 8px;">
+                    </div>
+                    <div class="stat-item" style="text-align: left;">
+                        <label
+                            style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Corrente
+                            (I)</label>
+                        <input type="number" id="current" placeholder="Ampere" oninput="calculate()"
+                            style="margin-top: 8px;">
+                    </div>
+                    <div class="stat-item" style="text-align: left;">
+                        <label
+                            style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Resistenza
+                            (R)</label>
+                        <input type="number" id="resistance" placeholder="Ohm" oninput="calculate()"
+                            style="margin-top: 8px;">
+                    </div>
+                    <div class="stat-item" style="text-align: left;">
+                        <label
+                            style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Potenza
+                            (P)</label>
+                        <input type="number" id="power" placeholder="Watt" oninput="calculate()"
+                            style="margin-top: 8px;">
+                    </div>
+                </div>
+
+                <div class="btn-group" style="margin-top: 20px; justify-content: center;">
+                    <button class="btn btn-primary" onclick="calculate()">⚡ Calcola</button>
+                    <button class="btn btn-secondary" onclick="clearAll()">🗑️ Cancella</button>
+                </div>
+
+                <div id="results" style="margin-top: 24px; display: none;">
+                    <h3>Risultati</h3>
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-value" id="resV">—</div>
+                            <div class="stat-label">Tensione (V)</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="resI">—</div>
+                            <div class="stat-label">Corrente (A)</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="resR">—</div>
+                            <div class="stat-label">Resistenza (Ω)</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="resP">—</div>
+                            <div class="stat-label">Potenza (W)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulas reference -->
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>📖 Formule</h3>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 1rem;">V = I × R</div>
+                        <div class="stat-label">Tensione</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 1rem;">I = V / R</div>
+                        <div class="stat-label">Corrente</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 1rem;">R = V / I</div>
+                        <div class="stat-label">Resistenza</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" style="font-size: 1rem;">P = V × I</div>
+                        <div class="stat-label">Potenza</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function getVal(id) {
+            const v = document.getElementById(id).value;
+            return v === '' ? null : parseFloat(v);
+        }
+
+        function fmt(n) {
+            if (n === null || isNaN(n) || !isFinite(n)) return '—';
+            if (Math.abs(n) >= 1e6) return (n / 1e6).toFixed(2) + ' M';
+            if (Math.abs(n) >= 1e3) return (n / 1e3).toFixed(2) + ' k';
+            if (Math.abs(n) < 0.001) return (n * 1e6).toFixed(2) + ' μ';
+            if (Math.abs(n) < 1) return (n * 1e3).toFixed(2) + ' m';
+            return n.toFixed(3);
+        }
+
+        function calculate() {
+            let V = getVal('voltage');
+            let I = getVal('current');
+            let R = getVal('resistance');
+            let P = getVal('power');
+
+            // Count how many values we have
+            const known = [V, I, R, P].filter(x => x !== null).length;
+            if (known < 2) {
+                document.getElementById('results').style.display = 'none';
+                return;
+            }
+
+            // Calculate unknowns from the two knowns
+            if (V !== null && I !== null) {
+                R = R !== null ? R : V / I;
+                P = P !== null ? P : V * I;
+            } else if (V !== null && R !== null) {
+                I = I !== null ? I : V / R;
+                P = P !== null ? P : (V * V) / R;
+            } else if (V !== null && P !== null) {
+                I = I !== null ? I : P / V;
+                R = R !== null ? R : (V * V) / P;
+            } else if (I !== null && R !== null) {
+                V = V !== null ? V : I * R;
+                P = P !== null ? P : I * I * R;
+            } else if (I !== null && P !== null) {
+                V = V !== null ? V : P / I;
+                R = R !== null ? R : P / (I * I);
+            } else if (R !== null && P !== null) {
+                V = V !== null ? V : Math.sqrt(P * R);
+                I = I !== null ? I : Math.sqrt(P / R);
+            }
+
+            document.getElementById('resV').textContent = fmt(V) + ' V';
+            document.getElementById('resI').textContent = fmt(I) + ' A';
+            document.getElementById('resR').textContent = fmt(R) + ' Ω';
+            document.getElementById('resP').textContent = fmt(P) + ' W';
+            document.getElementById('results').style.display = 'block';
+        }
+
+        function clearAll() {
+            ['voltage', 'current', 'resistance', 'power'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('results').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

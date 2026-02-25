@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore 555 Timer online. Calcola frequenza, duty cycle e tempi per modalità Astabile e Monostabile.">
+    <meta property="og:title" content="Calcolatore 555 Timer — ToolBox Online">
+    <meta property="og:description"
+        content="Progetta circuiti con il 555 Timer. Calcola frequenza, periodo e duty cycle per modo Astabile e Monostabile.">
+    <title>Calcolatore 555 Timer — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .circuit-ascii {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            white-space: pre;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 16px 0;
+        }
+
+        .circuit-ascii .hl {
+            color: var(--accent-purple);
+            font-weight: 700;
+        }
+
+        .circuit-ascii .hl2 {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .duty-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: var(--bg-input);
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .duty-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: var(--gradient-main);
+            transition: width 0.4s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg>
+                    <span class="logo-gradient">ToolBox Online</span>
+                </a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Legge di Ohm</a></li>
+                    <li><a href="series-parallel.html">Serie/Parallelo</a></li>
+                    <li><a href="555-timer.html" class="active">555 Timer</a></li>
+                    <li><a href="filters.html">Filtri</a></li>
+                    <li><a href="reactance.html">Reattanza</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span>555 Timer</span>
+                </div>
+                <h1>🕐 Calcolatore 555 Timer</h1>
+                <p>Progetta circuiti con il NE555. Calcola frequenza, duty cycle e tempi.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <div class="category-tabs">
+                    <button class="category-tab active" id="tabAstable" onclick="setTimerMode('astable')">Modo
+                        Astabile</button>
+                    <button class="category-tab" id="tabMono" onclick="setTimerMode('monostable')">Modo
+                        Monostabile</button>
+                </div>
+
+                <!-- Astable inputs -->
+                <div id="astableInputs">
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 16px;">
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">R1</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="aR1" value="10" step="0.1" oninput="calc555()">
+                                <select id="aR1u" onchange="calc555()" style="width: 70px;">
+                                    <option value="1">Ω</option>
+                                    <option value="1000" selected>kΩ</option>
+                                    <option value="1000000">MΩ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">R2</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="aR2" value="47" step="0.1" oninput="calc555()">
+                                <select id="aR2u" onchange="calc555()" style="width: 70px;">
+                                    <option value="1">Ω</option>
+                                    <option value="1000" selected>kΩ</option>
+                                    <option value="1000000">MΩ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">C</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="aC" value="10" step="0.1" oninput="calc555()">
+                                <select id="aCu" onchange="calc555()" style="width: 70px;">
+                                    <option value="1e-12">pF</option>
+                                    <option value="1e-9">nF</option>
+                                    <option value="1e-6" selected>μF</option>
+                                    <option value="1e-3">mF</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monostable inputs -->
+                <div id="monoInputs" style="display: none;">
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">R</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="mR" value="100" step="0.1" oninput="calc555()">
+                                <select id="mRu" onchange="calc555()" style="width: 70px;">
+                                    <option value="1">Ω</option>
+                                    <option value="1000" selected>kΩ</option>
+                                    <option value="1000000">MΩ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">C</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="number" id="mC" value="10" step="0.1" oninput="calc555()">
+                                <select id="mCu" onchange="calc555()" style="width: 70px;">
+                                    <option value="1e-12">pF</option>
+                                    <option value="1e-9">nF</option>
+                                    <option value="1e-6" selected>μF</option>
+                                    <option value="1e-3">mF</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Astable -->
+                <div id="astableResults" style="margin-top: 24px;">
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-value" id="resFreq">—</div>
+                            <div class="stat-label">Frequenza</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="resPeriod">—</div>
+                            <div class="stat-label">Periodo</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="resDuty">—</div>
+                            <div class="stat-label">Duty Cycle</div>
+                        </div>
+                    </div>
+                    <div class="duty-bar">
+                        <div class="duty-fill" id="dutyFill" style="width: 50%;"></div>
+                    </div>
+                    <div class="stats-row" style="margin-top: 12px;">
+                        <div class="stat-item">
+                            <div class="stat-value" id="resTh">—</div>
+                            <div class="stat-label">T high (carica)</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="resTl">—</div>
+                            <div class="stat-label">T low (scarica)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Monostable -->
+                <div id="monoResults" style="display: none; margin-top: 24px;">
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-value" id="resPulse">—</div>
+                            <div class="stat-label">Durata Impulso</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulas -->
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>📖 Formule</h3>
+                <div id="formulaAstable">
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-value" style="font-size: 0.8rem;">T<sub>H</sub> = 0.693 × (R1+R2) × C</div>
+                            <div class="stat-label">Tempo HIGH</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" style="font-size: 0.85rem;">T<sub>L</sub> = 0.693 × R2 × C</div>
+                            <div class="stat-label">Tempo LOW</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" style="font-size: 0.8rem;">f = 1.44 / ((R1+2R2) × C)</div>
+                            <div class="stat-label">Frequenza</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="formulaMono" style="display: none;">
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-value" style="font-size: 0.9rem;">T = 1.1 × R × C</div>
+                            <div class="stat-label">Durata impulso</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let timerMode = 'astable';
+
+        function setTimerMode(m) {
+            timerMode = m;
+            document.getElementById('tabAstable').classList.toggle('active', m === 'astable');
+            document.getElementById('tabMono').classList.toggle('active', m === 'monostable');
+            document.getElementById('astableInputs').style.display = m === 'astable' ? '' : 'none';
+            document.getElementById('monoInputs').style.display = m === 'monostable' ? '' : 'none';
+            document.getElementById('astableResults').style.display = m === 'astable' ? '' : 'none';
+            document.getElementById('monoResults').style.display = m === 'monostable' ? '' : 'none';
+            document.getElementById('formulaAstable').style.display = m === 'astable' ? '' : 'none';
+            document.getElementById('formulaMono').style.display = m === 'monostable' ? '' : 'none';
+            calc555();
+        }
+
+        function fmtTime(s) {
+            if (s >= 1) return s.toFixed(3) + ' s';
+            if (s >= 1e-3) return (s * 1e3).toFixed(2) + ' ms';
+            if (s >= 1e-6) return (s * 1e6).toFixed(2) + ' μs';
+            return (s * 1e9).toFixed(2) + ' ns';
+        }
+
+        function fmtFreq(hz) {
+            if (hz >= 1e6) return (hz / 1e6).toFixed(2) + ' MHz';
+            if (hz >= 1e3) return (hz / 1e3).toFixed(2) + ' kHz';
+            return hz.toFixed(2) + ' Hz';
+        }
+
+        function calc555() {
+            if (timerMode === 'astable') {
+                const R1 = parseFloat(document.getElementById('aR1').value) * parseFloat(document.getElementById('aR1u').value);
+                const R2 = parseFloat(document.getElementById('aR2').value) * parseFloat(document.getElementById('aR2u').value);
+                const C = parseFloat(document.getElementById('aC').value) * parseFloat(document.getElementById('aCu').value);
+                if (isNaN(R1) || isNaN(R2) || isNaN(C) || R1 <= 0 || R2 <= 0 || C <= 0) return;
+
+                const tHigh = 0.693 * (R1 + R2) * C;
+                const tLow = 0.693 * R2 * C;
+                const period = tHigh + tLow;
+                const freq = 1.44 / ((R1 + 2 * R2) * C);
+                const duty = (tHigh / period) * 100;
+
+                document.getElementById('resFreq').textContent = fmtFreq(freq);
+                document.getElementById('resPeriod').textContent = fmtTime(period);
+                document.getElementById('resDuty').textContent = duty.toFixed(1) + '%';
+                document.getElementById('resTh').textContent = fmtTime(tHigh);
+                document.getElementById('resTl').textContent = fmtTime(tLow);
+                document.getElementById('dutyFill').style.width = duty + '%';
+            } else {
+                const R = parseFloat(document.getElementById('mR').value) * parseFloat(document.getElementById('mRu').value);
+                const C = parseFloat(document.getElementById('mC').value) * parseFloat(document.getElementById('mCu').value);
+                if (isNaN(R) || isNaN(C) || R <= 0 || C <= 0) return;
+
+                const pulse = 1.1 * R * C;
+                document.getElementById('resPulse').textContent = fmtTime(pulse);
+            }
+        }
+
+        calc555();
+    </script>
+</body>
+
+</html>

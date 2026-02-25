@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore resistenze e condensatori in serie e parallelo. Calcola il valore equivalente con supporto fino a 10 componenti.">
+    <meta property="og:title" content="Serie e Parallelo R/C — ToolBox Online">
+    <meta property="og:description"
+        content="Calcola resistenze e condensatori in serie e parallelo. Aggiungi fino a 10 componenti.">
+    <title>Serie e Parallelo Resistenze/Condensatori — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .component-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .component-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .component-row input {
+            flex: 1;
+        }
+
+        .component-row select {
+            width: 80px;
+        }
+
+        .remove-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--accent-pink);
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .remove-btn:hover {
+            background: rgba(236, 72, 153, 0.15);
+        }
+
+        .formula-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 16px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg>
+                    <span class="logo-gradient">ToolBox Online</span>
+                </a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Legge di Ohm</a></li>
+                    <li><a href="series-parallel.html" class="active">Serie/Parallelo</a></li>
+                    <li><a href="555-timer.html">555 Timer</a></li>
+                    <li><a href="filters.html">Filtri</a></li>
+                    <li><a href="reactance.html">Reattanza</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span>Serie / Parallelo</span>
+                </div>
+                <h1>🔗 Resistenze e Condensatori in Serie / Parallelo</h1>
+                <p>Aggiungi componenti e calcola il valore equivalente in serie o in parallelo.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <div class="category-tabs">
+                    <button class="category-tab active" onclick="setMode('resistor', this)">Resistenze (Ω)</button>
+                    <button class="category-tab" onclick="setMode('capacitor', this)">Condensatori (F)</button>
+                </div>
+
+                <div class="category-tabs" style="margin-bottom: 16px;">
+                    <button class="category-tab active" id="tabSeries" onclick="setConnection('series', this)">In
+                        Serie</button>
+                    <button class="category-tab" id="tabParallel" onclick="setConnection('parallel', this)">In
+                        Parallelo</button>
+                </div>
+
+                <div class="component-list" id="componentList"></div>
+
+                <div class="btn-group">
+                    <button class="btn btn-secondary btn-sm" onclick="addComponent()">+ Aggiungi Componente</button>
+                    <button class="btn btn-primary" onclick="calc()">⚡ Calcola</button>
+                </div>
+
+                <!-- Result -->
+                <div class="stats-row" style="margin-top: 24px;">
+                    <div class="stat-item">
+                        <div class="stat-value" id="resEquiv">—</div>
+                        <div class="stat-label" id="resLabel">Valore Equivalente</div>
+                    </div>
+                </div>
+
+                <!-- Formula -->
+                <div class="formula-box" id="formulaBox"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let mode = 'resistor'; // 'resistor' or 'capacitor'
+        let connection = 'series';
+        let components = [1000, 2200];
+
+        const rUnits = [
+            { label: 'Ω', mult: 1 },
+            { label: 'kΩ', mult: 1000 },
+            { label: 'MΩ', mult: 1e6 },
+        ];
+        const cUnits = [
+            { label: 'pF', mult: 1e-12 },
+            { label: 'nF', mult: 1e-9 },
+            { label: 'μF', mult: 1e-6 },
+            { label: 'mF', mult: 1e-3 },
+        ];
+
+        function setMode(m, btn) {
+            mode = m;
+            document.querySelectorAll('.category-tabs:first-of-type .category-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            components = mode === 'resistor' ? [1000, 2200] : [100e-6, 220e-6];
+            renderComponents();
+            calc();
+        }
+
+        function setConnection(c, btn) {
+            connection = c;
+            document.getElementById('tabSeries').classList.toggle('active', c === 'series');
+            document.getElementById('tabParallel').classList.toggle('active', c === 'parallel');
+            calc();
+        }
+
+        function addComponent() {
+            if (components.length >= 10) return;
+            components.push(mode === 'resistor' ? 1000 : 100e-6);
+            renderComponents();
+            calc();
+        }
+
+        function removeComponent(idx) {
+            if (components.length <= 2) return;
+            components.splice(idx, 1);
+            renderComponents();
+            calc();
+        }
+
+        function renderComponents() {
+            const list = document.getElementById('componentList');
+            const units = mode === 'resistor' ? rUnits : cUnits;
+            list.innerHTML = '';
+
+            components.forEach((val, i) => {
+                // Find best unit
+                let bestUnit = 0;
+                let dispVal = val;
+                for (let u = units.length - 1; u >= 0; u--) {
+                    if (Math.abs(val) >= units[u].mult * 0.99) {
+                        bestUnit = u;
+                        dispVal = val / units[u].mult;
+                        break;
+                    }
+                }
+
+                const row = document.createElement('div');
+                row.className = 'component-row';
+                row.innerHTML = `
+          <span style="color: var(--text-muted); font-size: 0.8rem; width: 24px;">${mode === 'resistor' ? 'R' : 'C'}${i + 1}</span>
+          <input type="number" value="${parseFloat(dispVal.toPrecision(4))}" step="any" data-idx="${i}" onchange="updateVal(this)">
+          <select data-idx="${i}" onchange="updateUnit(this)">
+            ${units.map((u, j) => `<option value="${j}" ${j === bestUnit ? 'selected' : ''}>${u.label}</option>`).join('')}
+          </select>
+          <button class="remove-btn" onclick="removeComponent(${i})" ${components.length <= 2 ? 'disabled style="opacity:0.3"' : ''}>✕</button>
+        `;
+                list.appendChild(row);
+            });
+        }
+
+        function updateVal(input) {
+            const idx = parseInt(input.dataset.idx);
+            const unitIdx = parseInt(input.parentElement.querySelector('select').value);
+            const units = mode === 'resistor' ? rUnits : cUnits;
+            components[idx] = parseFloat(input.value) * units[unitIdx].mult;
+            calc();
+        }
+
+        function updateUnit(select) {
+            const idx = parseInt(select.dataset.idx);
+            const unitIdx = parseInt(select.value);
+            const input = select.parentElement.querySelector('input');
+            const units = mode === 'resistor' ? rUnits : cUnits;
+            components[idx] = parseFloat(input.value) * units[unitIdx].mult;
+            calc();
+        }
+
+        function fmtR(v) {
+            if (v >= 1e6) return (v / 1e6).toFixed(2) + ' MΩ';
+            if (v >= 1e3) return (v / 1e3).toFixed(2) + ' kΩ';
+            return v.toFixed(2) + ' Ω';
+        }
+
+        function fmtC(v) {
+            if (v >= 1e-3) return (v * 1e3).toFixed(2) + ' mF';
+            if (v >= 1e-6) return (v * 1e6).toFixed(2) + ' μF';
+            if (v >= 1e-9) return (v * 1e9).toFixed(2) + ' nF';
+            return (v * 1e12).toFixed(2) + ' pF';
+        }
+
+        function calc() {
+            const vals = components.filter(v => v > 0);
+            if (vals.length < 2) return;
+
+            let result;
+            let formula;
+            const fmt = mode === 'resistor' ? fmtR : fmtC;
+            const sym = mode === 'resistor' ? 'R' : 'C';
+            const valStrs = vals.map((v, i) => `${sym}${i + 1}=${fmt(v)}`).join(', ');
+
+            if (mode === 'resistor') {
+                if (connection === 'series') {
+                    result = vals.reduce((a, b) => a + b, 0);
+                    formula = `${sym}tot = ${vals.map((_, i) => sym + (i + 1)).join(' + ')}\n${sym}tot = ${vals.map(v => fmt(v)).join(' + ')}\n${sym}tot = ${fmt(result)}`;
+                } else {
+                    const invSum = vals.reduce((a, v) => a + 1 / v, 0);
+                    result = 1 / invSum;
+                    formula = `1/${sym}tot = ${vals.map((_, i) => '1/' + sym + (i + 1)).join(' + ')}\n1/${sym}tot = ${vals.map(v => '1/' + fmt(v)).join(' + ')}\n${sym}tot = ${fmt(result)}`;
+                }
+            } else {
+                if (connection === 'series') {
+                    const invSum = vals.reduce((a, v) => a + 1 / v, 0);
+                    result = 1 / invSum;
+                    formula = `1/${sym}tot = ${vals.map((_, i) => '1/' + sym + (i + 1)).join(' + ')}\n${sym}tot = ${fmt(result)}`;
+                } else {
+                    result = vals.reduce((a, b) => a + b, 0);
+                    formula = `${sym}tot = ${vals.map((_, i) => sym + (i + 1)).join(' + ')}\n${sym}tot = ${vals.map(v => fmt(v)).join(' + ')}\n${sym}tot = ${fmt(result)}`;
+                }
+            }
+
+            document.getElementById('resEquiv').textContent = fmt(result);
+            document.getElementById('resLabel').textContent = `${mode === 'resistor' ? 'Resistenza' : 'Capacità'} Equivalente (${connection === 'series' ? 'Serie' : 'Parallelo'})`;
+            document.getElementById('formulaBox').textContent = formula;
+        }
+
+        renderComponents();
+        calc();
+    </script>
+</body>
+
+</html>

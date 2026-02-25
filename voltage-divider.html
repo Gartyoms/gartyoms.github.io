@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore partitore di tensione online. Calcola la tensione di uscita con due resistenze. Formula: Vout = Vin × R2 / (R1 + R2).">
+    <meta property="og:title" content="Partitore di Tensione — ToolBox Online">
+    <meta property="og:description"
+        content="Calcola il partitore di tensione resistivo con due resistenze. Risultati istantanei.">
+    <title>Partitore di Tensione — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .circuit-diagram {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            text-align: center;
+            margin: 24px 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .circuit-diagram .highlight {
+            color: var(--accent-purple);
+            font-weight: 700;
+        }
+
+        .circuit-diagram .result-hl {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg>
+                    <span class="logo-gradient">ToolBox Online</span>
+                </a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Legge di Ohm</a></li>
+                    <li><a href="resistor-colors.html">Colori Resistori</a></li>
+                    <li><a href="led-resistor.html">Resistore LED</a></li>
+                    <li><a href="voltage-divider.html" class="active">Partitore</a></li>
+                    <li><a href="rc-calculator.html">RC Timer</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span>Partitore di Tensione</span>
+                </div>
+                <h1>🔌 Partitore di Tensione</h1>
+                <p>Calcola la tensione di uscita di un partitore resistivo. Vout = Vin × R2 / (R1 + R2)</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>Parametri del circuito</h3>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px;">
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Tensione
+                            Ingresso (Vin)</label>
+                        <input type="number" id="vin" value="12" step="0.1" oninput="calcDivider()">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Volt</div>
+                    </div>
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Resistenza
+                            R1</label>
+                        <input type="number" id="r1" value="10000" step="100" oninput="calcDivider()">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Ohm (Ω)</div>
+                    </div>
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Resistenza
+                            R2</label>
+                        <input type="number" id="r2" value="10000" step="100" oninput="calcDivider()">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Ohm (Ω)</div>
+                    </div>
+                </div>
+
+                <!-- Circuit diagram -->
+                <div class="circuit-diagram">
+                    <span class="highlight" id="dVin">Vin = 12V</span><br>
+                    ──┤ <span class="highlight" id="dR1">R1 = 10kΩ</span> ├──┬── <span class="result-hl" id="dVout">Vout
+                        = 6V</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──
+                    <span class="highlight" id="dR2">R2 = 10kΩ</span> ──┤<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GND
+                </div>
+
+                <!-- Results -->
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-value" id="resVout">6.000</div>
+                        <div class="stat-label">Vout (V)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resRatio">50.0%</div>
+                        <div class="stat-label">Rapporto</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resCurrent">0.600</div>
+                        <div class="stat-label">Corrente (mA)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="resPowerTotal">7.20</div>
+                        <div class="stat-label">Potenza Totale (mW)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practical Guide -->
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>💡 Usi Comuni</h3>
+                <div class="stats-row">
+                    <div class="stat-item" style="text-align: left; padding: 14px;">
+                        <div style="font-weight: 600; margin-bottom: 4px; font-size: 0.85rem;">5V → 3.3V</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">R1 = 1.7kΩ, R2 = 3.3kΩ</div>
+                    </div>
+                    <div class="stat-item" style="text-align: left; padding: 14px;">
+                        <div style="font-weight: 600; margin-bottom: 4px; font-size: 0.85rem;">12V → 5V</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">R1 = 7kΩ, R2 = 5kΩ</div>
+                    </div>
+                    <div class="stat-item" style="text-align: left; padding: 14px;">
+                        <div style="font-weight: 600; margin-bottom: 4px; font-size: 0.85rem;">9V → 5V</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">R1 = 4kΩ, R2 = 5kΩ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario — 728×90</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 <a href="index.html">ToolBox Online</a> — Strumenti gratuiti per tutti</p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function fmtR(ohms) {
+            if (ohms >= 1e6) return (ohms / 1e6).toFixed(1) + 'MΩ';
+            if (ohms >= 1e3) return (ohms / 1e3).toFixed(1) + 'kΩ';
+            return ohms.toFixed(0) + 'Ω';
+        }
+
+        function calcDivider() {
+            const vin = parseFloat(document.getElementById('vin').value);
+            const r1 = parseFloat(document.getElementById('r1').value);
+            const r2 = parseFloat(document.getElementById('r2').value);
+
+            if (isNaN(vin) || isNaN(r1) || isNaN(r2) || (r1 + r2) === 0) return;
+
+            const vout = vin * r2 / (r1 + r2);
+            const ratio = (r2 / (r1 + r2)) * 100;
+            const current = vin / (r1 + r2) * 1000; // mA
+            const power = vin * vin / (r1 + r2) * 1000; // mW
+
+            document.getElementById('resVout').textContent = vout.toFixed(3);
+            document.getElementById('resRatio').textContent = ratio.toFixed(1) + '%';
+            document.getElementById('resCurrent').textContent = current.toFixed(3);
+            document.getElementById('resPowerTotal').textContent = power.toFixed(2);
+
+            // Update diagram
+            document.getElementById('dVin').textContent = 'Vin = ' + vin + 'V';
+            document.getElementById('dR1').textContent = 'R1 = ' + fmtR(r1);
+            document.getElementById('dR2').textContent = 'R2 = ' + fmtR(r2);
+            document.getElementById('dVout').textContent = 'Vout = ' + vout.toFixed(2) + 'V';
+        }
+
+        calcDivider();
+    </script>
+</body>
+
+</html>
