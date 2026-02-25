@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcola volume e superficie di sfera, cilindro, cono, cubo, parallelepipedo e piramide. Formule e risultati istantanei.">
+    <meta property="og:title" content="Calcolatore Volume e Superficie — ToolBox Online">
+    <meta property="og:description" content="Calcola volume e area superficiale di tutti i solidi più comuni.">
+    <title>Calcolatore Volume e Superficie — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .shape-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px
+        }
+
+        .shape-btn {
+            padding: 10px 16px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .shape-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary)
+        }
+
+        .shape-btn.active {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: #fff;
+            border-color: transparent
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px
+        }
+
+        @media(max-width:600px) {
+            .calc-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .result-card {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 16px 20px;
+            text-align: center
+        }
+
+        .result-card .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 4px
+        }
+
+        .result-card .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-purple)
+        }
+
+        .formula-ref {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 14px 20px;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-align: center;
+            font-family: 'Inter', monospace
+        }
+
+        .result-card .value.unit {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--text-muted)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Elettronica</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Volume e Superficie</span>
+                </div>
+                <h1>📦 Calcolatore Volume e Superficie</h1>
+                <p>Seleziona un solido, inserisci le misure e ottieni volume e area superficiale</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-card" style="cursor:default">
+
+                <div class="shape-selector" id="shapeSelector">
+                    <button class="shape-btn active" data-shape="cube" onclick="setShape('cube',this)">🧊
+                        Cubo</button>
+                    <button class="shape-btn" data-shape="parallelepiped" onclick="setShape('parallelepiped',this)">📦
+                        Parallelepipedo</button>
+                    <button class="shape-btn" data-shape="sphere" onclick="setShape('sphere',this)">🟣 Sfera</button>
+                    <button class="shape-btn" data-shape="cylinder" onclick="setShape('cylinder',this)">🥫
+                        Cilindro</button>
+                    <button class="shape-btn" data-shape="cone" onclick="setShape('cone',this)">🔺 Cono</button>
+                    <button class="shape-btn" data-shape="pyramid" onclick="setShape('pyramid',this)">🔻
+                        Piramide</button>
+                    <button class="shape-btn" data-shape="torus" onclick="setShape('torus',this)">🍩 Toro</button>
+                </div>
+
+                <div class="calc-grid" id="inputFields"></div>
+
+                <div class="calc-grid">
+                    <div class="result-card">
+                        <div class="label">Volume</div>
+                        <div class="value" id="resultVolume">—</div>
+                        <div class="value unit" id="volumeUnit"></div>
+                    </div>
+                    <div class="result-card">
+                        <div class="label">Superficie Totale</div>
+                        <div class="value" id="resultSurface">—</div>
+                        <div class="value unit" id="surfaceUnit"></div>
+                    </div>
+                </div>
+
+                <div class="formula-ref" id="formulaRef"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
+                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                        4.0</a> | <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const solids = {
+            cube: {
+                name: 'Cubo',
+                fields: [{ id: 'side', label: 'Lato (l)', placeholder: 'es. 5' }],
+                calc: v => ({
+                    volume: v.side ** 3,
+                    surface: 6 * v.side ** 2
+                }),
+                formula: 'V = l³ &nbsp;|&nbsp; S = 6 × l²'
+            },
+            parallelepiped: {
+                name: 'Parallelepipedo',
+                fields: [
+                    { id: 'a', label: 'Lunghezza (a)', placeholder: 'es. 10' },
+                    { id: 'b', label: 'Larghezza (b)', placeholder: 'es. 5' },
+                    { id: 'c', label: 'Altezza (c)', placeholder: 'es. 3' }
+                ],
+                calc: v => ({
+                    volume: v.a * v.b * v.c,
+                    surface: 2 * (v.a * v.b + v.b * v.c + v.a * v.c)
+                }),
+                formula: 'V = a × b × c &nbsp;|&nbsp; S = 2(ab + bc + ac)'
+            },
+            sphere: {
+                name: 'Sfera',
+                fields: [{ id: 'radius', label: 'Raggio (r)', placeholder: 'es. 7' }],
+                calc: v => ({
+                    volume: (4 / 3) * Math.PI * v.radius ** 3,
+                    surface: 4 * Math.PI * v.radius ** 2
+                }),
+                formula: 'V = (4/3) × π × r³ &nbsp;|&nbsp; S = 4 × π × r²'
+            },
+            cylinder: {
+                name: 'Cilindro',
+                fields: [
+                    { id: 'radius', label: 'Raggio base (r)', placeholder: 'es. 4' },
+                    { id: 'height', label: 'Altezza (h)', placeholder: 'es. 10' }
+                ],
+                calc: v => ({
+                    volume: Math.PI * v.radius ** 2 * v.height,
+                    surface: 2 * Math.PI * v.radius * (v.radius + v.height)
+                }),
+                formula: 'V = π × r² × h &nbsp;|&nbsp; S = 2πr(r + h)'
+            },
+            cone: {
+                name: 'Cono',
+                fields: [
+                    { id: 'radius', label: 'Raggio base (r)', placeholder: 'es. 4' },
+                    { id: 'height', label: 'Altezza (h)', placeholder: 'es. 8' }
+                ],
+                calc: v => {
+                    const slant = Math.sqrt(v.radius ** 2 + v.height ** 2);
+                    return {
+                        volume: (1 / 3) * Math.PI * v.radius ** 2 * v.height,
+                        surface: Math.PI * v.radius * (v.radius + slant)
+                    };
+                },
+                formula: 'V = (1/3) × π × r² × h &nbsp;|&nbsp; S = πr(r + √(r²+h²))'
+            },
+            pyramid: {
+                name: 'Piramide a base quadrata',
+                fields: [
+                    { id: 'base', label: 'Lato base (l)', placeholder: 'es. 6' },
+                    { id: 'height', label: 'Altezza (h)', placeholder: 'es. 9' }
+                ],
+                calc: v => {
+                    const slant = Math.sqrt(v.height ** 2 + (v.base / 2) ** 2);
+                    return {
+                        volume: (1 / 3) * v.base ** 2 * v.height,
+                        surface: v.base ** 2 + 2 * v.base * slant
+                    };
+                },
+                formula: 'V = (1/3) × l² × h &nbsp;|&nbsp; S = l² + 2l × √(h² + (l/2)²)'
+            },
+            torus: {
+                name: 'Toro (Ciambella)',
+                fields: [
+                    { id: 'R', label: 'Raggio maggiore (R)', placeholder: 'es. 10' },
+                    { id: 'r', label: 'Raggio tubo (r)', placeholder: 'es. 3' }
+                ],
+                calc: v => ({
+                    volume: 2 * Math.PI ** 2 * v.R * v.r ** 2,
+                    surface: 4 * Math.PI ** 2 * v.R * v.r
+                }),
+                formula: 'V = 2π²Rr² &nbsp;|&nbsp; S = 4π²Rr'
+            }
+        };
+
+        let currentSolid = 'cube';
+
+        function setShape(shape, btn) {
+            currentSolid = shape;
+            document.querySelectorAll('.shape-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderInputs();
+        }
+
+        function renderInputs() {
+            const s = solids[currentSolid];
+            const container = document.getElementById('inputFields');
+            container.innerHTML = s.fields.map(f =>
+                `<div><label class="input-label" for="${f.id}">${f.label}</label><input type="number" class="input-field" id="${f.id}" placeholder="${f.placeholder}" oninput="calculate()" step="any" min="0"></div>`
+            ).join('');
+            document.getElementById('formulaRef').innerHTML = '📦 ' + s.formula;
+            document.getElementById('resultVolume').textContent = '—';
+            document.getElementById('resultSurface').textContent = '—';
+            document.getElementById('volumeUnit').textContent = '';
+            document.getElementById('surfaceUnit').textContent = '';
+            const first = container.querySelector('input');
+            if (first) first.focus();
+        }
+
+        function calculate() {
+            const s = solids[currentSolid];
+            const vals = {};
+            let valid = true;
+            s.fields.forEach(f => {
+                const v = parseFloat(document.getElementById(f.id).value);
+                if (isNaN(v) || v <= 0) valid = false;
+                else vals[f.id] = v;
+            });
+
+            if (!valid) {
+                document.getElementById('resultVolume').textContent = '—';
+                document.getElementById('resultSurface').textContent = '—';
+                document.getElementById('volumeUnit').textContent = '';
+                document.getElementById('surfaceUnit').textContent = '';
+                return;
+            }
+
+            const r = s.calc(vals);
+            document.getElementById('resultVolume').textContent = formatNum(r.volume);
+            document.getElementById('resultSurface').textContent = formatNum(r.surface);
+            document.getElementById('volumeUnit').textContent = 'unità³';
+            document.getElementById('surfaceUnit').textContent = 'unità²';
+        }
+
+        function formatNum(n) {
+            if (n === 0) return '0';
+            if (Math.abs(n) >= 1000) return n.toLocaleString('it-IT', { maximumFractionDigits: 2 });
+            if (Number.isInteger(n)) return n.toString();
+            return n.toFixed(4).replace(/0+$/, '').replace(/\.$/, '');
+        }
+
+        renderInputs();
+    </script>
+</body>
+
+</html>

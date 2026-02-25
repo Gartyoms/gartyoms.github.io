@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore moto rettilineo uniforme (MRU) e uniformemente accelerato (MRUA). Velocità, accelerazione, spazio e tempo.">
+    <meta property="og:title" content="Moto Rettilineo — ToolBox Online">
+    <meta property="og:description" content="Calcola velocità, accelerazione, spazio e tempo per MRU e MRUA.">
+    <title>Moto Rettilineo (MRU / MRUA) — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .mode-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 14px 16px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            text-align: center
+        }
+
+        .mode-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary)
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: #fff;
+            border-color: transparent
+        }
+
+        .mode-btn small {
+            display: block;
+            font-size: 0.7rem;
+            margin-top: 2px;
+            opacity: 0.8
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px
+        }
+
+        @media(max-width:600px) {
+            .calc-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px
+        }
+
+        .res-card {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 14px;
+            text-align: center
+        }
+
+        .res-card .lbl {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-bottom: 4px
+        }
+
+        .res-card .val {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-purple)
+        }
+
+        .res-card .unit {
+            font-size: 0.7rem;
+            color: var(--text-muted)
+        }
+
+        .formula-ref {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 14px 20px;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-align: center
+        }
+
+        .tip-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-style: italic;
+            text-align: center
+        }
+
+        .info-section {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: var(--bg-input);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle)
+        }
+
+        .info-section h3 {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin-bottom: 10px
+        }
+
+        .info-section table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem
+        }
+
+        .info-section th,
+        .info-section td {
+            padding: 8px 12px;
+            border: 1px solid var(--border-subtle);
+            text-align: center
+        }
+
+        .info-section th {
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--text-primary);
+            font-weight: 600
+        }
+
+        .info-section td {
+            color: var(--text-secondary)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Elettronica</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Moto Rettilineo</span>
+                </div>
+                <h1>🚀 Moto Rettilineo</h1>
+                <p>Calcola velocità, accelerazione, spazio e tempo per MRU e MRUA</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-card" style="cursor:default">
+
+                <div class="mode-selector">
+                    <button class="mode-btn active" onclick="setMode('mru',this)">MRU <small>Moto Rettilineo
+                            Uniforme</small></button>
+                    <button class="mode-btn" onclick="setMode('mrua',this)">MRUA <small>Uniformemente
+                            Accelerato</small></button>
+                </div>
+
+                <p class="tip-label" id="tipLabel">Inserisci 2 valori su 3 — il terzo verrà calcolato</p>
+
+                <div class="calc-grid" id="inputFields"></div>
+
+                <div class="results-grid" id="resultsGrid"></div>
+
+                <div class="formula-ref" id="formulaRef"></div>
+
+                <div class="info-section">
+                    <h3>Conversioni utili</h3>
+                    <table>
+                        <tr>
+                            <th>Da</th>
+                            <th>A</th>
+                            <th>Moltiplicare per</th>
+                        </tr>
+                        <tr>
+                            <td>km/h</td>
+                            <td>m/s</td>
+                            <td>÷ 3.6</td>
+                        </tr>
+                        <tr>
+                            <td>m/s</td>
+                            <td>km/h</td>
+                            <td>× 3.6</td>
+                        </tr>
+                        <tr>
+                            <td>minuti</td>
+                            <td>secondi</td>
+                            <td>× 60</td>
+                        </tr>
+                        <tr>
+                            <td>ore</td>
+                            <td>secondi</td>
+                            <td>× 3600</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
+                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                        4.0</a> | <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let mode = 'mru';
+
+        function setMode(m, btn) {
+            mode = m;
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderInputs();
+        }
+
+        function renderInputs() {
+            const container = document.getElementById('inputFields');
+            const results = document.getElementById('resultsGrid');
+            const formula = document.getElementById('formulaRef');
+            const tip = document.getElementById('tipLabel');
+
+            if (mode === 'mru') {
+                tip.textContent = 'Inserisci 2 valori su 3 — il terzo verrà calcolato';
+                container.innerHTML = `
+                    <div><label class="input-label" for="v">Velocità (v) — m/s</label><input type="number" class="input-field" id="v" placeholder="es. 10" oninput="calculate()" step="any"></div>
+                    <div><label class="input-label" for="s">Spazio (s) — m</label><input type="number" class="input-field" id="s" placeholder="es. 100" oninput="calculate()" step="any"></div>
+                    <div><label class="input-label" for="t">Tempo (t) — s</label><input type="number" class="input-field" id="t" placeholder="es. 10" oninput="calculate()" step="any"></div>
+                `;
+                results.innerHTML = `
+                    <div class="res-card"><div class="lbl">Velocità</div><div class="val" id="resV">—</div><div class="unit">m/s</div></div>
+                    <div class="res-card"><div class="lbl">Spazio</div><div class="val" id="resS">—</div><div class="unit">m</div></div>
+                    <div class="res-card"><div class="lbl">Tempo</div><div class="val" id="resT">—</div><div class="unit">s</div></div>
+                    <div class="res-card"><div class="lbl">Velocità</div><div class="val" id="resVkmh">—</div><div class="unit">km/h</div></div>
+                `;
+                formula.innerHTML = '🚀 s = v × t &nbsp;|&nbsp; v = s / t &nbsp;|&nbsp; t = s / v';
+            } else {
+                tip.textContent = 'Inserisci i valori noti — le incognite verranno calcolate';
+                container.innerHTML = `
+                    <div><label class="input-label" for="v0">Velocità iniziale (v₀) — m/s</label><input type="number" class="input-field" id="v0" placeholder="es. 0" oninput="calculate()" step="any"></div>
+                    <div><label class="input-label" for="a">Accelerazione (a) — m/s²</label><input type="number" class="input-field" id="a" placeholder="es. 9.81" oninput="calculate()" step="any"></div>
+                    <div><label class="input-label" for="t">Tempo (t) — s</label><input type="number" class="input-field" id="t" placeholder="es. 5" oninput="calculate()" step="any"></div>
+                    <div><label class="input-label" for="s">Spazio (s) — m</label><input type="number" class="input-field" id="s" placeholder="opzionale" oninput="calculate()" step="any"></div>
+                `;
+                results.innerHTML = `
+                    <div class="res-card"><div class="lbl">Velocità finale</div><div class="val" id="resVf">—</div><div class="unit">m/s</div></div>
+                    <div class="res-card"><div class="lbl">Spazio percorso</div><div class="val" id="resS">—</div><div class="unit">m</div></div>
+                    <div class="res-card"><div class="lbl">Tempo</div><div class="val" id="resT">—</div><div class="unit">s</div></div>
+                    <div class="res-card"><div class="lbl">Velocità finale</div><div class="val" id="resVfkmh">—</div><div class="unit">km/h</div></div>
+                `;
+                formula.innerHTML = '🚀 v = v₀ + a×t &nbsp;|&nbsp; s = v₀×t + ½a×t² &nbsp;|&nbsp; v² = v₀² + 2a×s';
+            }
+        }
+
+        function calculate() {
+            if (mode === 'mru') calcMRU();
+            else calcMRUA();
+        }
+
+        function calcMRU() {
+            const vIn = document.getElementById('v').value;
+            const sIn = document.getElementById('s').value;
+            const tIn = document.getElementById('t').value;
+
+            const v = vIn !== '' ? parseFloat(vIn) : null;
+            const s = sIn !== '' ? parseFloat(sIn) : null;
+            const t = tIn !== '' ? parseFloat(tIn) : null;
+
+            let rv, rs, rt;
+
+            if (v !== null && s !== null && v !== 0) {
+                rv = v; rs = s; rt = s / v;
+            } else if (v !== null && t !== null) {
+                rv = v; rt = t; rs = v * t;
+            } else if (s !== null && t !== null && t !== 0) {
+                rs = s; rt = t; rv = s / t;
+            } else {
+                setResults(['resV', 'resS', 'resT', 'resVkmh'], '—');
+                return;
+            }
+
+            document.getElementById('resV').textContent = fmt(rv);
+            document.getElementById('resS').textContent = fmt(rs);
+            document.getElementById('resT').textContent = fmt(rt);
+            document.getElementById('resVkmh').textContent = fmt(rv * 3.6);
+        }
+
+        function calcMRUA() {
+            const v0In = document.getElementById('v0').value;
+            const aIn = document.getElementById('a').value;
+            const tIn = document.getElementById('t').value;
+
+            const v0 = v0In !== '' ? parseFloat(v0In) : null;
+            const a = aIn !== '' ? parseFloat(aIn) : null;
+            const t = tIn !== '' ? parseFloat(tIn) : null;
+
+            if (v0 === null || a === null || t === null) {
+                setResults(['resVf', 'resS', 'resT', 'resVfkmh'], '—');
+                return;
+            }
+
+            const vf = v0 + a * t;
+            const s = v0 * t + 0.5 * a * t ** 2;
+
+            document.getElementById('resVf').textContent = fmt(vf);
+            document.getElementById('resS').textContent = fmt(s);
+            document.getElementById('resT').textContent = fmt(t);
+            document.getElementById('resVfkmh').textContent = fmt(vf * 3.6);
+        }
+
+        function setResults(ids, val) {
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = val;
+            });
+        }
+
+        function fmt(n) {
+            if (n === 0) return '0';
+            if (Math.abs(n) >= 10000) return n.toLocaleString('it-IT', { maximumFractionDigits: 2 });
+            if (Number.isInteger(n)) return n.toString();
+            return n.toFixed(4).replace(/0+$/, '').replace(/\.$/, '');
+        }
+
+        renderInputs();
+    </script>
+</body>
+
+</html>

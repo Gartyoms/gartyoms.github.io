@@ -114,6 +114,8 @@ gartyoms.github.io/
 - **HTML5** — struttura semantica e SEO-friendly
 - **CSS3** — variabili custom, gradients, animazioni, glassmorphism
 - **JavaScript** — vanilla, nessun framework
+- **Google Fonts** — Inter per tipografia moderna
+- **Google AdSense** — predisposto per la monetizzazione
 
 ---
 
@@ -128,6 +130,3 @@ Questo progetto è rilasciato con licenza **[CC BY-ND 4.0](https://creativecommo
 ---
 
 > Fatto con ❤️ per aiutare studenti, maker e appassionati di elettronica.
-
-
-

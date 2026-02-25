@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcola area e perimetro di cerchio, rettangolo, triangolo, trapezio, esagono e parallelogramma. Formule e risultati istantanei.">
+    <meta property="og:title" content="Calcolatore Area e Perimetro — ToolBox Online">
+    <meta property="og:description" content="Calcola area e perimetro di tutte le forme geometriche più comuni.">
+    <title>Calcolatore Area e Perimetro — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .shape-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px
+        }
+
+        .shape-btn {
+            padding: 10px 16px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .shape-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary)
+        }
+
+        .shape-btn.active {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: #fff;
+            border-color: transparent
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px
+        }
+
+        @media(max-width:600px) {
+            .calc-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .result-card {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 16px 20px;
+            text-align: center
+        }
+
+        .result-card .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 4px
+        }
+
+        .result-card .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-purple)
+        }
+
+        .formula-ref {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 14px 20px;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-align: center;
+            font-family: 'Inter', monospace
+        }
+
+        .shape-preview {
+            display: flex;
+            justify-content: center;
+            margin: 16px 0
+        }
+
+        .shape-preview svg {
+            max-width: 180px;
+            width: 100%
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ohm-calculator.html">Elettronica</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Area e Perimetro</span>
+                </div>
+                <h1>📐 Calcolatore Area e Perimetro</h1>
+                <p>Seleziona una forma, inserisci le misure e ottieni area e perimetro istantaneamente</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-card" style="cursor:default">
+
+                <div class="shape-selector" id="shapeSelector">
+                    <button class="shape-btn active" data-shape="rectangle" onclick="setShape('rectangle',this)">▭
+                        Rettangolo</button>
+                    <button class="shape-btn" data-shape="square" onclick="setShape('square',this)">⬜ Quadrato</button>
+                    <button class="shape-btn" data-shape="circle" onclick="setShape('circle',this)">⭕ Cerchio</button>
+                    <button class="shape-btn" data-shape="triangle" onclick="setShape('triangle',this)">△
+                        Triangolo</button>
+                    <button class="shape-btn" data-shape="trapezoid" onclick="setShape('trapezoid',this)">⏢
+                        Trapezio</button>
+                    <button class="shape-btn" data-shape="parallelogram" onclick="setShape('parallelogram',this)">▰
+                        Parallelogramma</button>
+                    <button class="shape-btn" data-shape="hexagon" onclick="setShape('hexagon',this)">⬡
+                        Esagono</button>
+                    <button class="shape-btn" data-shape="ellipse" onclick="setShape('ellipse',this)">⬭
+                        Ellisse</button>
+                </div>
+
+                <div class="shape-preview" id="shapePreview"></div>
+
+                <div class="calc-grid" id="inputFields"></div>
+
+                <div class="calc-grid">
+                    <div class="result-card">
+                        <div class="label">Area</div>
+                        <div class="value" id="resultArea">—</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="label">Perimetro</div>
+                        <div class="value" id="resultPerimeter">—</div>
+                    </div>
+                </div>
+
+                <div class="formula-ref" id="formulaRef"></div>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
+                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                        4.0</a> | <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const shapes = {
+            rectangle: {
+                name: 'Rettangolo',
+                fields: [
+                    { id: 'base', label: 'Base (b)', placeholder: 'es. 10' },
+                    { id: 'height', label: 'Altezza (h)', placeholder: 'es. 5' }
+                ],
+                calc: (v) => {
+                    const a = v.base * v.height;
+                    const p = 2 * (v.base + v.height);
+                    return { area: a, perimeter: p };
+                },
+                formula: 'A = b × h &nbsp;|&nbsp; P = 2 × (b + h)',
+                svg: (v) => {
+                    const b = v.base || 60, h = v.height || 40;
+                    const s = Math.max(b, h); const sb = (b / s) * 120; const sh = (h / s) * 80;
+                    const x = (160 - sb) / 2, y = (120 - sh) / 2;
+                    return `<svg viewBox="0 0 160 120"><rect x="${x}" y="${y}" width="${sb}" height="${sh}" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="2" rx="2"/><text x="${x + sb / 2}" y="${y + sh + 14}" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">b</text><text x="${x - 10}" y="${y + sh / 2 + 4}" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">h</text></svg>`;
+                }
+            },
+            square: {
+                name: 'Quadrato',
+                fields: [
+                    { id: 'side', label: 'Lato (l)', placeholder: 'es. 8' }
+                ],
+                calc: (v) => ({ area: v.side ** 2, perimeter: 4 * v.side }),
+                formula: 'A = l² &nbsp;|&nbsp; P = 4 × l',
+                svg: () => `<svg viewBox="0 0 160 120"><rect x="30" y="10" width="100" height="100" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="2" rx="2"/><text x="80" y="118" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">l</text></svg>`
+            },
+            circle: {
+                name: 'Cerchio',
+                fields: [
+                    { id: 'radius', label: 'Raggio (r)', placeholder: 'es. 7' }
+                ],
+                calc: (v) => ({ area: Math.PI * v.radius ** 2, perimeter: 2 * Math.PI * v.radius }),
+                formula: 'A = π × r² &nbsp;|&nbsp; C = 2 × π × r',
+                svg: () => `<svg viewBox="0 0 160 120"><circle cx="80" cy="60" r="50" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="2"/><line x1="80" y1="60" x2="130" y2="60" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4"/><text x="105" y="55" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">r</text></svg>`
+            },
+            triangle: {
+                name: 'Triangolo',
+                fields: [
+                    { id: 'base', label: 'Base (b)', placeholder: 'es. 10' },
+                    { id: 'height', label: 'Altezza (h)', placeholder: 'es. 6' },
+                    { id: 'side_a', label: 'Lato a', placeholder: 'es. 7' },
+                    { id: 'side_b', label: 'Lato c', placeholder: 'es. 7' }
+                ],
+                calc: (v) => ({ area: 0.5 * v.base * v.height, perimeter: v.base + (v.side_a || 0) + (v.side_b || 0) }),
+                formula: 'A = (b × h) / 2 &nbsp;|&nbsp; P = a + b + c',
+                svg: () => `<svg viewBox="0 0 160 120"><polygon points="80,10 20,110 140,110" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="2"/><line x1="80" y1="10" x2="80" y2="110" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4"/><text x="80" y="118" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">b</text><text x="88" y="65" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">h</text></svg>`
+            },
+            trapezoid: {
+                name: 'Trapezio',
+                fields: [
+                    { id: 'base_major', label: 'Base maggiore (B)', placeholder: 'es. 12' },
+                    { id: 'base_minor', label: 'Base minore (b)', placeholder: 'es. 8' },
+                    { id: 'height', label: 'Altezza (h)', placeholder: 'es. 5' },
+                    { id: 'side_a', label: 'Lato obliquo sx', placeholder: 'es. 5.4' },
+                    { id: 'side_b', label: 'Lato obliquo dx', placeholder: 'es. 5.4' }
+                ],
+                calc: (v) => ({
+                    area: ((v.base_major + v.base_minor) / 2) * v.height,
+                    perimeter: v.base_major + v.base_minor + (v.side_a || 0) + (v.side_b || 0)
+                }),
+                formula: 'A = (B + b) × h / 2 &nbsp;|&nbsp; P = B + b + l₁ + l₂',
+                svg: () => `<svg viewBox="0 0 160 120"><polygon points="30,100 130,100 110,20 50,20" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="2"/><text x="80" y="115" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">B</text><text x="80" y="16" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">b</text></svg>`
+            },
+            parallelogram: {
+                name: 'Parallelogramma',
+                fields: [
+                    { id: 'base', label: 'Base (b)', placeholder: 'es. 10' },
+                    { id: 'height', label: 'Altezza (h)', placeholder: 'es. 6' },
+                    { id: 'side', label: 'Lato obliquo (l)', placeholder: 'es. 7' }
+                ],
+                calc: (v) => ({ area: v.base * v.height, perimeter: 2 * (v.base + (v.side || 0)) }),
+                formula: 'A = b × h &nbsp;|&nbsp; P = 2 × (b + l)',
+                svg: () => `<svg viewBox="0 0 160 120"><polygon points="40,100 130,100 120,20 30,20" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="2"/><text x="85" y="115" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">b</text></svg>`
+            },
+            hexagon: {
+                name: 'Esagono Regolare',
+                fields: [
+                    { id: 'side', label: 'Lato (l)', placeholder: 'es. 5' }
+                ],
+                calc: (v) => ({
+                    area: (3 * Math.sqrt(3) / 2) * v.side ** 2,
+                    perimeter: 6 * v.side
+                }),
+                formula: 'A = (3√3 / 2) × l² &nbsp;|&nbsp; P = 6 × l',
+                svg: () => {
+                    const cx = 80, cy = 60, r = 45;
+                    const pts = Array.from({ length: 6 }, (_, i) => {
+                        const a = (Math.PI / 3) * i - Math.PI / 6;
+                        return `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`;
+                    }).join(' ');
+                    return `<svg viewBox="0 0 160 120"><polygon points="${pts}" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="2"/><text x="80" y="115" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">l</text></svg>`;
+                }
+            },
+            ellipse: {
+                name: 'Ellisse',
+                fields: [
+                    { id: 'semi_a', label: 'Semiasse maggiore (a)', placeholder: 'es. 8' },
+                    { id: 'semi_b', label: 'Semiasse minore (b)', placeholder: 'es. 5' }
+                ],
+                calc: (v) => ({
+                    area: Math.PI * v.semi_a * v.semi_b,
+                    perimeter: Math.PI * (3 * (v.semi_a + v.semi_b) - Math.sqrt((3 * v.semi_a + v.semi_b) * (v.semi_a + 3 * v.semi_b)))
+                }),
+                formula: 'A = π × a × b &nbsp;|&nbsp; P ≈ π × [3(a+b) − √((3a+b)(a+3b))]',
+                svg: () => `<svg viewBox="0 0 160 120"><ellipse cx="80" cy="60" rx="65" ry="40" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="2"/><line x1="80" y1="60" x2="145" y2="60" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4"/><line x1="80" y1="60" x2="80" y2="20" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4"/><text x="112" y="55" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">a</text><text x="73" y="42" text-anchor="middle" fill="#7c3aed" font-size="11" font-family="Inter,sans-serif">b</text></svg>`
+            }
+        };
+
+        let currentShape = 'rectangle';
+
+        function setShape(shape, btn) {
+            currentShape = shape;
+            document.querySelectorAll('.shape-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderInputs();
+        }
+
+        function renderInputs() {
+            const s = shapes[currentShape];
+            const container = document.getElementById('inputFields');
+            container.innerHTML = s.fields.map(f =>
+                `<div><label class="input-label" for="${f.id}">${f.label}</label><input type="number" class="input-field" id="${f.id}" placeholder="${f.placeholder}" oninput="calculate()" step="any" min="0"></div>`
+            ).join('');
+            document.getElementById('formulaRef').innerHTML = '📐 ' + s.formula;
+            document.getElementById('resultArea').textContent = '—';
+            document.getElementById('resultPerimeter').textContent = '—';
+            // Show SVG preview
+            const preview = document.getElementById('shapePreview');
+            preview.innerHTML = s.svg({});
+            // Focus first input
+            const first = container.querySelector('input');
+            if (first) first.focus();
+        }
+
+        function calculate() {
+            const s = shapes[currentShape];
+            const vals = {};
+            let allFilled = true;
+            s.fields.forEach(f => {
+                const v = parseFloat(document.getElementById(f.id).value);
+                if (isNaN(v) || v <= 0) {
+                    // For optional perimeter sides (triangle, trapezoid), allow missing
+                    if (['side_a', 'side_b', 'side'].includes(f.id)) {
+                        vals[f.id] = 0;
+                    } else {
+                        allFilled = false;
+                    }
+                } else {
+                    vals[f.id] = v;
+                }
+            });
+
+            if (!allFilled) {
+                document.getElementById('resultArea').textContent = '—';
+                document.getElementById('resultPerimeter').textContent = '—';
+                return;
+            }
+
+            const result = s.calc(vals);
+            document.getElementById('resultArea').textContent = formatNum(result.area);
+            document.getElementById('resultPerimeter').textContent = result.perimeter > 0 ? formatNum(result.perimeter) : '—';
+
+            // Update SVG with values
+            const preview = document.getElementById('shapePreview');
+            preview.innerHTML = s.svg(vals);
+        }
+
+        function formatNum(n) {
+            if (n === 0) return '0';
+            if (Math.abs(n) >= 1000) return n.toLocaleString('it-IT', { maximumFractionDigits: 2 });
+            if (Number.isInteger(n)) return n.toString();
+            return n.toFixed(4).replace(/0+$/, '').replace(/\.$/, '');
+        }
+
+        // Init
+        renderInputs();
+    </script>
+</body>
+
+</html>
