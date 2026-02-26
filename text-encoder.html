@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Encoder e decoder testo online: Base64, URL encoding, HTML entities, ROT13, binario. Gratuito e senza registrazione.">
+    <meta property="og:title" content="Encoder/Decoder Testo — ToolBox Online">
+    <meta property="og:description"
+        content="Codifica e decodifica testo: Base64, URL, HTML entities, ROT13, binario. Gratuito.">
+    <title>Encoder/Decoder Testo — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .encoder-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .mode-selector {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .mode-btn {
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font);
+        }
+
+        .mode-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+        }
+
+        .mode-btn.active {
+            background: var(--gradient-main);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .text-areas {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .text-area-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .text-area-box:focus-within {
+            border-color: var(--accent-purple);
+        }
+
+        .text-area-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .text-area-header label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .text-area-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .ta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font);
+        }
+
+        .ta-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .text-area-box textarea {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            min-height: 140px;
+            border: none;
+            background: transparent;
+            padding: 0;
+        }
+
+        .text-area-box textarea:focus {
+            box-shadow: none;
+        }
+
+        .swap-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .swap-btn-enc {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-card-hover);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .swap-btn-enc:hover {
+            background: var(--accent-purple);
+            color: #fff;
+            border-color: var(--accent-purple);
+            transform: rotate(180deg);
+        }
+
+        .char-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .mode-desc {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            margin-top: 12px;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .mode-desc strong {
+            color: var(--text-primary);
+        }
+
+        .error-msg {
+            color: var(--accent-pink);
+            font-size: 0.8rem;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .error-msg.visible {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ascii-table.html">ASCII</a></li>
+                    <li><a href="hash-generator.html">Hash</a></li>
+                    <li><a href="color-converter.html">Colori</a></li>
+                    <li><a href="text-encoder.html" class="active">Encoder</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Encoder/Decoder
+                        Testo</span></div>
+                <h1>🔄 Encoder / Decoder Testo</h1>
+                <p>Codifica e decodifica testo in Base64, URL encoding, HTML entities, ROT13 e binario.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>⚙️ Modalità di Codifica</h3>
+                <div class="mode-selector">
+                    <button class="mode-btn active" onclick="setMode('base64', this)">Base64</button>
+                    <button class="mode-btn" onclick="setMode('url', this)">URL Encoding</button>
+                    <button class="mode-btn" onclick="setMode('html', this)">HTML Entities</button>
+                    <button class="mode-btn" onclick="setMode('rot13', this)">ROT13</button>
+                    <button class="mode-btn" onclick="setMode('binary', this)">Binario</button>
+                    <button class="mode-btn" onclick="setMode('hex', this)">Esadecimale</button>
+                </div>
+
+                <div class="encoder-layout">
+                    <div class="text-areas">
+                        <!-- Input -->
+                        <div class="text-area-box">
+                            <div class="text-area-header">
+                                <label>📝 Testo originale</label>
+                                <div class="text-area-actions">
+                                    <button class="ta-btn" onclick="clearInput()">🗑️ Pulisci</button>
+                                    <button class="ta-btn" onclick="pasteInput()">📋 Incolla</button>
+                                </div>
+                            </div>
+                            <textarea id="inputText" placeholder="Inserisci il testo da codificare..."
+                                oninput="encode()"></textarea>
+                            <div class="char-info">
+                                <span><span id="inputChars">0</span> caratteri</span>
+                                <span><span id="inputBytes">0</span> bytes</span>
+                            </div>
+                        </div>
+
+                        <!-- Swap -->
+                        <div class="swap-row">
+                            <button class="swap-btn-enc" onclick="swapTexts()" title="Scambia input/output">⇅</button>
+                        </div>
+
+                        <!-- Output -->
+                        <div class="text-area-box">
+                            <div class="text-area-header">
+                                <label>🔐 Testo <span id="modeLabel">codificato (Base64)</span></label>
+                                <div class="text-area-actions">
+                                    <button class="ta-btn" onclick="copyOutput()">📋 Copia</button>
+                                </div>
+                            </div>
+                            <textarea id="outputText" placeholder="Il risultato apparirà qui..."
+                                oninput="decode()"></textarea>
+                            <div class="char-info">
+                                <span><span id="outputChars">0</span> caratteri</span>
+                                <span><span id="outputBytes">0</span> bytes</span>
+                            </div>
+                            <div class="error-msg" id="errorMsg"></div>
+                        </div>
+                    </div>
+
+                    <!-- Mode description -->
+                    <div class="mode-desc" id="modeDesc">
+                        <strong>Base64</strong> — Codifica binaria in testo usando 64 caratteri (A-Z, a-z, 0-9, +, /).
+                        Usata universalmente per trasmettere dati binari tramite canali di testo come email, JSON e URL.
+                        L'output è circa il 33% più grande dell'input.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
+                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                        4.0</a> | <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let currentMode = 'base64';
+        let lastAction = 'encode'; // Track if user last edited input or output
+
+        const modeDescriptions = {
+            base64: '<strong>Base64</strong> — Codifica binaria in testo usando 64 caratteri (A-Z, a-z, 0-9, +, /). Usata per trasmettere dati binari via email, JSON e URL. Output ~33% più grande.',
+            url: '<strong>URL Encoding</strong> — Converte caratteri speciali in codici %XX per l\'uso sicuro negli URL. Spazi diventano %20, & diventa %26, ecc.',
+            html: '<strong>HTML Entities</strong> — Converte caratteri speciali in entità HTML (es. &amp; → &amp;amp;, &lt; → &amp;lt;). Essenziale per prevenire XSS e mostrare codice HTML come testo.',
+            rot13: '<strong>ROT13</strong> — Cifrario a sostituzione che sposta ogni lettera di 13 posizioni nell\'alfabeto. Applicato due volte restituisce il testo originale. Usato per nascondere spoiler o testo triviale.',
+            binary: '<strong>Binario</strong> — Rappresenta ogni carattere come sequenza di 8 bit (0 e 1), separati da spazi. Ogni byte corrisponde al codice ASCII/UTF-8 del carattere.',
+            hex: '<strong>Esadecimale</strong> — Rappresenta ogni byte come coppia di cifre hex (0-9, A-F), separati da spazi. Usato in debug, analisi di protocolli e crittografia.'
+        };
+
+        const modeLabels = {
+            base64: 'codificato (Base64)',
+            url: 'codificato (URL)',
+            html: 'codificato (HTML)',
+            rot13: 'codificato (ROT13)',
+            binary: 'codificato (Binario)',
+            hex: 'codificato (Hex)'
+        };
+
+        function setMode(mode, btn) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('modeDesc').innerHTML = modeDescriptions[mode];
+            document.getElementById('modeLabel').textContent = modeLabels[mode];
+            // Re-encode with new mode
+            encode();
+        }
+
+        function encode() {
+            lastAction = 'encode';
+            const input = document.getElementById('inputText').value;
+            const errorEl = document.getElementById('errorMsg');
+            errorEl.classList.remove('visible');
+
+            updateCharInfo('input', input);
+
+            if (!input) {
+                document.getElementById('outputText').value = '';
+                updateCharInfo('output', '');
+                return;
+            }
+
+            let output = '';
+            try {
+                switch (currentMode) {
+                    case 'base64':
+                        output = btoa(unescape(encodeURIComponent(input)));
+                        break;
+                    case 'url':
+                        output = encodeURIComponent(input);
+                        break;
+                    case 'html':
+                        output = input.replace(/[&<>"'\/]/g, ch => {
+                            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '/': '&#47;' };
+                            return map[ch] || ch;
+                        });
+                        break;
+                    case 'rot13':
+                        output = input.replace(/[a-zA-Z]/g, c => {
+                            const base = c <= 'Z' ? 65 : 97;
+                            return String.fromCharCode(((c.charCodeAt(0) - base + 13) % 26) + base);
+                        });
+                        break;
+                    case 'binary':
+                        output = Array.from(new TextEncoder().encode(input))
+                            .map(b => b.toString(2).padStart(8, '0'))
+                            .join(' ');
+                        break;
+                    case 'hex':
+                        output = Array.from(new TextEncoder().encode(input))
+                            .map(b => b.toString(16).toUpperCase().padStart(2, '0'))
+                            .join(' ');
+                        break;
+                }
+            } catch (e) {
+                errorEl.textContent = '⚠️ Errore nella codifica: ' + e.message;
+                errorEl.classList.add('visible');
+            }
+
+            document.getElementById('outputText').value = output;
+            updateCharInfo('output', output);
+        }
+
+        function decode() {
+            lastAction = 'decode';
+            const output = document.getElementById('outputText').value;
+            const errorEl = document.getElementById('errorMsg');
+            errorEl.classList.remove('visible');
+
+            updateCharInfo('output', output);
+
+            if (!output) {
+                document.getElementById('inputText').value = '';
+                updateCharInfo('input', '');
+                return;
+            }
+
+            let input = '';
+            try {
+                switch (currentMode) {
+                    case 'base64':
+                        input = decodeURIComponent(escape(atob(output.trim())));
+                        break;
+                    case 'url':
+                        input = decodeURIComponent(output);
+                        break;
+                    case 'html':
+                        const el = document.createElement('textarea');
+                        el.innerHTML = output;
+                        input = el.value;
+                        break;
+                    case 'rot13':
+                        input = output.replace(/[a-zA-Z]/g, c => {
+                            const base = c <= 'Z' ? 65 : 97;
+                            return String.fromCharCode(((c.charCodeAt(0) - base + 13) % 26) + base);
+                        });
+                        break;
+                    case 'binary':
+                        const bytes = output.trim().split(/\s+/);
+                        const byteArr = bytes.map(b => parseInt(b, 2));
+                        input = new TextDecoder().decode(new Uint8Array(byteArr));
+                        break;
+                    case 'hex':
+                        const hexBytes = output.trim().split(/\s+/);
+                        const hexArr = hexBytes.map(h => parseInt(h, 16));
+                        input = new TextDecoder().decode(new Uint8Array(hexArr));
+                        break;
+                }
+            } catch (e) {
+                errorEl.textContent = '⚠️ Errore nella decodifica: ' + e.message;
+                errorEl.classList.add('visible');
+                return;
+            }
+
+            document.getElementById('inputText').value = input;
+            updateCharInfo('input', input);
+        }
+
+        function swapTexts() {
+            const inputEl = document.getElementById('inputText');
+            const outputEl = document.getElementById('outputText');
+            const temp = outputEl.value;
+            inputEl.value = temp;
+            outputEl.value = '';
+            encode();
+        }
+
+        function clearInput() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').value = '';
+            document.getElementById('errorMsg').classList.remove('visible');
+            updateCharInfo('input', '');
+            updateCharInfo('output', '');
+        }
+
+        async function pasteInput() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById('inputText').value = text;
+                encode();
+            } catch (e) { }
+        }
+
+        function copyOutput() {
+            const val = document.getElementById('outputText').value;
+            if (val) navigator.clipboard.writeText(val);
+        }
+
+        function updateCharInfo(which, text) {
+            const chars = text.length;
+            const bytes = new TextEncoder().encode(text).length;
+            document.getElementById(which + 'Chars').textContent = chars.toLocaleString('it-IT');
+            document.getElementById(which + 'Bytes').textContent = bytes.toLocaleString('it-IT');
+        }
+    </script>
+</body>
+
+</html>

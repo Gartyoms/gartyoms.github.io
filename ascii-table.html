@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Tabella ASCII interattiva completa: 128 caratteri con ricerca, filtro per categoria, conversione char ↔ decimal ↔ hex ↔ binary. Gratuito.">
+    <meta property="og:title" content="Tabella ASCII Interattiva — ToolBox Online">
+    <meta property="og:description"
+        content="Tabella ASCII completa con ricerca, filtri e conversione istantanea. Gratuito e senza registrazione.">
+    <title>Tabella ASCII Interattiva — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .search-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-bar input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font);
+        }
+
+        .filter-tab:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+        }
+
+        .filter-tab.active {
+            background: var(--gradient-main);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .ascii-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .ascii-cell {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 12px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .ascii-cell:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .ascii-cell.control {
+            border-left: 3px solid var(--accent-pink);
+        }
+
+        .ascii-cell.printable {
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .ascii-cell.digit {
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .ascii-cell.letter {
+            border-left: 3px solid var(--accent-purple);
+        }
+
+        .ascii-char {
+            font-size: 1.4rem;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+            min-height: 1.6em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ascii-dec {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .ascii-hex {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-family: 'Courier New', monospace;
+        }
+
+        .ascii-name {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Detail panel */
+        .detail-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .detail-panel.open {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .detail-char {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-main);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+        }
+
+        .detail-title h3 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .detail-title p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .detail-item {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .detail-item .lbl {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .detail-item .val {
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-purple);
+        }
+
+        .detail-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .legend-dot.control {
+            background: var(--accent-pink);
+        }
+
+        .legend-dot.printable {
+            background: var(--accent-green);
+        }
+
+        .legend-dot.digit {
+            background: var(--accent-cyan);
+        }
+
+        .legend-dot.letter {
+            background: var(--accent-purple);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                        <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+                            <path d="M20 18h24v4H20z" fill="none" />
+                            <line x1="24" y1="30" x2="24" y2="38" />
+                            <line x1="32" y1="30" x2="32" y2="38" />
+                            <line x1="40" y1="30" x2="40" y2="38" />
+                        </g>
+                    </svg><span class="logo-gradient">ToolBox Online</span></a>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ascii-table.html" class="active">ASCII</a></li>
+                    <li><a href="hash-generator.html">Hash</a></li>
+                    <li><a href="color-converter.html">Colori</a></li>
+                    <li><a href="text-encoder.html">Encoder</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Tabella ASCII</span></div>
+                <h1>📋 Tabella ASCII Interattiva</h1>
+                <p>Esplora tutti i 128 caratteri ASCII con ricerca, filtri e conversione istantanea.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <!-- Search -->
+                <div class="search-bar">
+                    <input type="text" id="search" placeholder="Cerca per carattere, nome, decimale o hex..."
+                        oninput="filterTable()">
+                </div>
+
+                <!-- Filters -->
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="setFilter('all', this)">Tutti (128)</button>
+                    <button class="filter-tab" onclick="setFilter('control', this)">Controllo (33)</button>
+                    <button class="filter-tab" onclick="setFilter('digit', this)">Numeri (10)</button>
+                    <button class="filter-tab" onclick="setFilter('letter', this)">Lettere (52)</button>
+                    <button class="filter-tab" onclick="setFilter('printable', this)">Simboli (33)</button>
+                </div>
+
+                <!-- Legend -->
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-dot control"></div> Controllo
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot digit"></div> Numeri
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot letter"></div> Lettere
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot printable"></div> Simboli
+                    </div>
+                </div>
+
+                <!-- Detail Panel -->
+                <div class="detail-panel" id="detailPanel" style="position:relative">
+                    <button class="detail-close" onclick="closeDetail()">✕</button>
+                    <div class="detail-header">
+                        <div class="detail-char" id="detChar"></div>
+                        <div class="detail-title">
+                            <h3 id="detName"></h3>
+                            <p id="detDesc"></p>
+                        </div>
+                    </div>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <div class="lbl">Decimale</div>
+                            <div class="val" id="detDec"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="lbl">Esadecimale</div>
+                            <div class="val" id="detHex"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="lbl">Ottale</div>
+                            <div class="val" id="detOct"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="lbl">Binario</div>
+                            <div class="val" id="detBin"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="lbl">HTML Entity</div>
+                            <div class="val" id="detHtml"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="lbl">Escape</div>
+                            <div class="val" id="detEsc"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ASCII Grid -->
+                <div class="ascii-grid" id="asciiGrid"></div>
+                <div class="no-results" id="noResults" style="display:none">Nessun risultato trovato 🔍</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
+                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                        4.0</a> | <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const controlNames = [
+            'NUL', 'SOH', 'STX', 'ETX', 'EOT', 'ENQ', 'ACK', 'BEL',
+            'BS', 'HT', 'LF', 'VT', 'FF', 'CR', 'SO', 'SI',
+            'DLE', 'DC1', 'DC2', 'DC3', 'DC4', 'NAK', 'SYN', 'ETB',
+            'CAN', 'EM', 'SUB', 'ESC', 'FS', 'GS', 'RS', 'US'
+        ];
+
+        const controlDesc = [
+            'Null', 'Start of Heading', 'Start of Text', 'End of Text',
+            'End of Transmission', 'Enquiry', 'Acknowledge', 'Bell',
+            'Backspace', 'Horizontal Tab', 'Line Feed', 'Vertical Tab',
+            'Form Feed', 'Carriage Return', 'Shift Out', 'Shift In',
+            'Data Link Escape', 'Device Control 1', 'Device Control 2', 'Device Control 3',
+            'Device Control 4', 'Negative Acknowledge', 'Synchronous Idle', 'End of Transmission Block',
+            'Cancel', 'End of Medium', 'Substitute', 'Escape',
+            'File Separator', 'Group Separator', 'Record Separator', 'Unit Separator'
+        ];
+
+        let currentFilter = 'all';
+
+        function getCategory(code) {
+            if (code < 32 || code === 127) return 'control';
+            if (code >= 48 && code <= 57) return 'digit';
+            if ((code >= 65 && code <= 90) || (code >= 97 && code <= 122)) return 'letter';
+            return 'printable';
+        }
+
+        function getCharDisplay(code) {
+            if (code < 32) return controlNames[code];
+            if (code === 32) return 'SP';
+            if (code === 127) return 'DEL';
+            return String.fromCharCode(code);
+        }
+
+        function getCharName(code) {
+            if (code < 32) return controlNames[code] + ' — ' + controlDesc[code];
+            if (code === 32) return 'SP — Space';
+            if (code === 127) return 'DEL — Delete';
+            return String.fromCharCode(code);
+        }
+
+        function buildGrid() {
+            const grid = document.getElementById('asciiGrid');
+            const search = document.getElementById('search').value.toLowerCase().trim();
+            let html = '';
+            let count = 0;
+
+            for (let i = 0; i < 128; i++) {
+                const cat = getCategory(i);
+                const charDisp = getCharDisplay(i);
+                const name = getCharName(i);
+                const hex = i.toString(16).toUpperCase().padStart(2, '0');
+
+                // Filter by category
+                if (currentFilter !== 'all' && cat !== currentFilter) continue;
+
+                // Filter by search
+                if (search) {
+                    const searchMatch =
+                        charDisp.toLowerCase().includes(search) ||
+                        name.toLowerCase().includes(search) ||
+                        i.toString().includes(search) ||
+                        hex.toLowerCase().includes(search) ||
+                        ('0x' + hex).toLowerCase().includes(search);
+                    if (!searchMatch) continue;
+                }
+
+                html += `<div class="ascii-cell ${cat}" onclick="showDetail(${i})" title="${name}">
+                    <div class="ascii-char">${cat === 'control' ? charDisp : (i === 32 ? '␣' : '&#' + i + ';')}</div>
+                    <div class="ascii-dec">${i}</div>
+                    <div class="ascii-hex">0x${hex}</div>
+                    <div class="ascii-name">${charDisp}</div>
+                </div>`;
+                count++;
+            }
+
+            grid.innerHTML = html;
+            document.getElementById('noResults').style.display = count === 0 ? 'block' : 'none';
+        }
+
+        function setFilter(filter, btn) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            buildGrid();
+        }
+
+        function filterTable() {
+            buildGrid();
+        }
+
+        function showDetail(code) {
+            const panel = document.getElementById('detailPanel');
+            const cat = getCategory(code);
+            const charDisp = getCharDisplay(code);
+
+            document.getElementById('detChar').textContent = code >= 32 && code < 127 ? String.fromCharCode(code) : charDisp;
+            document.getElementById('detName').textContent = getCharName(code);
+            document.getElementById('detDesc').textContent = `Codice ${code} · Categoria: ${cat === 'control' ? 'Controllo' : cat === 'digit' ? 'Numero' : cat === 'letter' ? 'Lettera' : 'Simbolo'}`;
+            document.getElementById('detDec').textContent = code;
+            document.getElementById('detHex').textContent = '0x' + code.toString(16).toUpperCase().padStart(2, '0');
+            document.getElementById('detOct').textContent = '0o' + code.toString(8);
+            document.getElementById('detBin').textContent = code.toString(2).padStart(8, '0');
+            document.getElementById('detHtml').textContent = '&#' + code + ';';
+
+            // Escape sequence
+            const escapes = { 0: '\\0', 7: '\\a', 8: '\\b', 9: '\\t', 10: '\\n', 11: '\\v', 12: '\\f', 13: '\\r', 27: '\\e', 92: '\\\\', 34: '\\"', 39: "\\'" };
+            document.getElementById('detEsc').textContent = escapes[code] || (code < 32 || code === 127 ? '\\x' + code.toString(16).padStart(2, '0') : '—');
+
+            panel.classList.add('open');
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function closeDetail() {
+            document.getElementById('detailPanel').classList.remove('open');
+        }
+
+        // Init
+        buildGrid();
+    </script>
+</body>
+
+</html>

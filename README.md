@@ -68,6 +68,15 @@
 | **Generatore QR Code** | QR Code da testo, URL, email, telefono, WiFi — scarica in PNG |
 | **Convertitore Basi** | Binario ↔ Ottale ↔ Decimale ↔ Esadecimale con visualizzazione bit |
 
+### 💻 Informatica
+
+| Strumento | Descrizione |
+|-----------|-------------|
+| **Tabella ASCII** | Tabella interattiva dei 128 caratteri con ricerca, filtri e conversione istantanea |
+| **Generatore Hash** | MD5, SHA-1, SHA-256, SHA-512 da testo — 100% lato client (Web Crypto API) |
+| **Convertitore Colori** | HEX ↔ RGB ↔ HSL ↔ CMYK con preview, palette e contrasto WCAG |
+| **Encoder / Decoder Testo** | Base64, URL encoding, HTML entities, ROT13, binario, esadecimale |
+
 ### 📝 Blog di Elettronica
 
 | Articolo | Argomento |
@@ -126,6 +135,10 @@ gartyoms.github.io/
 ├── compound-interest.html  # Interessi composti
 ├── qr-generator.html       # Generatore QR Code
 ├── base-converter.html     # Convertitore basi numeriche
+├── ascii-table.html        # Tabella ASCII interattiva
+├── hash-generator.html     # Generatore hash
+├── color-converter.html    # Convertitore colori
+├── text-encoder.html       # Encoder/decoder testo
 ├── blog.html               # Indice del blog
 ├── blog-partitore-tensione.html  # Articolo: Partitore
 ├── blog-555-timer-guida.html     # Articolo: 555 Timer
