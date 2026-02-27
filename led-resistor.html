@@ -5,11 +5,11 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-73V0EF58WY"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'G-73V0EF58WY');
+        gtag('config', 'G-73V0EF58WY');
     </script>
     <meta charset="UTF-8">
     <meta name="google-adsense-account" content="ca-pub-1807204397327154">
@@ -200,13 +200,48 @@
                 </div>
 
                 <!-- Preview -->
-                <div class="led-preview" style="margin-top: 24px;">
-                    <div class="led-circuit-text">
-                        Vs <span style="color: var(--accent-purple);" id="circuitVs">5V</span>
-                        ──┤ R = <span style="color: var(--accent-green); font-weight: bold;" id="circuitR">150Ω</span>
-                        ├──
-                        ▶<span id="ledDotInline" style="color: #ef4444;">|</span>── GND
-                    </div>
+                <!-- Circuit SVG diagram -->
+                <div class="circuit-svg-wrap"
+                    style="background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 20px; text-align: center; margin: 24px 0; display: flex; justify-content: center;">
+                    <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg"
+                        style="max-width: 320px; width: 100%; height: auto;">
+                        <!-- Wires -->
+                        <line x1="60" y1="100" x2="140" y2="100" stroke="#a78bfa" stroke-width="2.5" />
+                        <line x1="200" y1="100" x2="250" y2="100" stroke="#a78bfa" stroke-width="2.5" />
+                        <line x1="280" y1="100" x2="320" y2="100" stroke="#a78bfa" stroke-width="2.5" />
+
+                        <!-- Vs Source -->
+                        <circle cx="60" cy="100" r="4" fill="#a78bfa" />
+                        <text x="60" y="80" text-anchor="middle" fill="#a78bfa" font-family="Inter,sans-serif"
+                            font-size="14" font-weight="700" id="circuitVs">Vs = 5V</text>
+
+                        <!-- Resistor -->
+                        <rect x="140" y="80" width="60" height="40" rx="6" fill="var(--bg-input)" stroke="#a78bfa"
+                            stroke-width="2.5" />
+                        <text x="170" y="70" text-anchor="middle" fill="#34d399" font-family="Inter,sans-serif"
+                            font-size="13" font-weight="600" id="circuitR">R = 150Ω</text>
+
+                        <!-- LED Symbol -->
+                        <polygon points="250,85 250,115 280,100" fill="none" stroke="#ef4444" stroke-width="2.5"
+                            id="svgLedColor" />
+                        <line x1="280" y1="85" x2="280" y2="115" stroke="#ef4444" stroke-width="2.5" id="svgLedLine" />
+
+                        <!-- Light arrows (to show it's a LED) -->
+                        <line x1="265" y1="75" x2="280" y2="60" stroke="#ef4444" stroke-width="2" id="svgLight1" />
+                        <polygon points="280,60 272,60 278,66" fill="#ef4444" id="svgLightArrow1" />
+                        <line x1="280" y1="75" x2="295" y2="60" stroke="#ef4444" stroke-width="2" id="svgLight2" />
+                        <polygon points="295,60 287,60 293,66" fill="#ef4444" id="svgLightArrow2" />
+
+                        <text x="265" y="140" text-anchor="middle" fill="#ef4444" font-family="Inter,sans-serif"
+                            font-size="12" font-weight="600" id="circuitVf">Vf = 2.0V</text>
+                        <text x="265" y="155" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif"
+                            font-size="11" id="circuitIf">If = 20mA</text>
+
+                        <!-- GND symbol at end -->
+                        <line x1="320" y1="90" x2="320" y2="110" stroke="#94a3b8" stroke-width="2.5" />
+                        <line x1="326" y1="95" x2="326" y2="105" stroke="#94a3b8" stroke-width="2" />
+                        <line x1="332" y1="98" x2="332" y2="102" stroke="#94a3b8" stroke-width="1.5" />
+                    </svg>
                 </div>
 
                 <!-- Results -->
@@ -266,7 +301,15 @@
         function setLed(name, vf, ifma, color, btn) {
             document.getElementById('vf').value = vf;
             document.getElementById('if_ma').value = ifma;
-            document.getElementById('ledDotInline').style.color = color;
+
+            // AGGIORNATE: Cambia il colore ai vari pezzi dell'SVG!
+            document.getElementById('svgLedColor').setAttribute('stroke', color);
+            document.getElementById('svgLedLine').setAttribute('stroke', color);
+            document.getElementById('svgLight1').setAttribute('stroke', color);
+            document.getElementById('svgLightArrow1').setAttribute('fill', color);
+            document.getElementById('svgLight2').setAttribute('stroke', color);
+            document.getElementById('svgLightArrow2').setAttribute('fill', color);
+            document.getElementById('circuitVf').setAttribute('fill', color);
             document.querySelectorAll('.led-color-btn').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
             calcLed();
@@ -296,8 +339,11 @@
             document.getElementById('resR').textContent = r.toFixed(1);
             document.getElementById('resStd').textContent = rStd;
             document.getElementById('resPower').textContent = power.toFixed(3);
-            document.getElementById('circuitVs').textContent = vs + 'V';
-            document.getElementById('circuitR').textContent = rStd + 'Ω';
+            // AGGIORNATE: Cambia i vecchi testi con le label del nuovo SVG
+            document.getElementById('circuitVs').textContent = 'Vs = ' + vs + 'V';
+            document.getElementById('circuitR').textContent = 'R = ' + rStd + 'Ω';
+            document.getElementById('circuitVf').textContent = 'Vf = ' + vf.toFixed(1) + 'V';
+            document.getElementById('circuitIf').textContent = 'If = ' + ifma + 'mA';
 
             if (power > 0.25) {
                 warn.style.display = 'block';
