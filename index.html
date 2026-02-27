@@ -79,12 +79,7 @@
         </h1>
         <p class="animate-in">Strumenti veloci, semplici e potenti per la tua produttività quotidiana. Nessun download,
           nessuna registrazione. Inizia subito!</p>
-        <div class="animate-in" style="margin-top:16px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
-          <div
-            style="background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);border-radius:24px;padding:8px 20px;display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--text-secondary)">
-            👁️ Visite totali: <strong style="color:var(--accent-purple);font-size:1rem" id="visitCount">...</strong>
-          </div>
-        </div>
+
       </div>
     </section>
 
@@ -411,23 +406,7 @@
   <!-- Toast notification -->
   <div class="toast" id="toast"></div>
 
-  <script>
-    // Visit counter using CountAPI (free, no signup)
-    (async function () {
-      const el = document.getElementById('visitCount');
-      if (!el) return;
-      try {
-        const res = await fetch('https://api.countapi.xyz/hit/gartyoms.github.io/visits');
-        const data = await res.json();
-        el.textContent = data.value.toLocaleString('it-IT');
-      } catch (e) {
-        // Fallback: localStorage counter
-        let count = parseInt(localStorage.getItem('tb_visits') || '0') + 1;
-        localStorage.setItem('tb_visits', count);
-        el.textContent = count.toLocaleString('it-IT');
-      }
-    })();
-  </script>
+
 </body>
 
 </html>
