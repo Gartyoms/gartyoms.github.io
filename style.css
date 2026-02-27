@@ -30,8 +30,8 @@
   --gradient-warm: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%);
   --gradient-cool: linear-gradient(135deg, #06b6d4 0%, #7c3aed 100%);
   --gradient-bg: radial-gradient(ellipse at 20% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-                 radial-gradient(ellipse at 80% 20%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
-                 radial-gradient(ellipse at 50% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+    radial-gradient(ellipse at 80% 20%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
 
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -48,7 +48,9 @@
 }
 
 /* --- Reset & Base --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -83,7 +85,8 @@ a {
   text-decoration: none;
 }
 
-img, svg {
+img,
+svg {
   max-width: 100%;
   display: block;
 }
@@ -118,8 +121,11 @@ img, svg {
 
 .navbar .container {
   display: flex;
+  justify-content: center;
+  /* Centra orizzontalmente */
   align-items: center;
-  justify-content: space-between;
+  /* Centra verticalmente */
+
 }
 
 .nav-logo {
@@ -330,7 +336,7 @@ img, svg {
   opacity: 0.05;
 }
 
-.tool-card > * {
+.tool-card>* {
   position: relative;
   z-index: 1;
 }
@@ -346,10 +352,25 @@ img, svg {
   margin-bottom: 16px;
 }
 
-.tool-icon.purple { background: rgba(124, 58, 237, 0.15); color: var(--accent-purple); }
-.tool-icon.blue   { background: rgba(37, 99, 235, 0.15);  color: var(--accent-blue);   }
-.tool-icon.cyan   { background: rgba(6, 182, 212, 0.15);  color: var(--accent-cyan);   }
-.tool-icon.pink   { background: rgba(236, 72, 153, 0.15); color: var(--accent-pink);   }
+.tool-icon.purple {
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--accent-purple);
+}
+
+.tool-icon.blue {
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--accent-blue);
+}
+
+.tool-icon.cyan {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--accent-cyan);
+}
+
+.tool-icon.pink {
+  background: rgba(236, 72, 153, 0.15);
+  color: var(--accent-pink);
+}
 
 .tool-card h3 {
   font-size: 1.1rem;
@@ -618,12 +639,12 @@ select {
   transition: var(--transition);
 }
 
-.toggle input:checked + .toggle-slider {
+.toggle input:checked+.toggle-slider {
   background: var(--accent-purple);
   border-color: var(--accent-purple);
 }
 
-.toggle input:checked + .toggle-slider::before {
+.toggle input:checked+.toggle-slider::before {
   transform: translateY(-50%) translateX(20px);
   background: #fff;
 }
@@ -881,8 +902,15 @@ input[type="range"]::-moz-range-thumb {
 
 /* --- Animations --- */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-in {
@@ -890,17 +918,45 @@ input[type="range"]::-moz-range-thumb {
   opacity: 0;
 }
 
-.animate-in:nth-child(1) { animation-delay: 0.05s; }
-.animate-in:nth-child(2) { animation-delay: 0.1s; }
-.animate-in:nth-child(3) { animation-delay: 0.15s; }
-.animate-in:nth-child(4) { animation-delay: 0.2s; }
+.animate-in:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.animate-in:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.animate-in:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.animate-in:nth-child(4) {
+  animation-delay: 0.2s;
+}
 
 /* --- Responsive Utilities --- */
 @media (max-width: 480px) {
-  .container { padding: 0 16px; }
-  .tool-content { padding: 20px 16px; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); }
-  .converter-field .input-row { flex-direction: column; }
-  .btn-group { flex-direction: column; }
-  .btn-group .btn { width: 100%; }
+  .container {
+    padding: 0 16px;
+  }
+
+  .tool-content {
+    padding: 20px 16px;
+  }
+
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .converter-field .input-row {
+    flex-direction: column;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn-group .btn {
+    width: 100%;
+  }
 }
