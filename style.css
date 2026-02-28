@@ -121,11 +121,8 @@ svg {
 
 .navbar .container {
   display: flex;
-  justify-content: center;
-  /* Centra orizzontalmente */
+  justify-content: space-between;
   align-items: center;
-  /* Centra verticalmente */
-
 }
 
 .nav-logo {
@@ -153,6 +150,12 @@ svg {
   display: flex;
   gap: 8px;
   list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0;
 }
 
 .nav-links a {
