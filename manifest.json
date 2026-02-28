@@ -1,0 +1,19 @@
+{
+  "name": "ToolBox Online",
+  "short_name": "ToolBox",
+  "description": "Strumenti gratuiti online per elettronica, matematica e utility",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0b1a",
+  "theme_color": "#7c3aed",
+  "lang": "it",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

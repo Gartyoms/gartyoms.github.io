@@ -21,6 +21,10 @@
     <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
         crossorigin="anonymous"></script>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#7c3aed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ToolBox Online">
 </head>
 
 <body>
@@ -49,7 +53,15 @@
         </nav>
 
         <div class="container">
-            <div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div>
+            <div class="ad-banner" id="ad-top">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1807204397327154"
+       data-ad-slot="XXXXXXXXXX"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
         </div>
 
         <div class="container">
@@ -154,7 +166,15 @@
         </div>
 
         <div class="container">
-            <div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div>
+            <div class="ad-banner ad-banner-inline" id="ad-bottom">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1807204397327154"
+       data-ad-slot="XXXXXXXXXX"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
         </div>
         <footer class="footer">
             <div class="container">
@@ -204,6 +224,11 @@
         }
         calcRP(); calcVR(); calcJT();
     </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
 </body>
 
 </html>

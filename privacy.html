@@ -90,6 +90,10 @@
             margin-top: 4px
         }
     </style>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#7c3aed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ToolBox Online">
 </head>
 
 <body>
@@ -273,6 +277,11 @@
             </div>
         </footer>
     </div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
 </body>
 
 </html>
