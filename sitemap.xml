@@ -29,6 +29,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.toolboxonline.it/percentage-calculator.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.toolboxonline.it/inflation-calculator.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.toolboxonline.it/loan-calculator.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.toolboxonline.it/area-perimeter.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

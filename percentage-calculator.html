@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-73V0EF58WY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-73V0EF58WY');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore percentuali online gratuito. Calcola X% di un numero, variazione percentuale e rapporto tra due valori.">
+    <meta property="og:title" content="Calcolatore Percentuali — ToolBox Online">
+    <meta property="og:description" content="Calcola percentuali: X% di Y, da A a B che percentuale è, aumenta o diminuisci di Z%.">
+    <title>Calcolatore Percentuali — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .pct-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .pct-tabs button {
+            flex: 1; min-width: 120px; padding: 12px 16px; border-radius: var(--radius-md);
+            border: 2px solid var(--border-subtle); background: var(--bg-card); color: var(--text-secondary);
+            font-family: var(--font); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .pct-tabs button:hover { border-color: var(--accent-purple); color: var(--text-primary); }
+        .pct-tabs button.active { background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue)); color: #fff; border-color: transparent; }
+        .pct-result {
+            background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+            padding: 24px; margin-top: 20px; text-align: center;
+        }
+        .pct-result .val { font-size: 2rem; font-weight: 800; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .pct-result .lbl { font-size: 0.85rem; color: var(--text-muted); margin-top: 8px; }
+        .input-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; margin-top: 16px; }
+        .tool-content input[type="number"] { width: 100%; max-width: 280px; padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); background: var(--bg-input); color: var(--text-primary); font-size: 1rem; }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7c3aed" /><stop offset="100%" stop-color="#2563eb" /></linearGradient></defs>
+                    <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                    <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="16" y="22" width="32" height="24" rx="3" fill="none" /><path d="M20 18h24v4H20z" fill="none" />
+                        <line x1="24" y1="30" x2="24" y2="38" /><line x1="32" y1="30" x2="32" y2="38" /><line x1="40" y1="30" x2="40" y2="38" />
+                    </g>
+                </svg><span class="logo-gradient">ToolBox Online</span></a>
+            </div>
+        </nav>
+
+        <div class="container"><div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div></div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Calcolatore Percentuali</span></div>
+                <h1>% Calcolatore Percentuali</h1>
+                <p>Calcola percentuali in tre modalità: X% di un numero, rapporto tra due valori, aumento o diminuzione.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>Modalità</h3>
+                <div class="pct-tabs">
+                    <button type="button" class="active" data-mode="of">X% di un numero</button>
+                    <button type="button" data-mode="is">A è che % di B</button>
+                    <button type="button" data-mode="change">Aumenta/Diminuisci di X%</button>
+                </div>
+
+                <div id="panel-of" class="pct-panel">
+                    <label class="input-label">Percentuale (%)</label>
+                    <input type="number" id="pct-of-pct" value="20" min="0" step="0.1" oninput="calc()">
+                    <label class="input-label">Di quale numero?</label>
+                    <input type="number" id="pct-of-num" value="150" step="0.01" oninput="calc()">
+                </div>
+                <div id="panel-is" class="pct-panel" style="display:none">
+                    <label class="input-label">Valore A (è che percentuale di B?)</label>
+                    <input type="number" id="pct-is-a" value="25" step="0.01" oninput="calc()">
+                    <label class="input-label">Valore B (totale)</label>
+                    <input type="number" id="pct-is-b" value="200" step="0.01" oninput="calc()">
+                </div>
+                <div id="panel-change" class="pct-panel" style="display:none">
+                    <label class="input-label">Valore iniziale</label>
+                    <input type="number" id="pct-change-num" value="80" step="0.01" oninput="calc()">
+                    <label class="input-label">Variazione (%) — positivo = aumento, negativo = diminuzione</label>
+                    <input type="number" id="pct-change-pct" value="15" step="0.1" oninput="calc()">
+                </div>
+
+                <div class="pct-result">
+                    <div class="val" id="result-val">30</div>
+                    <div class="lbl" id="result-lbl">20% di 150 = 30</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container"><div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div></div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a> | <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const panels = { of: 'panel-of', is: 'panel-is', change: 'panel-change' };
+        let mode = 'of';
+
+        document.querySelectorAll('.pct-tabs button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                mode = btn.dataset.mode;
+                document.querySelectorAll('.pct-tabs button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelectorAll('.pct-panel').forEach(p => p.style.display = 'none');
+                document.getElementById(panels[mode]).style.display = 'block';
+                calc();
+            });
+        });
+
+        function calc() {
+            let val, lbl;
+            if (mode === 'of') {
+                const p = parseFloat(document.getElementById('pct-of-pct').value) || 0;
+                const n = parseFloat(document.getElementById('pct-of-num').value) || 0;
+                val = (n * p / 100);
+                lbl = p + '% di ' + n + ' = ' + val.toLocaleString('it-IT', { maximumFractionDigits: 2 });
+            } else if (mode === 'is') {
+                const a = parseFloat(document.getElementById('pct-is-a').value) || 0;
+                const b = parseFloat(document.getElementById('pct-is-b').value) || 0;
+                val = b === 0 ? 0 : (a / b * 100);
+                lbl = a + ' è il ' + val.toLocaleString('it-IT', { maximumFractionDigits: 2 }) + '% di ' + b;
+            } else {
+                const n = parseFloat(document.getElementById('pct-change-num').value) || 0;
+                const p = parseFloat(document.getElementById('pct-change-pct').value) || 0;
+                val = n * (1 + p / 100);
+                lbl = n + ' ' + (p >= 0 ? '+' : '') + p + '% = ' + val.toLocaleString('it-IT', { maximumFractionDigits: 2 });
+            }
+            document.getElementById('result-val').textContent = typeof val === 'number' ? val.toLocaleString('it-IT', { maximumFractionDigits: 2 }) : val;
+            document.getElementById('result-lbl').textContent = lbl;
+        }
+        calc();
+    </script>
+</body>
+
+</html>

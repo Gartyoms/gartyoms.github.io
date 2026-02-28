@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-73V0EF58WY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-73V0EF58WY');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore rata prestito e mutuo online gratuito. Calcola la rata mensile da capitale, tasso annuo e durata. Ammortamento francese.">
+    <meta property="og:title" content="Calcolatore Rata Prestito — ToolBox Online">
+    <meta property="og:description" content="Calcola la rata del prestito: inserisci capitale, tasso e durata. Risultato istantaneo.">
+    <title>Calcolatore Rata Prestito — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .input-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; margin-top: 16px; }
+        .loan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .tool-content input[type="number"] { width: 100%; padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); background: var(--bg-input); color: var(--text-primary); font-size: 1rem; }
+        .loan-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 24px; }
+        .loan-card { background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px; text-align: center; }
+        .loan-card .val { font-size: 1.25rem; font-weight: 800; color: var(--text-primary); }
+        .loan-card .val.highlight { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.5rem; }
+        .loan-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+        .loan-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 16px; }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7c3aed" /><stop offset="100%" stop-color="#2563eb" /></linearGradient></defs>
+                    <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                    <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="16" y="22" width="32" height="24" rx="3" fill="none" /><path d="M20 18h24v4H20z" fill="none" />
+                        <line x1="24" y1="30" x2="24" y2="38" /><line x1="32" y1="30" x2="32" y2="38" /><line x1="40" y1="30" x2="40" y2="38" />
+                    </g>
+                </svg><span class="logo-gradient">ToolBox Online</span></a>
+            </div>
+        </nav>
+
+        <div class="container"><div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div></div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Calcolatore Rata Prestito</span></div>
+                <h1>📋 Calcolatore Rata Prestito</h1>
+                <p>Calcola la rata mensile di un prestito a rate costanti (ammortamento francese). Inserisci capitale, tasso annuo e durata.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>Dati del prestito</h3>
+                <div class="loan-grid">
+                    <div>
+                        <label class="input-label">Capitale preso a prestito (€)</label>
+                        <input type="number" id="capital" value="10000" min="1" step="100" oninput="calc()">
+                    </div>
+                    <div>
+                        <label class="input-label">Tasso di interesse annuo (%)</label>
+                        <input type="number" id="rate" value="5" min="0" step="0.1" oninput="calc()">
+                    </div>
+                    <div>
+                        <label class="input-label">Durata (mesi)</label>
+                        <input type="number" id="months" value="60" min="1" step="1" oninput="calc()">
+                    </div>
+                </div>
+
+                <div class="loan-summary">
+                    <div class="loan-card">
+                        <div class="val highlight" id="resRata">€ 188,71</div>
+                        <div class="lbl">Rata mensile</div>
+                    </div>
+                    <div class="loan-card">
+                        <div class="val" id="resTotal">€ 11.322,72</div>
+                        <div class="lbl">Totale da restituire</div>
+                    </div>
+                    <div class="loan-card">
+                        <div class="val" id="resInterest">€ 1.322,72</div>
+                        <div class="lbl">Interessi totali</div>
+                    </div>
+                </div>
+
+                <p class="loan-note">Il calcolo usa la formula dell'ammortamento francese (rate costanti). Il tasso è considerato nominale annuo, convertito in mensile. Per un mutuo o prestito reale verifica sempre con la banca.</p>
+            </div>
+        </div>
+
+        <div class="container"><div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div></div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a> | <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function fmt(n) { return '€ ' + n.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+        function calc() {
+            const C = parseFloat(document.getElementById('capital').value) || 0;
+            const rAnnual = parseFloat(document.getElementById('rate').value) || 0;
+            const n = parseInt(document.getElementById('months').value, 10) || 0;
+            if (C <= 0 || n <= 0) return;
+
+            const r = rAnnual / 100 / 12; // tasso mensile
+            let Rata;
+            if (r === 0) Rata = C / n;
+            else Rata = C * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+
+            const total = Rata * n;
+            const interest = total - C;
+
+            document.getElementById('resRata').textContent = fmt(Rata);
+            document.getElementById('resTotal').textContent = fmt(total);
+            document.getElementById('resInterest').textContent = fmt(interest);
+        }
+        calc();
+    </script>
+</body>
+
+</html>

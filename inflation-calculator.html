@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-73V0EF58WY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-73V0EF58WY');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calcolatore inflazione online gratuito. Valore nel passato con tasso annuo e anni: calcola l'equivalente oggi (potere d'acquisto).">
+    <meta property="og:title" content="Calcolatore Inflazione — ToolBox Online">
+    <meta property="og:description" content="Calcola il valore equivalente oggi da un importo del passato con inflazione. Tasso annuo e anni.">
+    <title>Calcolatore Inflazione — ToolBox Online</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
+        crossorigin="anonymous"></script>
+    <style>
+        .inf-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .inf-tabs button {
+            flex: 1; min-width: 160px; padding: 12px 16px; border-radius: var(--radius-md);
+            border: 2px solid var(--border-subtle); background: var(--bg-card); color: var(--text-secondary);
+            font-family: var(--font); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .inf-tabs button:hover { border-color: var(--accent-purple); color: var(--text-primary); }
+        .inf-tabs button.active { background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue)); color: #fff; border-color: transparent; }
+        .input-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; margin-top: 16px; }
+        .tool-content input[type="number"] { width: 100%; max-width: 280px; padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); background: var(--bg-input); color: var(--text-primary); font-size: 1rem; }
+        .inf-result {
+            background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+            padding: 24px; margin-top: 24px;
+        }
+        .inf-result .main { font-size: 1.8rem; font-weight: 800; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .inf-result .lbl { font-size: 0.85rem; color: var(--text-muted); }
+        .inf-result .extra { font-size: 0.9rem; color: var(--text-secondary); margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-subtle); }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-logo"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7c3aed" /><stop offset="100%" stop-color="#2563eb" /></linearGradient></defs>
+                    <rect width="64" height="64" rx="14" fill="url(#ng)" />
+                    <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="16" y="22" width="32" height="24" rx="3" fill="none" /><path d="M20 18h24v4H20z" fill="none" />
+                        <line x1="24" y1="30" x2="24" y2="38" /><line x1="32" y1="30" x2="32" y2="38" /><line x1="40" y1="30" x2="40" y2="38" />
+                    </g>
+                </svg><span class="logo-gradient">ToolBox Online</span></a>
+            </div>
+        </nav>
+
+        <div class="container"><div class="ad-banner" id="ad-top">📢 Spazio Pubblicitario</div></div>
+
+        <div class="container">
+            <div class="tool-page-header">
+                <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Calcolatore Inflazione</span></div>
+                <h1>📈 Calcolatore Inflazione</h1>
+                <p>Calcola il valore equivalente oggi da un importo del passato (o viceversa) usando un tasso di inflazione medio annuo.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tool-content">
+                <h3>Modalità</h3>
+                <div class="inf-tabs">
+                    <button type="button" class="active" data-mode="past">Valore nel passato → Oggi</button>
+                    <button type="button" data-mode="today">Valore oggi → Nel passato</button>
+                </div>
+
+                <div id="panel-past" class="inf-panel">
+                    <label class="input-label">Valore nel passato (€)</label>
+                    <input type="number" id="valPast" value="1000" min="0" step="1" oninput="calc()">
+                    <label class="input-label">Tasso di inflazione medio annuo (%)</label>
+                    <input type="number" id="ratePast" value="2.5" step="0.1" oninput="calc()">
+                    <label class="input-label">Numero di anni</label>
+                    <input type="number" id="yearsPast" value="10" min="0" step="1" oninput="calc()">
+                </div>
+                <div id="panel-today" class="inf-panel" style="display:none">
+                    <label class="input-label">Valore oggi (€)</label>
+                    <input type="number" id="valToday" value="1280" min="0" step="1" oninput="calc()">
+                    <label class="input-label">Tasso di inflazione medio annuo (%)</label>
+                    <input type="number" id="rateToday" value="2.5" step="0.1" oninput="calc()">
+                    <label class="input-label">Numero di anni fa</label>
+                    <input type="number" id="yearsToday" value="10" min="0" step="1" oninput="calc()">
+                </div>
+
+                <div class="inf-result">
+                    <div class="main" id="resultVal">€ 1.280,09</div>
+                    <div class="lbl" id="resultLbl">Equivalente oggi (dopo 10 anni al 2,5% annuo)</div>
+                    <div class="extra" id="resultExtra">Perdita di potere d'acquisto: € 280,09 (+28,0% sul valore originale)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container"><div class="ad-banner ad-banner-inline" id="ad-bottom">📢 Spazio Pubblicitario</div></div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a> | <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let mode = 'past';
+
+        document.querySelectorAll('.inf-tabs button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                mode = btn.dataset.mode;
+                document.querySelectorAll('.inf-tabs button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelectorAll('.inf-panel').forEach(p => p.style.display = 'none');
+                document.getElementById('panel-' + mode).style.display = 'block';
+                calc();
+            });
+        });
+
+        function fmt(n) { return '€ ' + n.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+        function calc() {
+            if (mode === 'past') {
+                const val = parseFloat(document.getElementById('valPast').value) || 0;
+                const r = parseFloat(document.getElementById('ratePast').value) || 0;
+                const y = parseInt(document.getElementById('yearsPast').value, 10) || 0;
+                const today = val * Math.pow(1 + r / 100, y);
+                const diff = today - val;
+                const pct = val !== 0 ? (diff / val * 100) : 0;
+                document.getElementById('resultVal').textContent = fmt(today);
+                document.getElementById('resultLbl').textContent = 'Equivalente oggi (dopo ' + y + ' anni al ' + r + '% annuo)';
+                document.getElementById('resultExtra').textContent = 'Perdita di potere d\'acquisto: ' + fmt(diff) + ' (' + (pct >= 0 ? '+' : '') + pct.toFixed(1) + '% sul valore originale)';
+            } else {
+                const val = parseFloat(document.getElementById('valToday').value) || 0;
+                const r = parseFloat(document.getElementById('rateToday').value) || 0;
+                const y = parseInt(document.getElementById('yearsToday').value, 10) || 0;
+                const past = r !== -100 ? val / Math.pow(1 + r / 100, y) : 0;
+                const diff = val - past;
+                const pct = past !== 0 ? (diff / past * 100) : 0;
+                document.getElementById('resultVal').textContent = fmt(past);
+                document.getElementById('resultLbl').textContent = 'Equivalente di ' + y + ' anni fa (con ' + r + '% inflazione annua)';
+                document.getElementById('resultExtra').textContent = 'Oggi quel valore è salito a ' + fmt(val) + ' (+' + pct.toFixed(1) + '% in ' + y + ' anni)';
+            }
+        }
+        calc();
+    </script>
+</body>
+
+</html>
