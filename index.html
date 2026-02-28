@@ -60,6 +60,13 @@
           </svg>
           <span class="logo-gradient">ToolBox Online</span>
         </a>
+        <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
         <ul class="nav-links">
           <li><a href="index.html#utility">Utility</a></li>
           <li><a href="index.html#elettronica">Elettronica</a></li>
@@ -493,6 +500,7 @@
       <div class="container">
         <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
             href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a> | <a
+            href="README.md">ReadMe</a> | <a
             href="privacy.html">Privacy</a></p>
       </div>
     </footer>
@@ -507,6 +515,14 @@
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js');
     }
+  </script>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
   </script>
 </body>
 
