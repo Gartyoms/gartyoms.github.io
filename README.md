@@ -1,6 +1,6 @@
 # 🧰 ToolBox Online
 
-**Strumenti gratuiti online per tutti** — Un sito web statico, mobile-first e dark mode con calcolatori di utilità generale ed elettronica.
+**Strumenti gratuiti online per tutti** — Un sito web statico, mobile-first e dark mode con calcolatori di utilità generale.
 
 🌐 **Visita il sito →** https://www.toolboxonline.it
 
@@ -171,3 +171,4 @@ Questo progetto è rilasciato con licenza **[CC BY-ND 4.0](https://creativecommo
 ---
 
 > Fatto con ❤️ per aiutare studenti, maker e appassionati di elettronica.
+
