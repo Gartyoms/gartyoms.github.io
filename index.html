@@ -19,27 +19,41 @@
   <meta property="og:title" content="ToolBox Online — Strumenti Gratuiti Online">
   <meta property="og:description"
     content="Strumenti gratuiti online: contatore parole, generatore password, convertitore unità e altro.">
-  <meta property="og:url" content="https://www.toolboxonline.it/">
-  <meta property="og:image" content="https://www.toolboxonline.it/og-image.svg">
-  <meta property="og:locale" content="it_IT">
-  <link rel="canonical" href="https://www.toolboxonline.it/">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#7c3aed">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="ToolBox Online">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.toolboxonline.it/">
+  <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
+  <meta property="og:site_name" content="ToolBox Online">
   <title>ToolBox Online — Strumenti Gratuiti Online</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="icona.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icona.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
     crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ToolBox Online",
+  "url": "https://www.toolboxonline.it",
+  "description": "Strumenti gratuiti online: calcolatori di elettronica, geometria, finanza e informatica.",
+  "publisher": {
+    "@type": "Person",
+    "name": "Gionni Sportelli",
+    "email": "info@toolboxonline.it"
+  }
+}
+</script>
 </head>
 
 <body>
   <div class="page-wrapper">
 
     <!-- Navbar -->
-    <nav class="navbar has-nav-links">
+    <nav class="navbar">
       <div class="container">
         <a href="index.html" class="nav-logo">
           <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,35 +74,32 @@
           </svg>
           <span class="logo-gradient">ToolBox Online</span>
         </a>
-        <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <line x1="3" y1="12" x2="21" y2="12"/>
-            <line x1="3" y1="18" x2="21" y2="18"/>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">🛠️ Strumenti</a></li>
+          <li><a href="blog.html">📝 Blog</a></li>
+          <li><a href="chi-siamo.html">👋 Chi Siamo</a></li>
+        </ul>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+          aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
-        <ul class="nav-links">
-          <li><a href="index.html#utility">Utility</a></li>
-          <li><a href="index.html#elettronica">Elettronica</a></li>
-          <li><a href="index.html#geometria">Geometria</a></li>
-          <li><a href="index.html#finanza">Finanza</a></li>
-          <li><a href="index.html#informatica">Informatica</a></li>
-          <li><a href="index.html#blog">Blog</a></li>
-        </ul>
       </div>
     </nav>
 
     <!-- Ad Banner Top -->
     <div class="container">
       <div class="ad-banner" id="ad-top">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
     </div>
 
     <!-- Hero -->
@@ -105,10 +116,41 @@
       </div>
     </section>
 
+    <!-- Sezione editoriale: Perché ToolBox Online -->
+    <section class="container" style="padding: 0 0 20px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-bottom:8px">
+        <div class="tool-content" style="margin-bottom:0">
+          <div style="font-size:1.8rem;margin-bottom:12px">⚡</div>
+          <h3 style="font-size:1rem;color:var(--text-primary);text-transform:none;letter-spacing:0;margin-bottom:8px">
+            Calcola all'istante</h3>
+          <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7">Ogni strumento elabora i dati in
+            tempo reale, direttamente nel browser. Nessun server, nessuna attesa: i risultati compaiono mentre digiti.
+          </p>
+        </div>
+        <div class="tool-content" style="margin-bottom:0">
+          <div style="font-size:1.8rem;margin-bottom:12px">🔒</div>
+          <h3 style="font-size:1rem;color:var(--text-primary);text-transform:none;letter-spacing:0;margin-bottom:8px">
+            Privacy totale</h3>
+          <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7">I tuoi dati non lasciano mai il
+            dispositivo. Hash, password e testi vengono elaborati localmente: zero upload, zero tracciamento dei
+            contenuti.</p>
+        </div>
+        <div class="tool-content" style="margin-bottom:0">
+          <div style="font-size:1.8rem;margin-bottom:12px">🎓</div>
+          <h3 style="font-size:1rem;color:var(--text-primary);text-transform:none;letter-spacing:0;margin-bottom:8px">
+            Impara mentre usi</h3>
+          <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7">Ogni calcolatore riporta le formule
+            usate, con esempi pratici e spiegazioni. Perfetto per studenti, maker e professionisti che vogliono capire,
+            non solo calcolare.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Tools Grid -->
-    <section class="container" id="utility">
+    <section class="container">
       <div class="section-title">
-        <h2>📝 Strumenti di utilità</h2>
+        <h2>Scegli il Tuo Strumento</h2>
+        <p>Clicca su una card per iniziare</p>
       </div>
 
       <div class="tools-grid">
@@ -147,20 +189,20 @@
     <!-- Ad Banner Middle -->
     <div class="container">
       <div class="ad-banner ad-banner-inline" id="ad-mid">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
     </div>
 
     <!-- Electronics Tools Grid -->
-    <section class="container" id="elettronica" style="padding-top: 20px;">
+    <section class="container" style="padding-top: 20px;">
       <div class="section-title">
         <h2>⚡ Strumenti di Elettronica</h2>
+        <p>Calcolatori per circuiti, resistori, LED e altro</p>
       </div>
 
       <div class="tools-grid">
@@ -255,20 +297,21 @@
     <!-- Ad Banner Middle1 -->
     <div class="container">
       <div class="ad-banner ad-banner-inline" id="ad-mid1">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
     </div>
 
+    <!-- Blog Preview -->
     <!-- Geometry & Physics Tools Grid -->
-    <section class="container" id="geometria" style="padding-top: 20px;">
+    <section class="container" style="padding-top: 20px;">
       <div class="section-title">
         <h2>📐 Geometria e Fisica</h2>
+        <p>Calcolatori per forme, solidi, Pitagora e cinematica</p>
       </div>
 
       <div class="tools-grid">
@@ -314,20 +357,20 @@
     <!-- Ad Banner Middle2 -->
     <div class="container">
       <div class="ad-banner ad-banner-inline" id="ad-mid2">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
     </div>
 
     <!-- Finance & Utility Tools Grid -->
-    <section class="container" id="finanza" style="padding-top: 20px;">
+    <section class="container" style="padding-top: 20px;">
       <div class="section-title">
         <h2>💰 Finanza & Utility</h2>
+        <p>Calcolatori IVA, interessi, QR code e conversioni numeriche</p>
       </div>
 
       <div class="tools-grid">
@@ -360,47 +403,26 @@
           <span class="card-arrow">→</span>
         </a>
 
-        <a href="percentage-calculator.html" class="tool-card animate-in">
-          <div class="tool-icon purple">%</div>
-          <h3>Calcolatore Percentuali</h3>
-          <p>X% di un numero, A è che % di B, aumento o diminuzione percentuale.</p>
-          <span class="card-arrow">→</span>
-        </a>
-
-        <a href="inflation-calculator.html" class="tool-card animate-in">
-          <div class="tool-icon blue">📈</div>
-          <h3>Calcolatore inflazione</h3>
-          <p>Valore di ieri con inflazione: calcola l'equivalente oggi. Tasso annuo e anni.</p>
-          <span class="card-arrow">→</span>
-        </a>
-
-        <a href="loan-calculator.html" class="tool-card animate-in">
-          <div class="tool-icon cyan">📋</div>
-          <h3>Rata Prestito</h3>
-          <p>Calcola la rata mensile da capitale, tasso annuo e durata. Ammortamento francese.</p>
-          <span class="card-arrow">→</span>
-        </a>
-
       </div>
     </section>
 
     <!-- Ad Banner Middle3 -->
     <div class="container">
       <div class="ad-banner ad-banner-inline" id="ad-mid3">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
     </div>
 
     <!-- Computer Science Tools Grid -->
-    <section class="container" id="informatica" style="padding-top: 20px;">
+    <section class="container" style="padding-top: 20px;">
       <div class="section-title">
         <h2>💻 Informatica</h2>
+        <p>Tabella ASCII, hash, colori e codifica testo per sviluppatori</p>
       </div>
 
       <div class="tools-grid">
@@ -439,20 +461,21 @@
     <!-- Ad Banner Middle4 -->
     <div class="container">
       <div class="ad-banner ad-banner-inline" id="ad-mid4">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
     </div>
 
     <!-- Blog Preview -->
-    <section class="hero" id="blog" style="padding:40px 0">
+    <section class="hero" style="padding:40px 0">
       <div class="container">
-        <h2 style="text-align:center;margin-bottom:24px">📝 Dal Blog</h2>
+        <h2 style="text-align:center;margin-bottom:8px">📝 Dal Blog</h2>
+        <p style="text-align:center;color:var(--text-secondary);margin-bottom:24px;font-size:0.9rem">Guide e tutorial
+          per i tuoi progetti di elettronica</p>
         <div class="tools-grid">
           <a href="blog-partitore-tensione.html" class="tool-card animate-in">
             <div class="tool-icon">🔌</div>
@@ -485,22 +508,20 @@
     <!-- Ad Banner Bottom -->
     <div class="container">
       <div class="ad-banner ad-banner-inline" id="ad-bottom">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
-            href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a> | <a
-            href="README.md">ReadMe</a> | <a
+        <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a href="chi-siamo.html">Chi Siamo</a> |
+          <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a> | <a
             href="privacy.html">Privacy</a></p>
       </div>
     </footer>
@@ -511,19 +532,47 @@
   <div class="toast" id="toast"></div>
 
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="display:none">
+  <div class="cookie-banner-inner">
+    <p class="cookie-text">&#x1F36A; Usiamo <strong>Google AdSense</strong> per gli annunci e <strong>Google Analytics</strong> per le statistiche. Accettando ci aiuti a tenere il sito gratuito. <a href="privacy.html">Privacy Policy</a></p>
+    <div class="cookie-buttons">
+      <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Accetta</button>
+      <button class="btn btn-secondary btn-sm" onclick="rejectCookies()">Rifiuta</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      document.getElementById('cookie-banner').style.display = 'block';
+    } else if (consent === 'accepted') {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.adsbygoogle').forEach(function() {
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+        });
+      });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+      });
     }
-  </script>
-  <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    navToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', isOpen);
-    });
-  </script>
+    window.acceptCookies = function() {
+      localStorage.setItem('cookieConsent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.querySelectorAll('.adsbygoogle').forEach(function() {
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+      });
+    };
+    window.rejectCookies = function() {
+      localStorage.setItem('cookieConsent', 'rejected');
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+    };
+  })();
+</script>
 </body>
 
 </html>

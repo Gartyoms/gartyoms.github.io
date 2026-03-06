@@ -16,14 +16,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Convertitore dB online. Converti tra dB, tensione, potenza e dBm/Watt.">
     <title>Convertitore dB — ToolBox Online</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icona.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icona.svg">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
         crossorigin="anonymous"></script>
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#7c3aed">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="ToolBox Online">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.toolboxonline.it"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Convertitore dB",
+      "item": "https://www.toolboxonline.it/db-calculator.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -47,20 +68,25 @@
                             <line x1="40" y1="30" x2="40" y2="38" />
                         </g>
                     </svg><span class="logo-gradient">ToolBox Online</span></a>
-                
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg></button>
             </div>
         </nav>
 
         <div class="container">
             <div class="ad-banner" id="ad-top">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
         </div>
 
         <div class="container">
@@ -170,14 +196,13 @@
 
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
         </div>
         <footer class="footer">
             <div class="container">
@@ -194,11 +219,47 @@
         function dbmCalc(s) { if (s === 'dbm') { const d = parseFloat(document.getElementById('dbmVal').value); if (isNaN(d)) return; const mw = Math.pow(10, d / 10), u = parseFloat(document.getElementById('wattU').value); document.getElementById('wattVal').value = parseFloat((mw * 0.001 / u).toPrecision(6)) } else { const w = parseFloat(document.getElementById('wattVal').value) * parseFloat(document.getElementById('wattU').value); if (isNaN(w) || w <= 0) return; document.getElementById('dbmVal').value = parseFloat((10 * Math.log10(w * 1000)).toFixed(2)) } }
         dbToRatio(); ratioToDb();
     </script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="display:none">
+  <div class="cookie-banner-inner">
+    <p class="cookie-text">&#x1F36A; Usiamo <strong>Google AdSense</strong> per gli annunci e <strong>Google Analytics</strong> per le statistiche. Accettando ci aiuti a tenere il sito gratuito. <a href="privacy.html">Privacy Policy</a></p>
+    <div class="cookie-buttons">
+      <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Accetta</button>
+      <button class="btn btn-secondary btn-sm" onclick="rejectCookies()">Rifiuta</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      document.getElementById('cookie-banner').style.display = 'block';
+    } else if (consent === 'accepted') {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.adsbygoogle').forEach(function() {
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+        });
+      });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+      });
     }
-  </script>
+    window.acceptCookies = function() {
+      localStorage.setItem('cookieConsent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.querySelectorAll('.adsbygoogle').forEach(function() {
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+      });
+    };
+    window.rejectCookies = function() {
+      localStorage.setItem('cookieConsent', 'rejected');
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+    };
+  })();
+</script>
 </body>
 
 </html>

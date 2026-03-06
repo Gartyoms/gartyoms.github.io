@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-73V0EF58WY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-73V0EF58WY');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="google-adsense-account" content="ca-pub-1807204397327154">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Pagina non trovata — ToolBox Online</title>
+  <link rel="icon" href="icona.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icona.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .error-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+      min-height: 60vh;
+    }
+
+    .error-code {
+      font-size: clamp(5rem, 20vw, 10rem);
+      font-weight: 800;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .error-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .error-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 400px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .error-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="nav-logo">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7c3aed" />
+                <stop offset="100%" stop-color="#2563eb" />
+              </linearGradient>
+            </defs>
+            <rect width="64" height="64" rx="14" fill="url(#ng)" />
+            <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="16" y="22" width="32" height="24" rx="3" fill="none" />
+              <path d="M20 18h24v4H20z" fill="none" />
+              <line x1="24" y1="30" x2="24" y2="38" />
+              <line x1="32" y1="30" x2="32" y2="38" />
+              <line x1="40" y1="30" x2="40" y2="38" />
+            </g>
+          </svg>
+          <span class="logo-gradient">ToolBox Online</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Strumenti</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="chi-siamo.html">Chi Siamo</a></li>
+        </ul>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+          aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="error-page">
+        <div class="error-code">404</div>
+        <div class="error-title">Pagina non trovata</div>
+        <p class="error-desc">La pagina che cerchi non esiste o e stata spostata. Torna alla home per trovare tutti gli strumenti disponibili.</p>
+        <div class="error-links">
+          <a href="index.html" class="btn btn-primary">Torna alla Home</a>
+          <a href="blog.html" class="btn btn-secondary">Vai al Blog</a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2026 Gionni Sportelli &mdash; <a href="index.html">ToolBox Online</a> | <a href="chi-siamo.html">Chi Siamo</a> |
+          <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a> | <a href="privacy.html">Privacy</a></p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+
+</html>

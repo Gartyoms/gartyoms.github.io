@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.toolboxonline.it/sitemap.xml
+Sitemap: https://toolboxonline.it/sitemap.xml

@@ -3,7 +3,7 @@
    Mobile-First • Dark Mode • Modern
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* Google Fonts caricato via <link> nell'HTML per migliori performance */
 
 /* --- Custom Properties --- */
 :root {
@@ -122,11 +122,10 @@ svg {
 .navbar .container {
   display: flex;
   justify-content: center;
+  /* Centra orizzontalmente */
   align-items: center;
-}
+  /* Centra verticalmente */
 
-.navbar.has-nav-links .container {
-  justify-content: space-between;
 }
 
 .nav-logo {
@@ -154,12 +153,6 @@ svg {
   display: flex;
   gap: 8px;
   list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li {
-  margin: 0;
 }
 
 .nav-links a {
@@ -269,19 +262,11 @@ svg {
 
 /* --- Ad Banner Zones --- */
 .ad-banner {
-  background: var(--bg-card);
-  border: 1px dashed var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 16px;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.75rem;
   margin: 24px auto;
   max-width: 728px;
   min-height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  display: block;
 }
 
 .ad-banner-inline {
@@ -939,6 +924,54 @@ input[type="range"]::-moz-range-thumb {
 
 .animate-in:nth-child(4) {
   animation-delay: 0.2s;
+}
+
+/* --- Cookie Consent Banner --- */
+#cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: rgba(26, 20, 48, 0.97);
+  border-top: 1px solid var(--border-accent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 16px 20px;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.cookie-banner-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cookie-text {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  min-width: 220px;
+}
+
+.cookie-text strong {
+  color: var(--text-primary);
+}
+
+.cookie-text a {
+  color: var(--accent-purple);
+  text-decoration: none;
+}
+
+.cookie-buttons {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 /* --- Responsive Utilities --- */

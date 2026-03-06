@@ -19,18 +19,17 @@
     <meta property="og:title" content="Calcolatore Resistore LED — ToolBox Online">
     <meta property="og:description"
         content="Calcola il resistore giusto per il tuo LED. Inserisci tensione, corrente e colore LED.">
-  <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.toolboxonline.it/led-resistor.html">
-  <meta property="og:image" content="https://www.toolboxonline.it/og-image.svg">
-  <meta property="og:locale" content="it_IT">
-  <link rel="canonical" href="https://www.toolboxonline.it/led-resistor.html">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#7c3aed">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="ToolBox Online">
+  <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
+  <meta property="og:site_name" content="ToolBox Online">
     <title>Calcolatore Resistore LED — ToolBox Online</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icona.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icona.svg">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
         crossorigin="anonymous"></script>
     <style>
@@ -102,6 +101,26 @@
             display: none;
         }
     </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.toolboxonline.it"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calcolatore Resistore LED",
+      "item": "https://www.toolboxonline.it/led-resistor.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -128,20 +147,31 @@
                     </svg>
                     <span class="logo-gradient">ToolBox Online</span>
                 </a>
-                
+                <ul class="nav-links">
+                    <li><a href="index.html">🛠️ Strumenti</a></li>
+                    <li><a href="blog.html">📝 Blog</a></li>
+                    <li><a href="chi-siamo.html">👋 Chi Siamo</a></li>
+                </ul>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
             </div>
         </nav>
 
         <div class="container">
             <div class="ad-banner" id="ad-top">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
         </div>
 
         <div class="container">
@@ -201,52 +231,37 @@
                     <button class="btn btn-primary" onclick="calcLed()">⚡ Calcola</button>
                 </div>
 
-                <!-- Preview -->
-                <!-- Circuit SVG diagram -->
                 <div class="circuit-svg-wrap"
                     style="background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 20px; text-align: center; margin: 24px 0; display: flex; justify-content: center;">
                     <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg"
                         style="max-width: 320px; width: 100%; height: auto;">
-                        <!-- Wires -->
                         <line x1="60" y1="100" x2="140" y2="100" stroke="#a78bfa" stroke-width="2.5" />
                         <line x1="200" y1="100" x2="250" y2="100" stroke="#a78bfa" stroke-width="2.5" />
                         <line x1="280" y1="100" x2="320" y2="100" stroke="#a78bfa" stroke-width="2.5" />
-
-                        <!-- Vs Source -->
                         <circle cx="60" cy="100" r="4" fill="#a78bfa" />
                         <text x="60" y="80" text-anchor="middle" fill="#a78bfa" font-family="Inter,sans-serif"
                             font-size="14" font-weight="700" id="circuitVs">Vs = 5V</text>
-
-                        <!-- Resistor -->
                         <rect x="140" y="80" width="60" height="40" rx="6" fill="var(--bg-input)" stroke="#a78bfa"
                             stroke-width="2.5" />
                         <text x="170" y="70" text-anchor="middle" fill="#34d399" font-family="Inter,sans-serif"
                             font-size="13" font-weight="600" id="circuitR">R = 150Ω</text>
-
-                        <!-- LED Symbol -->
                         <polygon points="250,85 250,115 280,100" fill="none" stroke="#ef4444" stroke-width="2.5"
                             id="svgLedColor" />
                         <line x1="280" y1="85" x2="280" y2="115" stroke="#ef4444" stroke-width="2.5" id="svgLedLine" />
-
-                        <!-- Light arrows (to show it's a LED) -->
                         <line x1="265" y1="75" x2="280" y2="60" stroke="#ef4444" stroke-width="2" id="svgLight1" />
                         <polygon points="280,60 272,60 278,66" fill="#ef4444" id="svgLightArrow1" />
                         <line x1="280" y1="75" x2="295" y2="60" stroke="#ef4444" stroke-width="2" id="svgLight2" />
                         <polygon points="295,60 287,60 293,66" fill="#ef4444" id="svgLightArrow2" />
-
                         <text x="265" y="140" text-anchor="middle" fill="#ef4444" font-family="Inter,sans-serif"
                             font-size="12" font-weight="600" id="circuitVf">Vf = 2.0V</text>
                         <text x="265" y="155" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif"
                             font-size="11" id="circuitIf">If = 20mA</text>
-
-                        <!-- GND symbol at end -->
                         <line x1="320" y1="90" x2="320" y2="110" stroke="#94a3b8" stroke-width="2.5" />
                         <line x1="326" y1="95" x2="326" y2="105" stroke="#94a3b8" stroke-width="2" />
                         <line x1="332" y1="98" x2="332" y2="102" stroke="#94a3b8" stroke-width="1.5" />
                     </svg>
                 </div>
 
-                <!-- Results -->
                 <div class="stats-row" id="results">
                     <div class="stat-item">
                         <div class="stat-value" id="resR">150</div>
@@ -268,20 +283,61 @@
 
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+        </div>
+
+        <!-- Sezione editoriale -->
+        <div class="container" style="padding-bottom:20px">
+            <div class="tool-content">
+                <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-primary);margin-bottom:12px">Perché i LED
+                    hanno bisogno di un resistore?</h2>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;margin-bottom:12px">
+                    Un LED (Light Emitting Diode) è un diodo, non un resistore: non ha una resistenza interna costante
+                    che limita la corrente. Senza resistore in serie, la corrente aumenta rapidamente fino a bruciare il
+                    LED. Il resistore limita la corrente a un valore sicuro definito dalla formula: <strong
+                        style="color:var(--accent-purple)">R = (Vs − Vf) / If</strong>.
+                </p>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;margin-bottom:12px">
+                    La <strong style="color:var(--text-primary)">tensione di forward (Vf)</strong> è la caduta di
+                    tensione tipica del LED: ~2V per LED rossi/gialli/verdi, ~3-3.5V per LED blu/bianchi. La <strong
+                        style="color:var(--text-primary)">corrente If</strong> è tipicamente 20mA per LED standard, ma
+                    molti LED moderni funzionano bene anche a 10mA consumando meno energia.
+                </p>
+                <h2 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin:20px 0 10px">Domande
+                    Frequenti</h2>
+                <div style="border-top:1px solid var(--border-subtle);padding-top:12px">
+                    <p style="font-weight:600;color:var(--text-primary);font-size:0.9rem;margin-bottom:6px">Posso usare
+                        lo stesso resistore per più LED in serie?</p>
+                    <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;margin-bottom:16px">Sì. Per
+                        LED in serie sottrai la somma di tutte le Vf dalla tensione sorgente: R = (Vs − ΣVf) / If.
+                        Attenzione: la tensione sorgente deve essere maggiore della somma delle tensioni di forward.</p>
+                    <p style="font-weight:600;color:var(--text-primary);font-size:0.9rem;margin-bottom:6px">Che potenza
+                        deve avere il resistore?</p>
+                    <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;margin-bottom:16px">La
+                        potenza dissipata è P = (Vs − Vf) × If. Per un LED da 20mA a 5V con Vf = 2V: P = 3V × 0.02A =
+                        60mW. Un resistore da ¼W (250mW) va benissimo. Usa ½W o 1W solo se la potenza calcolata supera
+                        il 50% della taglia.</p>
+                    <p style="font-weight:600;color:var(--text-primary);font-size:0.9rem;margin-bottom:6px">Il LED può
+                        funzionare senza resistore con 3.3V e Vf = 3.2V?</p>
+                    <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;margin-bottom:0">
+                        Tecnicamente la tensione è molto vicina, ma non è consigliato. La Vf varia da LED a LED e con la
+                        temperatura. Usa sempre un resistore, anche piccolo (es. 10-22Ω), per garantire la durata del
+                        LED.</p>
+                </div>
+            </div>
         </div>
 
         <footer class="footer">
             <div class="container">
-                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
-                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a href="chi-siamo.html">Chi
+                        Siamo</a> | <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank"
+                        rel="noopener">CC BY-ND
                         4.0</a> | <a href="privacy.html">Privacy</a></p>
             </div>
         </footer>
@@ -363,11 +419,47 @@
 
         calcLed();
     </script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="display:none">
+  <div class="cookie-banner-inner">
+    <p class="cookie-text">&#x1F36A; Usiamo <strong>Google AdSense</strong> per gli annunci e <strong>Google Analytics</strong> per le statistiche. Accettando ci aiuti a tenere il sito gratuito. <a href="privacy.html">Privacy Policy</a></p>
+    <div class="cookie-buttons">
+      <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Accetta</button>
+      <button class="btn btn-secondary btn-sm" onclick="rejectCookies()">Rifiuta</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      document.getElementById('cookie-banner').style.display = 'block';
+    } else if (consent === 'accepted') {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.adsbygoogle').forEach(function() {
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+        });
+      });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+      });
     }
-  </script>
+    window.acceptCookies = function() {
+      localStorage.setItem('cookieConsent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.querySelectorAll('.adsbygoogle').forEach(function() {
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+      });
+    };
+    window.rejectCookies = function() {
+      localStorage.setItem('cookieConsent', 'rejected');
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+    };
+  })();
+</script>
 </body>
 
 </html>

@@ -19,18 +19,17 @@
     <meta property="og:title" content="Codice Colori Resistori — ToolBox Online">
     <meta property="og:description"
         content="Calcola il valore di un resistore dai colori delle bande. Supporta resistori a 4 e 5 bande.">
-  <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.toolboxonline.it/resistor-colors.html">
-  <meta property="og:image" content="https://www.toolboxonline.it/og-image.svg">
-  <meta property="og:locale" content="it_IT">
-  <link rel="canonical" href="https://www.toolboxonline.it/resistor-colors.html">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#7c3aed">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="ToolBox Online">
+  <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
+  <meta property="og:site_name" content="ToolBox Online">
     <title>Codice Colori Resistori — ToolBox Online</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icona.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icona.svg">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1807204397327154"
         crossorigin="anonymous"></script>
     <style>
@@ -190,6 +189,26 @@
             font-size: 0.9rem;
         }
     </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.toolboxonline.it"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Codice Colori Resistori",
+      "item": "https://www.toolboxonline.it/resistor-colors.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -216,20 +235,31 @@
                     </svg>
                     <span class="logo-gradient">ToolBox Online</span>
                 </a>
-                
+                <ul class="nav-links">
+                    <li><a href="index.html">🛠️ Strumenti</a></li>
+                    <li><a href="blog.html">📝 Blog</a></li>
+                    <li><a href="chi-siamo.html">👋 Chi Siamo</a></li>
+                </ul>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+                    aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
             </div>
         </nav>
 
         <div class="container">
             <div class="ad-banner" id="ad-top">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
         </div>
 
         <div class="container">
@@ -283,20 +313,128 @@
 
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1807204397327154"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1807204397327154"
+           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+        </div>
+
+        <!-- Sezione editoriale -->
+        <div class="container" style="padding-bottom:20px">
+            <div class="tool-content">
+                <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-primary);margin-bottom:12px">Come leggere
+                    il codice colori di un resistore</h2>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;margin-bottom:12px">
+                    I resistori attraverso filo (through-hole) riportano il loro valore con un <strong
+                        style="color:var(--text-primary)">codice a bande colorate</strong>, standardizzato dalla norma
+                    IEC 60062. Ogni colore corrisponde a un numero da 0 a 9. Le prime due o tre bande indicano le cifre
+                    significative, la banda successiva è il moltiplicatore (potenza di 10) e l'ultima la tolleranza.
+                </p>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;margin-bottom:12px">
+                    I resistori più comuni hanno <strong style="color:var(--text-primary)">4 bande</strong>: due cifre +
+                    moltiplicatore + tolleranza. I resistori di precisione hanno <strong
+                        style="color:var(--text-primary)">5 bande</strong>: tre cifre + moltiplicatore + tolleranza.
+                </p>
+                <h2 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin:20px 0 10px">Tabella colori
+                    rapida</h2>
+                <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:16px">
+                    <tr style="background:var(--bg-input)">
+                        <th
+                            style="padding:8px 12px;text-align:left;border:1px solid var(--border-subtle);color:var(--text-primary)">
+                            Colore</th>
+                        <th
+                            style="padding:8px 12px;text-align:left;border:1px solid var(--border-subtle);color:var(--text-primary)">
+                            Cifra</th>
+                        <th
+                            style="padding:8px 12px;text-align:left;border:1px solid var(--border-subtle);color:var(--text-primary)">
+                            Moltiplicatore</th>
+                        <th
+                            style="padding:8px 12px;text-align:left;border:1px solid var(--border-subtle);color:var(--text-primary)">
+                            Tolleranza</th>
+                    </tr>
+                    <tr>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            Nero</td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">0
+                        </td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            ×1</td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">—
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            Marrone</td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">1
+                        </td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            ×10</td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            ±1%</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            Rosso</td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">2
+                        </td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            ×100</td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            ±2%</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            Oro</td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">—
+                        </td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            ×0.1</td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            ±5%</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            Argento</td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">—
+                        </td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            ×0.01</td>
+                        <td style="padding:6px 12px;border:1px solid var(--border-subtle);color:var(--text-secondary)">
+                            ±10%</td>
+                    </tr>
+                </table>
+                <h2 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin:20px 0 10px">Domande
+                    Frequenti</h2>
+                <div style="border-top:1px solid var(--border-subtle);padding-top:12px">
+                    <p style="font-weight:600;color:var(--text-primary);font-size:0.9rem;margin-bottom:6px">Da che parte
+                        si legge un resistore?</p>
+                    <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;margin-bottom:16px">Si
+                        inizia dalla banda più vicina a un estremo. La banda di tolleranza (oro o argento) è sempre
+                        all'estremo opposto e aiuta a orientarsi. Se non è sicuro, girare il resistore: il valore deve
+                        avere senso (es. 1kΩ, non 0.001Ω).</p>
+                    <p style="font-weight:600;color:var(--text-primary);font-size:0.9rem;margin-bottom:6px">Qual è la
+                        differenza tra tolleranza ±5% e ±1%?</p>
+                    <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;margin-bottom:16px">Un
+                        resistore da 1kΩ ±5% può avere un valore reale tra 950Ω e 1050Ω. Con ±1% il range è 990Ω–1010Ω.
+                        Per circuiti audio, di misura o di precisione, usa resistori ±1% (marrone).</p>
+                    <p style="font-weight:600;color:var(--text-primary);font-size:0.9rem;margin-bottom:6px">Ho un
+                        resistore SMD senza bande: come leggo il valore?</p>
+                    <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;margin-bottom:0">I resistori
+                        SMD usano un codice numerico stampato. Es. "103" = 10 × 10³ = 10kΩ. Per resistori SMD sotto 100Ω
+                        si usa la notazione con lettera (es. "4R7" = 4.7Ω). Questo strumento è pensato per resistori
+                        through-hole con bande colorate.</p>
+                </div>
+            </div>
         </div>
 
         <footer class="footer">
             <div class="container">
-                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a
-                        href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND
+                <p>© 2026 Gionni Sportelli — <a href="index.html">ToolBox Online</a> | <a href="chi-siamo.html">Chi
+                        Siamo</a> | <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank"
+                        rel="noopener">CC BY-ND
                         4.0</a> | <a href="privacy.html">Privacy</a></p>
             </div>
         </footer>
@@ -392,11 +530,47 @@
         createButtons('sel4', toleranceColors, 3);
         updateResult();
     </script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="display:none">
+  <div class="cookie-banner-inner">
+    <p class="cookie-text">&#x1F36A; Usiamo <strong>Google AdSense</strong> per gli annunci e <strong>Google Analytics</strong> per le statistiche. Accettando ci aiuti a tenere il sito gratuito. <a href="privacy.html">Privacy Policy</a></p>
+    <div class="cookie-buttons">
+      <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Accetta</button>
+      <button class="btn btn-secondary btn-sm" onclick="rejectCookies()">Rifiuta</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function() {
+    var consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      document.getElementById('cookie-banner').style.display = 'block';
+    } else if (consent === 'accepted') {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.adsbygoogle').forEach(function() {
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+        });
+      });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+      });
     }
-  </script>
+    window.acceptCookies = function() {
+      localStorage.setItem('cookieConsent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.querySelectorAll('.adsbygoogle').forEach(function() {
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+      });
+    };
+    window.rejectCookies = function() {
+      localStorage.setItem('cookieConsent', 'rejected');
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+    };
+  })();
+</script>
 </body>
 
 </html>
