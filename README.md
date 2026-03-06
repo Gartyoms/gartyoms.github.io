@@ -85,6 +85,9 @@
 | **Guida al 555 Timer** | Astabile, Monostabile, pinout, 5 errori da evitare |
 | **Filtri RC Spiegati Semplice** | Passa basso, passa alto, passa banda, notch |
 | **Resistore per LED** | Formula, tabella colori LED, FAQ |
+| **Legge di Ohm: Guida Pratica** | Formule, 3 esempi pratici, quando non vale |
+| **Come Leggere il Codice Colori dei Resistori** | Tabella completa, trucco mnemonico, valori E12/E24 |
+| **Guida ai QR Code** | Struttura, tipi di contenuto, consigli qualità e sicurezza |
 
 ---
 
@@ -144,8 +147,13 @@ gartyoms.github.io/
 ├── blog-555-timer-guida.html     # Articolo: 555 Timer
 ├── blog-filtri-rc.html           # Articolo: Filtri RC
 ├── blog-resistore-led.html       # Articolo: Resistore LED
+├── blog-legge-di-ohm.html        # Articolo: Legge di Ohm
+├── blog-come-leggere-resistori.html # Articolo: Codice Colori
+├── blog-qr-code-guida.html       # Articolo: QR Code
+├── chi-siamo.html          # Pagina Chi Siamo / About
 ├── privacy.html            # Informativa sulla Privacy (GDPR)
 ├── ads.txt                 # File ads.txt per Google AdSense
+├── sitemap.xml             # Sitemap per Google Search Console
 └── CNAME                   # Dominio personalizzato (toolboxonline.it)
 ```
 
