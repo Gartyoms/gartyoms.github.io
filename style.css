@@ -121,11 +121,8 @@ svg {
 
 .navbar .container {
   display: flex;
-  justify-content: center;
-  /* Centra orizzontalmente */
+  justify-content: space-between;
   align-items: center;
-  /* Centra verticalmente */
-
 }
 
 .nav-logo {
