@@ -264,6 +264,9 @@ svg {
   min-height: 90px;
   text-align: center;
   display: block;
+  background: var(--bg-secondary);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-md);
 }
 
 .ad-banner-inline {
