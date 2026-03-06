@@ -497,6 +497,21 @@
             <h3>Resistore per LED</h3>
             <p>Formula, tabella colori e calcolo pratico</p>
           </a>
+          <a href="blog-legge-di-ohm.html" class="tool-card animate-in">
+            <div class="tool-icon">⚡</div>
+            <h3>Legge di Ohm: Guida Pratica</h3>
+            <p>Formule, esempi pratici, errori comuni e quando non vale</p>
+          </a>
+          <a href="blog-come-leggere-resistori.html" class="tool-card animate-in">
+            <div class="tool-icon">🎨</div>
+            <h3>Come Leggere il Codice Colori dei Resistori</h3>
+            <p>Tabella completa, trucco mnemonico e valori standard E12/E24</p>
+          </a>
+          <a href="blog-qr-code-guida.html" class="tool-card animate-in">
+            <div class="tool-icon">📱</div>
+            <h3>Guida ai QR Code</h3>
+            <p>Come funzionano, tipi di contenuto e consigli per crearli</p>
+          </a>
         </div>
         <div style="text-align:center;margin-top:20px">
           <a href="blog.html" style="color:var(--accent-purple);font-weight:600;font-size:0.9rem">Vedi tutti gli
@@ -548,15 +563,12 @@
     var consent = localStorage.getItem('cookieConsent');
     if (!consent) {
       document.getElementById('cookie-banner').style.display = 'block';
+      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
     } else if (consent === 'accepted') {
       document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.adsbygoogle').forEach(function() {
           try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
         });
-      });
-    } else {
-      document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
       });
     }
     window.acceptCookies = function() {
@@ -567,9 +579,7 @@
       });
     };
     window.rejectCookies = function() {
-      localStorage.setItem('cookieConsent', 'rejected');
-      document.getElementById('cookie-banner').style.display = 'none';
-      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+      window.location.href = 'https://www.google.com';
     };
   })();
 </script>

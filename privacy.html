@@ -319,15 +319,12 @@
     var consent = localStorage.getItem('cookieConsent');
     if (!consent) {
       document.getElementById('cookie-banner').style.display = 'block';
+      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
     } else if (consent === 'accepted') {
       document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.adsbygoogle').forEach(function() {
           try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
         });
-      });
-    } else {
-      document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
       });
     }
     window.acceptCookies = function() {
@@ -338,9 +335,7 @@
       });
     };
     window.rejectCookies = function() {
-      localStorage.setItem('cookieConsent', 'rejected');
-      document.getElementById('cookie-banner').style.display = 'none';
-      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+      window.location.href = 'https://www.google.com';
     };
   })();
 </script>
