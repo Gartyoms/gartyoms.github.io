@@ -333,6 +333,7 @@
       localStorage.setItem('cookieConsent', 'accepted');
       document.getElementById('cookie-banner').style.display = 'none';
       document.body.style.overflow = '';
+      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'block'; });
       document.querySelectorAll('.adsbygoogle').forEach(function() {
         try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
       });
