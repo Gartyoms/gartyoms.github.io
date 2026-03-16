@@ -195,6 +195,51 @@
         </div>
 
         <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Cosa Sono i Decibel (dB)</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Il <strong>decibel (dB)</strong> è un'unità di misura logaritmica che esprime il rapporto tra due valori.
+                    Non è un'unità assoluta, ma relativa: indica "quante volte" un segnale è più grande o più piccolo di un
+                    riferimento. Si usa perché le grandezze in elettronica e acustica possono variare di milioni di volte,
+                    e la scala logaritmica rende questi numeri gestibili.
+                </p>
+
+                <h3 style="margin-top:24px;">dB per Potenza vs dB per Tensione</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Potenza:</strong> dB = 10 × log₁₀(P₂/P₁). Raddoppiare la potenza = +3 dB.</li>
+                    <li><strong>Tensione/Corrente:</strong> dB = 20 × log₁₀(V₂/V₁). Raddoppiare la tensione = +6 dB.</li>
+                    <li>La differenza (fattore 10 vs 20) nasce dal fatto che P ∝ V², quindi 10×log(V²) = 20×log(V).</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Cos'è il dBm</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Il <strong>dBm</strong> è una misura assoluta di potenza riferita a <strong>1 milliwatt (mW)</strong>.
+                    0 dBm = 1 mW, +30 dBm = 1 W, -30 dBm = 1 μW. È usatissimo in telecomunicazioni e RF per esprimere
+                    la potenza di trasmettitori, ricevitori e segnali.
+                </p>
+
+                <h3 style="margin-top:24px;">Valori dB nella Vita Quotidiana</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>0 dB SPL:</strong> soglia dell'udito umano.</li>
+                    <li><strong>30 dB:</strong> sussurro, biblioteca silenziosa.</li>
+                    <li><strong>60 dB:</strong> conversazione normale.</li>
+                    <li><strong>85 dB:</strong> traffico intenso — esposizione prolungata può danneggiare l'udito.</li>
+                    <li><strong>100 dB:</strong> concerto rock, motosega.</li>
+                    <li><strong>120 dB:</strong> soglia del dolore.</li>
+                    <li><strong>140 dB:</strong> decollo aereo a 25 m — danni immediati.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Regole Pratiche Veloci</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>+3 dB</strong> = potenza raddoppiata. <strong>−3 dB</strong> = potenza dimezzata.</li>
+                    <li><strong>+10 dB</strong> = potenza × 10. <strong>+20 dB</strong> = potenza × 100.</li>
+                    <li><strong>+6 dB</strong> = tensione raddoppiata. <strong>−6 dB</strong> = tensione dimezzata.</li>
+                    <li>I dB si sommano: un amplificatore da +20 dB seguito da un cavo con −3 dB di perdita = +17 dB totali.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"

@@ -344,6 +344,43 @@
         </div>
 
         <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Cos'è la codifica del testo?</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    La <strong>codifica</strong> (encoding) è il processo di trasformazione di dati da un formato all'altro. A differenza della crittografia, la codifica non ha lo scopo di nascondere informazioni: è reversibile e serve a rendere i dati compatibili con specifici protocolli o canali di trasmissione. Ogni sviluppatore web la incontra quotidianamente.
+                </p>
+
+                <h3 style="margin-top:24px;">Base64</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>Base64</strong> codifica dati binari usando 64 caratteri ASCII (A-Z, a-z, 0-9, +, /). Fu definita nella <strong>RFC 4648</strong>. Ogni 3 byte di input diventano 4 caratteri Base64, per questo l'output è circa il 33% più grande. Usi comuni: embedding di immagini nelle email (MIME), data URI nei CSS (<code>data:image/png;base64,...</code>), token JWT, trasmissione di file binari via JSON/XML.
+                </p>
+
+                <h3 style="margin-top:24px;">URL Encoding (Percent Encoding)</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Gli URL ammettono solo un sottoinsieme di caratteri ASCII. Spazi, caratteri accentati e simboli speciali vengono sostituiti con <strong>%XX</strong> dove XX è il codice esadecimale UTF-8. Ad esempio: lo spazio diventa <code>%20</code>, "è" diventa <code>%C3%A8</code>. È fondamentale per parametri delle query string e per evitare ambiguità nei link.
+                </p>
+
+                <h3 style="margin-top:24px;">Entità HTML</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    In HTML, alcuni caratteri hanno un significato speciale: <code>&lt;</code> apre un tag, <code>&amp;</code> inizia un'entità. Per visualizzarli come testo bisogna usare le <strong>entità HTML</strong>: <code>&amp;lt;</code> per &lt;, <code>&amp;gt;</code> per &gt;, <code>&amp;amp;</code> per &amp;. Questa pratica è essenziale per prevenire attacchi <strong>XSS</strong> (Cross-Site Scripting) nelle applicazioni web.
+                </p>
+
+                <h3 style="margin-top:24px;">ROT13</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>ROT13</strong> è un cifrario a sostituzione che ruota ogni lettera di 13 posizioni nell'alfabeto. Poiché l'alfabeto ha 26 lettere, applicare ROT13 due volte restituisce il testo originale. Non offre alcuna sicurezza reale: viene usato per nascondere spoiler nei forum, offuscare email per evitare spam bot, o come esempio didattico di cifrario di Cesare.
+                </p>
+
+                <h3 style="margin-top:24px;">Quando usare quale codifica?</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Base64:</strong> quando devi inserire dati binari (immagini, file) in contesti testuali (JSON, email, HTML)</li>
+                    <li><strong>URL Encoding:</strong> per parametri nelle URL e nelle richieste HTTP GET/POST</li>
+                    <li><strong>Entità HTML:</strong> per visualizzare caratteri speciali in pagine web in modo sicuro</li>
+                    <li><strong>ROT13:</strong> solo per offuscamento leggero, mai per proteggere dati sensibili</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"

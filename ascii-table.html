@@ -444,6 +444,43 @@
         </div>
 
         <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Cos'è il codice ASCII?</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>ASCII</strong> (American Standard Code for Information Interchange) è uno standard di codifica dei caratteri pubblicato nel <strong>1963</strong> dall'ANSI. Assegna un numero da 0 a 127 a lettere, cifre, segni di punteggiatura e caratteri di controllo. È la base di praticamente tutte le codifiche moderne, compreso UTF-8, che nei primi 128 caratteri è identico ad ASCII.
+                </p>
+
+                <h3 style="margin-top:24px;">Struttura della tabella</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>0–31: Caratteri di controllo</strong> — non stampabili. Includono NUL (0), TAB (9), LF (10, a capo su Unix), CR (13, ritorno carrello) e ESC (27, usato per sequenze ANSI nei terminali)</li>
+                    <li><strong>32–47: Spazio e simboli</strong> — spazio (32), !, ", #, $, %, &, ', (, ), *, +, virgola, -, punto, /</li>
+                    <li><strong>48–57: Cifre</strong> — da 0 a 9. Nota: il codice ASCII di '0' è 48, non 0!</li>
+                    <li><strong>65–90: Lettere maiuscole</strong> — da A (65) a Z (90)</li>
+                    <li><strong>97–122: Lettere minuscole</strong> — da a (97) a z (122). La differenza tra maiuscola e minuscola è sempre 32</li>
+                    <li><strong>127: DEL</strong> — carattere di cancellazione, l'ultimo della tabella ASCII standard</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Perché ASCII è ancora importante?</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Nonostante l'avvento di <strong>Unicode</strong> (che supporta oltre 150.000 caratteri), ASCII resta fondamentale. Tutti i protocolli di Internet (HTTP, SMTP, FTP) usano ASCII per le intestazioni. I linguaggi di programmazione usano solo caratteri ASCII per le keyword. Gli indirizzi email e i nomi di dominio sono limitati a ASCII (con l'eccezione degli IDN internazionalizzati). E la compatibilità con UTF-8 significa che qualsiasi testo ASCII è automaticamente UTF-8 valido.
+                </p>
+
+                <h3 style="margin-top:24px;">Trucchi utili per programmatori</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Maiuscolo ↔ minuscolo:</strong> basta aggiungere o sottrarre 32 (o fare XOR con 32): 'A' (65) XOR 32 = 'a' (97)</li>
+                    <li><strong>Cifra → numero:</strong> sottrarre 48 (il codice di '0'): '7' (55) − 48 = 7</li>
+                    <li><strong>Controllare se è una lettera:</strong> verificare se il codice cade nell'intervallo 65-90 o 97-122</li>
+                    <li><strong>Carattere nullo:</strong> NUL (0) è il terminatore di stringa in C/C++, da non confondere con il valore numerico zero</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Da ASCII a Unicode</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    ASCII copre solo 128 caratteri — sufficiente per l'inglese, ma non per le lettere accentate italiane, il cirillico, l'arabo o gli emoji. <strong>Unicode</strong> risolve il problema assegnando un "code point" univoco a ogni carattere. <strong>UTF-8</strong> è la codifica più diffusa: usa 1 byte per i caratteri ASCII e fino a 4 byte per emoji e simboli complessi. Oggi oltre il 98% dei siti web usa UTF-8.
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"

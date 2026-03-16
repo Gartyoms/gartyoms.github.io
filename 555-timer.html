@@ -304,6 +304,35 @@
                     </div>
                 </div>
             </div>
+
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Cos'è il 555 Timer</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Il <strong>NE555</strong> è uno dei circuiti integrati più venduti della storia, progettato nel 1972 da
+                    Hans Camenzind. Con soli 8 pin e pochi componenti esterni genera impulsi, onde quadre e ritardi
+                    con precisione. Funziona da 4,5V a 16V ed è disponibile anche in versione CMOS (LMC555) a basso consumo.
+                </p>
+                <h3 style="margin-top:24px;">Modo Astabile</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    In modo <strong>astabile</strong> il 555 genera un'onda quadra continua. La frequenza è
+                    <strong>f = 1,44 / ((R1 + 2×R2) × C)</strong> e il duty cycle dipende dal rapporto tra R1 e R2.
+                    Applicazioni: LED lampeggiante, generatore di toni, clock per circuiti digitali.
+                </p>
+                <h3 style="margin-top:24px;">Modo Monostabile</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    In modo <strong>monostabile</strong> produce un singolo impulso di durata <strong>T = 1,1 × R × C</strong>
+                    quando viene triggerato. Applicazioni: temporizzatore, anti-rimbalzo pulsanti, allarme a tempo.
+                </p>
+                <h3 style="margin-top:24px;">Consigli Pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li>Aggiungi un condensatore da <strong>10-100 nF sul pin 5</strong> (Control Voltage) per stabilità.</li>
+                    <li>Usa condensatori ceramici o a film per la temporizzazione; gli elettrolitici hanno tolleranze troppo alte.</li>
+                    <li>Per duty cycle inferiori al 50%, aggiungi un diodo in parallelo a R2.</li>
+                </ul>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;margin-top:12px;">
+                    Approfondisci con la nostra <a href="blog-555-timer-guida.html" style="color:var(--accent-purple);font-weight:600">Guida Completa al 555 Timer</a>.
+                </p>
+            </div>
         </div>
 
         <div class="container">

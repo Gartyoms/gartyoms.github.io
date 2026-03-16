@@ -318,6 +318,41 @@
         </div>
 
         <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Cosa sono le basi numeriche?</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Una <strong>base numerica</strong> (o radice) indica quanti simboli diversi vengono usati per rappresentare i numeri. Nella vita quotidiana usiamo la base 10 (decimale) con le cifre 0-9, ma i computer ragionano in base 2 (binario) usando solo 0 e 1. Le basi 8 (ottale) e 16 (esadecimale) sono scorciatoie comode per rappresentare dati binari in modo più compatto.
+                </p>
+
+                <h3 style="margin-top:24px;">Le 4 basi più usate in informatica</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Binario (base 2):</strong> è il linguaggio nativo dei processori. Ogni cifra è un <em>bit</em>; 8 bit formano un <em>byte</em>. Esempio: 11111111₂ = 255₁₀</li>
+                    <li><strong>Ottale (base 8):</strong> cifre 0-7. Usata nei permessi Unix/Linux (es. chmod 755) perché ogni cifra ottale corrisponde esattamente a 3 bit</li>
+                    <li><strong>Decimale (base 10):</strong> il sistema che usiamo tutti i giorni, ereditato dalla matematica indiana e diffuso in Europa tramite Fibonacci nel 1202</li>
+                    <li><strong>Esadecimale (base 16):</strong> cifre 0-9 e A-F. Onnipresente in informatica: colori CSS (#FF5733), indirizzi MAC, indirizzi di memoria. Ogni cifra hex corrisponde a 4 bit</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Come si converte tra basi?</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Il metodo classico per convertire da base 10 a un'altra base è la <strong>divisione ripetuta</strong>: si divide il numero per la base, si annota il resto, e si ripete con il quoziente fino a ottenere 0. I resti letti dal basso verso l'alto formano il numero nella nuova base. Ad esempio, 255 ÷ 16 = 15 resto 15 → 15 ÷ 16 = 0 resto 15 → risultato: FF₁₆.
+                </p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Colori web:</strong> #FFFFFF = bianco, #000000 = nero, #FF0000 = rosso puro (255 in decimale per il canale R)</li>
+                    <li><strong>Indirizzo IP:</strong> 192.168.1.1 → ogni ottetto è un valore 0-255 che in binario occupa 8 bit</li>
+                    <li><strong>Permessi Linux:</strong> rwxr-xr-x = 755₈ = 111 101 101₂ — ogni gruppo di 3 bit indica lettura, scrittura, esecuzione</li>
+                    <li><strong>Indirizzi MAC:</strong> AA:BB:CC:DD:EE:FF — 6 coppie esadecimali per identificare univocamente una scheda di rete</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Curiosità</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Il numero 42 — la "risposta alla domanda fondamentale sulla vita" secondo <em>Guida galattica per autostoppisti</em> — in binario è 101010, in ottale è 52, e in esadecimale è 2A. I programmatori amano nascondere messaggi in esadecimale: 0xDEADBEEF, 0xCAFEBABE (usato nei file Java .class) e 0xBAADF00D sono tutti "magic number" celebri nel mondo del software.
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"

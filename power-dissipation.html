@@ -192,6 +192,40 @@
         </div>
 
         <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Cos'è la Dissipazione di Potenza</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Ogni componente elettronico che oppone resistenza al passaggio di corrente converte energia elettrica in
+                    <strong>calore</strong>. Questa conversione è la <strong>dissipazione di potenza</strong>, calcolata con
+                    <strong>P = V × I = I²R = V²/R</strong>. Se il calore non viene smaltito, il componente si surriscalda
+                    e può danneggiarsi o ridurre la propria vita utile.
+                </p>
+
+                <h3 style="margin-top:24px;">Resistenza Termica</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    La <strong>resistenza termica</strong> (Rth, in °C/W) misura quanto facilmente il calore passa da un
+                    punto all'altro. La formula è <strong>T_giunzione = T_ambiente + P × Rth</strong>. Per esempio, se un
+                    regolatore dissipa 2W con Rth = 50 °C/W a 25°C ambiente, la giunzione raggiunge 125°C.
+                </p>
+
+                <h3 style="margin-top:24px;">Come Scegliere il Resistore Giusto</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>¼ W (0,25 W):</strong> il più comune nei circuiti a bassa potenza (LED, segnali logici).</li>
+                    <li><strong>½ W (0,5 W):</strong> per circuiti con correnti moderate.</li>
+                    <li><strong>1-2 W:</strong> per alimentatori e circuiti di potenza.</li>
+                    <li><strong>Regola pratica:</strong> dimensiona il resistore ad almeno il <strong>doppio</strong> della potenza calcolata.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Quando Serve un Dissipatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Regolatori lineari (7805, LM317) e transistor di potenza necessitano di un dissipatore quando la
+                    potenza dissipata supera 0,5-1 W. Il dissipatore riduce la Rth totale. Usa sempre pasta termica
+                    per migliorare il contatto. Nei PCB, usa piani di rame e vie termiche per smaltire il calore.
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"

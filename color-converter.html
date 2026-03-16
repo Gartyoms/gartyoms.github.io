@@ -450,6 +450,43 @@
         </div>
 
         <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>I modelli di colore spiegati</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Un <strong>modello di colore</strong> è un sistema matematico per descrivere i colori con numeri. Modelli diversi sono ottimizzati per scopi diversi: RGB per gli schermi, CMYK per la stampa, HSL per il design. Comprendere le differenze è essenziale per chi lavora con grafica, web design o stampa professionale.
+                </p>
+
+                <h3 style="margin-top:24px;">RGB e HEX</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>RGB</strong> (Red, Green, Blue) è il modello <em>additivo</em> usato da schermi e display. Ogni canale va da 0 a 255; mescolando luce rossa, verde e blu a intensità massima si ottiene il bianco. Il formato <strong>HEX</strong> (#RRGGBB) è semplicemente la notazione esadecimale degli stessi valori RGB: #FF0000 = rgb(255, 0, 0) = rosso puro. Nel CSS si può usare anche la notazione abbreviata: #F00.
+                </p>
+
+                <h3 style="margin-top:24px;">HSL e HSV</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>HSL</strong> (Hue, Saturation, Lightness) e <strong>HSV</strong> (Hue, Saturation, Value) sono modelli pensati per essere più intuitivi. La <strong>tonalità</strong> (Hue) è un angolo sulla ruota cromatica (0° = rosso, 120° = verde, 240° = blu). La <strong>saturazione</strong> indica l'intensità del colore (0% = grigio). La differenza sta nel terzo parametro: Lightness (0% = nero, 100% = bianco) vs Value (0% = nero, 100% = colore pieno). HSL è lo standard CSS, HSV è usato in Photoshop e nei color picker.
+                </p>
+
+                <h3 style="margin-top:24px;">CMYK</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>CMYK</strong> (Cyan, Magenta, Yellow, Key/Black) è il modello <em>sottrattivo</em> usato in stampa. Mentre su schermo si parte dal nero e si aggiunge luce, su carta si parte dal bianco e si aggiunge inchiostro che sottrae luce. Il nero (K) viene aggiunto perché la sovrapposizione di C, M e Y puri non produce un nero profondo. Attenzione: la conversione RGB → CMYK non è esatta — il gamut di colori stampabili è più ristretto di quello del monitor.
+                </p>
+
+                <h3 style="margin-top:24px;">Consigli pratici per designer</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Accessibilità:</strong> verifica il contrasto tra testo e sfondo (rapporto minimo 4,5:1 secondo WCAG AA). Strumenti come questo convertitore aiutano a trovare combinazioni leggibili</li>
+                    <li><strong>Palette armoniose:</strong> usa la ruota cromatica HSL per creare palette complementari (180° di distanza), analoghe (30° di distanza) o triadiche (120° di distanza)</li>
+                    <li><strong>Dark mode:</strong> non invertire semplicemente i colori — riduci la saturazione e usa grigi scuri anziché nero puro (#121212 è meglio di #000000) per ridurre l'affaticamento visivo</li>
+                    <li><strong>Stampa:</strong> lavora sempre in CMYK quando il progetto è destinato alla stampa; un colore vivace su schermo potrebbe risultare spento su carta</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Curiosità sul colore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    L'occhio umano può distinguere circa <strong>10 milioni di colori</strong>, ma un display sRGB standard ne copre "solo" circa 16,7 milioni (256³). I display HDR con gamut DCI-P3 coprono il 25% in più dello spazio colore sRGB. E il famoso "blu Klein" (IKB) — inventato dall'artista Yves Klein — è così saturo che nessun monitor riesce a riprodurlo fedelmente.
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"

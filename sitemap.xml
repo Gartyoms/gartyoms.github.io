@@ -2,221 +2,265 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Core -->
   <url>
-    <loc>https://toolboxonline.it/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://toolboxonline.it/index.html</loc>
+    <loc>https://www.toolboxonline.it/</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Finanza e Matematica -->
   <url>
-    <loc>https://toolboxonline.it/iva-calculator.html</loc>
+    <loc>https://www.toolboxonline.it/iva-calculator.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/compound-interest.html</loc>
+    <loc>https://www.toolboxonline.it/compound-interest.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/base-converter.html</loc>
+    <loc>https://www.toolboxonline.it/loan-calculator.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/area-perimeter.html</loc>
+    <loc>https://www.toolboxonline.it/percentage-calculator.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.toolboxonline.it/inflation-calculator.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.toolboxonline.it/base-converter.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.toolboxonline.it/area-perimeter.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/volume-surface.html</loc>
+    <loc>https://www.toolboxonline.it/volume-surface.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/pythagoras.html</loc>
+    <loc>https://www.toolboxonline.it/pythagoras.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Informatica -->
   <url>
-    <loc>https://toolboxonline.it/ascii-table.html</loc>
+    <loc>https://www.toolboxonline.it/ascii-table.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/hash-generator.html</loc>
+    <loc>https://www.toolboxonline.it/hash-generator.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/color-converter.html</loc>
+    <loc>https://www.toolboxonline.it/color-converter.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/text-encoder.html</loc>
+    <loc>https://www.toolboxonline.it/text-encoder.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/qr-generator.html</loc>
+    <loc>https://www.toolboxonline.it/qr-generator.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/password-generator.html</loc>
+    <loc>https://www.toolboxonline.it/password-generator.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Elettronica -->
   <url>
-    <loc>https://toolboxonline.it/ohm-calculator.html</loc>
+    <loc>https://www.toolboxonline.it/ohm-calculator.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/resistor-colors.html</loc>
+    <loc>https://www.toolboxonline.it/resistor-colors.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/led-resistor.html</loc>
+    <loc>https://www.toolboxonline.it/led-resistor.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/voltage-divider.html</loc>
+    <loc>https://www.toolboxonline.it/voltage-divider.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/rc-calculator.html</loc>
+    <loc>https://www.toolboxonline.it/rc-calculator.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/series-parallel.html</loc>
+    <loc>https://www.toolboxonline.it/series-parallel.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/555-timer.html</loc>
+    <loc>https://www.toolboxonline.it/555-timer.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/filters.html</loc>
+    <loc>https://www.toolboxonline.it/filters.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/reactance.html</loc>
+    <loc>https://www.toolboxonline.it/reactance.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/db-calculator.html</loc>
+    <loc>https://www.toolboxonline.it/db-calculator.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/frequency-calculator.html</loc>
+    <loc>https://www.toolboxonline.it/frequency-calculator.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/power-dissipation.html</loc>
+    <loc>https://www.toolboxonline.it/power-dissipation.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Fisica e Utilità -->
+  <!-- Fisica e Utilita -->
   <url>
-    <loc>https://toolboxonline.it/motion.html</loc>
+    <loc>https://www.toolboxonline.it/motion.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/ballistic.html</loc>
+    <loc>https://www.toolboxonline.it/ballistic.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/word-counter.html</loc>
+    <loc>https://www.toolboxonline.it/word-counter.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/unit-converter.html</loc>
+    <loc>https://www.toolboxonline.it/unit-converter.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/lorem-generator.html</loc>
+    <loc>https://www.toolboxonline.it/lorem-generator.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Blog e Note -->
   <url>
-    <loc>https://toolboxonline.it/blog.html</loc>
+    <loc>https://www.toolboxonline.it/blog.html</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/blog-555-timer-guida.html</loc>
+    <loc>https://www.toolboxonline.it/blog-555-timer-guida.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/blog-filtri-rc.html</loc>
+    <loc>https://www.toolboxonline.it/blog-filtri-rc.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/blog-partitore-tensione.html</loc>
+    <loc>https://www.toolboxonline.it/blog-partitore-tensione.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/blog-resistore-led.html</loc>
+    <loc>https://www.toolboxonline.it/blog-resistore-led.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/blog-legge-di-ohm.html</loc>
+    <loc>https://www.toolboxonline.it/blog-legge-di-ohm.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/blog-come-leggere-resistori.html</loc>
+    <loc>https://www.toolboxonline.it/blog-come-leggere-resistori.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://toolboxonline.it/blog-qr-code-guida.html</loc>
+    <loc>https://www.toolboxonline.it/blog-qr-code-guida.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Pagine Informative -->
   <url>
-    <loc>https://toolboxonline.it/chi-siamo.html</loc>
+    <loc>https://www.toolboxonline.it/chi-siamo.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Pagine Legali -->
   <url>
-    <loc>https://toolboxonline.it/privacy.html</loc>
+    <loc>https://www.toolboxonline.it/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

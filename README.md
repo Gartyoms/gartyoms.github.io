@@ -26,6 +26,7 @@
 | **Generatore di Password** | Password sicure con lunghezza e complessità personalizzabili |
 | **Convertitore di Unità** | Lunghezza, peso, temperatura e velocità |
 | **Generatore Lorem Ipsum** | Paragrafi, frasi o parole di testo placeholder |
+| **Calcolatore Percentuali** | Tre modalità: % di un numero, rapporto %, variazione % |
 
 ### ⚡ Elettronica — Base
 
@@ -65,6 +66,8 @@
 |-----------|-------------|
 | **Calcolatore IVA** | Aggiungi o scorpora IVA con aliquote italiane (4%, 5%, 10%, 22%) |
 | **Interessi Composti** | Simulazione crescita investimenti con versamenti periodici e grafico |
+| **Simulatore Prestito** | Ammortamento alla francese con piano rate, TAN e TAEG |
+| **Calcolatore Inflazione** | Potere d'acquisto nel tempo con tasso d'inflazione personalizzabile |
 | **Generatore QR Code** | QR Code da testo, URL, email, telefono, WiFi — scarica in PNG |
 | **Convertitore Basi** | Binario ↔ Ottale ↔ Decimale ↔ Esadecimale con visualizzazione bit |
 
@@ -136,6 +139,9 @@ gartyoms.github.io/
 ├── ballistic.html          # Calcolatore balistico avanzato
 ├── iva-calculator.html     # Calcolatore IVA
 ├── compound-interest.html  # Interessi composti
+├── loan-calculator.html    # Simulatore prestito
+├── percentage-calculator.html # Calcolatore percentuali
+├── inflation-calculator.html  # Calcolatore inflazione
 ├── qr-generator.html       # Generatore QR Code
 ├── base-converter.html     # Convertitore basi numeriche
 ├── ascii-table.html        # Tabella ASCII interattiva
@@ -152,9 +158,13 @@ gartyoms.github.io/
 ├── blog-qr-code-guida.html       # Articolo: QR Code
 ├── chi-siamo.html          # Pagina Chi Siamo / About
 ├── privacy.html            # Informativa sulla Privacy (GDPR)
+├── 404.html                # Pagina errore 404 personalizzata
 ├── ads.txt                 # File ads.txt per Google AdSense
 ├── sitemap.xml             # Sitemap per Google Search Console
-└── CNAME                   # Dominio personalizzato (toolboxonline.it)
+├── sw.js                   # Service Worker (PWA cache-first)
+├── manifest.json           # PWA manifest
+├── og-image.svg            # Immagine Open Graph 1200×630
+└── CNAME                   # Dominio personalizzato (www.toolboxonline.it)
 ```
 
 ---

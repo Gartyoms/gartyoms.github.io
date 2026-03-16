@@ -238,6 +238,35 @@
         </div>
 
         <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come Funziona il Partitore di Tensione</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Un <strong>partitore di tensione</strong> è formato da due resistori in serie che producono una tensione
+                    di uscita proporzionale a quella di ingresso: <strong>Vout = Vin × R2 / (R1 + R2)</strong>. È uno dei
+                    circuiti più semplici e usati in elettronica.
+                </p>
+
+                <h3 style="margin-top:24px;">Applicazioni Comuni</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Level shifting:</strong> adattare un segnale 5V per un microcontrollore a 3,3V (ESP32, Raspberry Pi).</li>
+                    <li><strong>Sensori resistivi:</strong> fotoresistori e termistori formano un partitore con un resistore fisso.</li>
+                    <li><strong>Polarizzazione transistor:</strong> impostare il punto di lavoro di un BJT.</li>
+                    <li><strong>Attenuazione audio:</strong> un potenziometro è un partitore variabile.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Partitore Carico vs Scarico</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    La formula base assume impedenza di carico infinita. Nella realtà, un carico a bassa impedenza altera Vout.
+                    Scegli R1 e R2 almeno <strong>10× più piccoli</strong> dell'impedenza di carico per minimizzare l'errore.
+                    Un partitore <strong>non è un alimentatore</strong>: per fornire corrente, usa un regolatore di tensione.
+                </p>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;margin-top:12px;">
+                    Approfondisci con la nostra <a href="blog-partitore-tensione.html" style="color:var(--accent-purple);font-weight:600">Guida al Partitore di Tensione</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"

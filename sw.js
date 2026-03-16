@@ -1,8 +1,8 @@
 // sw.js — ToolBox Online Service Worker
 // Strategia: Cache-First con fallback Network
-// Per aggiornare la cache incrementare CACHE_NAME (es: toolbox-v2)
+// Per aggiornare la cache incrementare CACHE_NAME (es: toolbox-v3)
 
-const CACHE_NAME = 'toolbox-v1';
+const CACHE_NAME = 'toolbox-v2';
 
 const PRECACHE_URLS = [
   // Assets statici
@@ -14,6 +14,7 @@ const PRECACHE_URLS = [
   // Pagine HTML
   '/',
   '/index.html',
+  '/404.html',
   '/555-timer.html',
   '/area-perimeter.html',
   '/ascii-table.html',
@@ -21,9 +22,13 @@ const PRECACHE_URLS = [
   '/base-converter.html',
   '/blog.html',
   '/blog-555-timer-guida.html',
+  '/blog-come-leggere-resistori.html',
   '/blog-filtri-rc.html',
+  '/blog-legge-di-ohm.html',
   '/blog-partitore-tensione.html',
+  '/blog-qr-code-guida.html',
   '/blog-resistore-led.html',
+  '/chi-siamo.html',
   '/color-converter.html',
   '/compound-interest.html',
   '/db-calculator.html',

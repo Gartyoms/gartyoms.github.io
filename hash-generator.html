@@ -375,6 +375,38 @@
         </div>
 
         <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Cos'è una funzione hash?</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Una <strong>funzione hash</strong> trasforma un input di qualsiasi dimensione in una stringa di lunghezza fissa chiamata <em>digest</em> o <em>checksum</em>. Le proprietà fondamentali sono: <strong>determinismo</strong> (lo stesso input produce sempre lo stesso hash), <strong>velocità</strong>, <strong>effetto valanga</strong> (un minimo cambiamento nell'input cambia radicalmente l'output), e <strong>irreversibilità</strong> (non si può risalire all'input dal digest).
+                </p>
+
+                <h3 style="margin-top:24px;">Confronto tra algoritmi</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>MD5</strong> (128 bit): veloce ma <strong>non sicuro</strong> — vulnerabile a collisioni dal 2004. Va usato solo per checksum di file, mai per password</li>
+                    <li><strong>SHA-1</strong> (160 bit): deprecato dal 2017 dopo che Google ha dimostrato una collisione pratica (progetto SHAttered). Non più accettato per certificati SSL</li>
+                    <li><strong>SHA-256</strong> (256 bit): parte della famiglia SHA-2, è lo standard attuale. Usato in Bitcoin, certificati TLS, firme digitali. Nessuna collisione nota</li>
+                    <li><strong>SHA-512</strong> (512 bit): più sicuro e paradossalmente spesso più veloce di SHA-256 su processori a 64 bit</li>
+                    <li><strong>SHA-3</strong> (Keccak): standard NIST dal 2015, basato su un design completamente diverso (sponge construction). È il "piano B" nel caso SHA-2 venisse compromesso</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Casi d'uso comuni</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Verifica integrità file:</strong> i siti di download forniscono l'hash SHA-256 per verificare che il file non sia stato alterato</li>
+                    <li><strong>Archiviazione password:</strong> le password non vengono mai salvate in chiaro, ma come hash (con salt). Algoritmi dedicati come bcrypt o Argon2 sono preferiti perché volutamente lenti</li>
+                    <li><strong>Blockchain:</strong> Bitcoin usa il doppio SHA-256 per collegare i blocchi in una catena immutabile</li>
+                    <li><strong>Git:</strong> ogni commit è identificato dal suo hash SHA-1 (migrazione a SHA-256 in corso)</li>
+                    <li><strong>Firma digitale:</strong> si firma l'hash del documento anziché il documento intero, per efficienza</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Hash e sicurezza</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Una <strong>collisione</strong> si verifica quando due input diversi producono lo stesso hash. Per SHA-256 con i suoi 2²⁵⁶ possibili output, trovare una collisione per forza bruta richiederebbe circa 2¹²⁸ tentativi — ben oltre le capacità computazionali attuali. Questo strumento calcola l'hash interamente nel browser usando la Web Crypto API: nessun dato viene inviato a server esterni.
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"

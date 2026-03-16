@@ -279,6 +279,32 @@
 
                 <div class="warning-box" id="warning"></div>
             </div>
+
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Perché il LED Ha Bisogno di un Resistore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Un LED è un <strong>diodo</strong>: una volta raggiunta la tensione di soglia (Vf), la corrente cresce
+                    rapidamente senza controllo. Senza un resistore limitatore, il LED assorbe troppa corrente e si brucia
+                    in pochi istanti. La formula è: <strong>R = (Vsupply − Vf) / If</strong>.
+                </p>
+                <h3 style="margin-top:24px;">Tensioni di Soglia per Colore</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Rosso:</strong> 1,8 – 2,2 V</li>
+                    <li><strong>Giallo/Arancione:</strong> 2,0 – 2,4 V</li>
+                    <li><strong>Verde:</strong> 2,0 – 3,0 V</li>
+                    <li><strong>Blu/Bianco:</strong> 3,0 – 3,4 V</li>
+                    <li><strong>Corrente tipica:</strong> 20 mA per LED standard, 2-5 mA per indicatori.</li>
+                </ul>
+                <h3 style="margin-top:24px;">LED in Serie vs Parallelo</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    In <strong>serie</strong> le tensioni si sommano (es. 3 LED rossi = 6V), serve un solo resistore, e la
+                    corrente è uguale per tutti. In <strong>parallelo</strong> ogni LED dovrebbe avere il proprio resistore,
+                    perché piccole differenze di Vf causano distribuzione diseguale di corrente.
+                </p>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;margin-top:12px;">
+                    Approfondisci con la nostra <a href="blog-resistore-led.html" style="color:var(--accent-purple);font-weight:600">Guida al Resistore per LED</a>.
+                </p>
+            </div>
         </div>
 
         <div class="container">

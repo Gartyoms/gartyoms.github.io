@@ -214,6 +214,34 @@
                     </div>
                 </div>
             </div>
+
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Reattanza, Impedenza e Risonanza</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    In corrente alternata, condensatori e induttori oppongono una "resistenza" che dipende dalla frequenza:
+                    la <strong>reattanza</strong>. A differenza della resistenza, la reattanza non dissipa energia ma la
+                    accumula e la restituisce. L'<strong>impedenza</strong> Z combina resistenza e reattanza:
+                    <strong>Z = √(R² + (XL − XC)²)</strong>.
+                </p>
+                <h3 style="margin-top:24px;">Reattanza Capacitiva e Induttiva</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>XC = 1/(2πfC):</strong> diminuisce con la frequenza. Un condensatore blocca la DC e passa l'AC ad alta frequenza.</li>
+                    <li><strong>XL = 2πfL:</strong> aumenta con la frequenza. Un induttore passa la DC e blocca l'AC ad alta frequenza.</li>
+                </ul>
+                <h3 style="margin-top:24px;">Frequenza di Risonanza</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Quando XL = XC, il circuito è in <strong>risonanza</strong>: l'impedenza è minima (serie) o massima (parallelo)
+                    e la frequenza di risonanza è <strong>fr = 1/(2π√(LC))</strong>. La risonanza è alla base di filtri,
+                    sintonizzatori radio, oscillatori e antenne.
+                </p>
+                <h3 style="margin-top:24px;">Applicazioni</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Filtri:</strong> selezionare o eliminare bande di frequenza.</li>
+                    <li><strong>Sintonizzazione radio:</strong> circuito LC risonante per selezionare la stazione.</li>
+                    <li><strong>Impedance matching:</strong> massimizzare il trasferimento di potenza tra sorgente e carico.</li>
+                    <li><strong>Power factor correction:</strong> compensare la reattanza per migliorare l'efficienza degli impianti.</li>
+                </ul>
+            </div>
         </div>
 
         <div class="container">

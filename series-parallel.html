@@ -194,6 +194,29 @@
                 <!-- Formula -->
                 <div class="formula-box" id="formulaBox"></div>
             </div>
+
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Serie vs Parallelo: la Differenza</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    In <strong>serie</strong> i componenti sono attraversati dalla stessa corrente e le tensioni si sommano.
+                    In <strong>parallelo</strong> hanno la stessa tensione e le correnti si sommano.
+                    Per i resistori: serie = somma diretta (R_tot = R1 + R2), parallelo = formula inversa
+                    (1/R_tot = 1/R1 + 1/R2). Per i condensatori è il contrario: parallelo = somma, serie = inversa.
+                </p>
+                <h3 style="margin-top:24px;">Scorciatoia per Due Resistori in Parallelo</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Per due soli resistori: <strong>R_tot = (R1 × R2) / (R1 + R2)</strong>. Esempio:
+                    220Ω e 330Ω in parallelo = (220×330)/(220+330) = 72.600/550 = <strong>132 Ω</strong>.
+                    Se i due resistori sono uguali, il risultato è esattamente la metà: 100Ω ∥ 100Ω = 50Ω.
+                </p>
+                <h3 style="margin-top:24px;">Perché Combinare Componenti</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Valori non standard:</strong> ottenere una resistenza non disponibile nella serie E12/E24.</li>
+                    <li><strong>Distribuzione di potenza:</strong> due resistori da 1W in parallelo gestiscono 2W totali.</li>
+                    <li><strong>Capacità elevate:</strong> condensatori in parallelo per filtri di alimentazione.</li>
+                    <li><strong>Precisione:</strong> combinare resistori a bassa tolleranza per un valore target preciso.</li>
+                </ul>
+            </div>
         </div>
 
         <div class="container">

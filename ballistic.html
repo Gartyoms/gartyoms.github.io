@@ -649,6 +649,47 @@
         </div>
 
         <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Cos'è il moto parabolico?</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Il <strong>moto parabolico</strong> (o moto di un proiettile) è la traiettoria seguita da un oggetto lanciato con una velocità iniziale e soggetto alla sola forza di gravità. Fu Galileo Galilei a dimostrare, nel XVII secolo, che la traiettoria ideale è una <strong>parabola</strong>. In realtà, la resistenza dell'aria modifica significativamente la traiettoria reale, specialmente ad alte velocità.
+                </p>
+
+                <h3 style="margin-top:24px;">Le formule fondamentali (senza attrito)</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Gittata:</strong> R = (v₀² × sin(2θ)) / g — massima a 45°</li>
+                    <li><strong>Altezza massima:</strong> H = (v₀² × sin²θ) / (2g)</li>
+                    <li><strong>Tempo di volo:</strong> T = (2 × v₀ × sinθ) / g</li>
+                    <li><strong>Componente orizzontale:</strong> vₓ = v₀ × cosθ (costante, senza attrito)</li>
+                    <li><strong>Componente verticale:</strong> vᵧ = v₀ × sinθ − g × t (decresce, si annulla all'apice)</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">L'effetto della resistenza dell'aria</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Nel mondo reale, l'<strong>attrito aerodinamico</strong> (drag) riduce drasticamente gittata e altezza. La forza di drag è proporzionale al quadrato della velocità: F_drag = ½ × ρ × v² × Cd × A, dove ρ è la densità dell'aria, Cd il coefficiente di resistenza e A la sezione trasversale. Per una palla da calcio calciata a 100 km/h, il drag riduce la gittata di circa il 30-40% rispetto al caso ideale.
+                </p>
+
+                <h3 style="margin-top:24px;">Angolo ottimale: non sempre 45°</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Nel vuoto l'angolo di gittata massima è esattamente 45°. Ma con la resistenza dell'aria, l'angolo ottimale scende a <strong>35°–42°</strong> a seconda della velocità e dell'oggetto. Nel lancio del peso (atletica), l'angolo ottimale è circa 42°; nel calcio, un tiro lungo è più efficace a circa 30°-35° perché la palla deve lottare meno contro l'aria nella fase ascendente.
+                </p>
+
+                <h3 style="margin-top:24px;">Applicazioni pratiche</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Sport:</strong> traiettoria di palloni, palline da golf (con effetto Magnus dovuto allo spin), tiri liberi nel basket</li>
+                    <li><strong>Ingegneria:</strong> calcolo della gittata di irrigatori, fontane, sistemi di lancio</li>
+                    <li><strong>Videogiochi:</strong> la fisica dei proiettili in giochi come Angry Birds, Worms o simulatori balistici usa esattamente queste equazioni</li>
+                    <li><strong>Sicurezza:</strong> determinare zone di caduta in cantieri, gittata di schegge, traiettorie di evacuazione dell'acqua nelle dighe</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Effetti aggiuntivi</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    Oltre al drag, altri fattori influenzano le traiettorie reali: il <strong>vento</strong> (laterale e frontale/in coda), l'<strong>effetto Magnus</strong> (la rotazione devia la palla — è ciò che crea le "banane" nel calcio), la <strong>variazione di densità dell'aria</strong> con l'altitudine, e l'<strong>effetto Coriolis</strong> per proiettili a lunghissima gittata (artiglieria). Questo simulatore tiene conto di drag e vento per offrirti una stima più realistica.
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"

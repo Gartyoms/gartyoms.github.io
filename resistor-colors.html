@@ -312,6 +312,46 @@
         </div>
 
         <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come funziona il codice colori dei resistori?</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    I resistori a foro passante (<em>through-hole</em>) usano bande colorate per indicare il loro valore di resistenza e la tolleranza. Questo sistema fu standardizzato dalla <strong>IEC 60062</strong> per garantire leggibilità anche su componenti molto piccoli dove una scritta sarebbe illeggibile.
+                </p>
+
+                <h3 style="margin-top:24px;">Resistori a 4 e 5 bande</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>4 bande:</strong> le prime 2 indicano le cifre significative, la 3ª è il moltiplicatore (potenza di 10), la 4ª è la tolleranza. Esempio: marrone-nero-rosso-oro = 10 × 10² = 1 kΩ ±5%</li>
+                    <li><strong>5 bande:</strong> le prime 3 indicano le cifre, la 4ª è il moltiplicatore, la 5ª è la tolleranza. Più preciso: marrone-nero-nero-marrone-marrone = 100 × 10 = 1 kΩ ±1%</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Tabella dei colori</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Nero</strong> = 0, <strong>Marrone</strong> = 1, <strong>Rosso</strong> = 2, <strong>Arancione</strong> = 3, <strong>Giallo</strong> = 4</li>
+                    <li><strong>Verde</strong> = 5, <strong>Blu</strong> = 6, <strong>Viola</strong> = 7, <strong>Grigio</strong> = 8, <strong>Bianco</strong> = 9</li>
+                    <li><strong>Oro</strong> = moltiplicatore ×0,1 | tolleranza ±5%</li>
+                    <li><strong>Argento</strong> = moltiplicatore ×0,01 | tolleranza ±10%</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Mnemonico per ricordare la sequenza</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    In italiano si usa spesso: "<strong>Ne Ma Ro Ar Gi Ve Bl Vi Gr Bi</strong>" (Nero, Marrone, Rosso, Arancione, Giallo, Verde, Blu, Viola, Grigio, Bianco). In inglese esiste il famoso "Bad Boys Race Our Young Girls But Violet Generally Wins". Ripeterlo qualche volta e il codice colori diventa automatico.
+                </p>
+
+                <h3 style="margin-top:24px;">Le serie E12 e E24</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    I resistori commerciali non hanno valori arbitrari ma seguono le <strong>serie preferenziali</strong>. La serie <strong>E12</strong> (tolleranza 10%) prevede 12 valori per decade: 1,0 – 1,2 – 1,5 – 1,8 – 2,2 – 2,7 – 3,3 – 3,9 – 4,7 – 5,6 – 6,8 – 8,2. La serie <strong>E24</strong> (tolleranza 5%) ha 24 valori. Queste serie sono progettate affinché l'intervallo tra un valore e il successivo corrisponda alla tolleranza del componente.
+                </p>
+
+                <h3 style="margin-top:24px;">Suggerimenti pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Verso di lettura:</strong> la banda di tolleranza (oro o argento) è sempre quella più distanziata — si legge dall'estremità opposta</li>
+                    <li><strong>Verifica col multimetro:</strong> nel dubbio, misura sempre il valore reale con un multimetro digitale</li>
+                    <li><strong>SMD:</strong> i resistori a montaggio superficiale usano un codice numerico stampato (es. "472" = 4,7 kΩ) anziché le bande colorate</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"
