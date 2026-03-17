@@ -1003,6 +1003,17 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
+/* --- Cookie Pending State (before accept/reject) --- */
+body.cookie-pending .page-wrapper {
+  opacity: 0.45;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+body.cookie-pending .page-wrapper * {
+  user-select: none;
+}
+
 /* --- Responsive Utilities --- */
 @media (max-width: 480px) {
   .container {
