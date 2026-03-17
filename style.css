@@ -1014,37 +1014,37 @@ body.cookie-pending .page-wrapper * {
   user-select: none;
 }
 
-body.cookie-pending::after {
-  content: "Accetta o Rifiuta per navigare nel sito \A\25BC";
-  white-space: pre;
-  position: fixed;
-  bottom: 80px;
+#cookie-banner::before {
+  content: "\25BC  Accetta o Rifiuta per navigare nel sito  \25BC";
+  position: absolute;
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10000;
   background: var(--gradient-main);
   color: #fff;
   font-family: var(--font);
   font-size: 0.9rem;
   font-weight: 600;
   padding: 12px 24px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
   text-align: center;
-  box-shadow: var(--shadow-lg);
+  white-space: nowrap;
+  box-shadow: 0 -4px 20px rgba(124, 58, 237, 0.4);
   animation: cookieArrowBounce 1.5s ease-in-out infinite;
   pointer-events: none;
 }
 
 @keyframes cookieArrowBounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(8px); }
+  50% { transform: translateX(-50%) translateY(-6px); }
 }
 
 @media (max-width: 768px) {
-  body.cookie-pending::after {
-    bottom: 130px;
-    font-size: 0.82rem;
-    padding: 10px 18px;
+  #cookie-banner::before {
+    font-size: 0.78rem;
+    padding: 10px 16px;
+    white-space: normal;
+    max-width: 90vw;
   }
 }
 
