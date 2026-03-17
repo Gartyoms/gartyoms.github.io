@@ -91,16 +91,6 @@
     </nav>
 
     <!-- Ad Banner Top -->
-    <div class="container">
-      <div class="ad-banner" id="ad-top">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-1807204397327154"
-           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    </div>
-    </div>
 
     <!-- Hero -->
     <section class="hero">
@@ -294,18 +284,6 @@
       </div>
     </section>
 
-    <!-- Ad Banner Middle1 -->
-    <div class="container">
-      <div class="ad-banner ad-banner-inline" id="ad-mid1">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-1807204397327154"
-           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    </div>
-    </div>
-
     <!-- Blog Preview -->
     <!-- Geometry & Physics Tools Grid -->
     <section class="container" style="padding-top: 20px;">
@@ -406,17 +384,6 @@
       </div>
     </section>
 
-    <!-- Ad Banner Middle3 -->
-    <div class="container">
-      <div class="ad-banner ad-banner-inline" id="ad-mid3">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-1807204397327154"
-           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    </div>
-    </div>
 
     <!-- Computer Science Tools Grid -->
     <section class="container" style="padding-top: 20px;">
@@ -458,17 +425,6 @@
       </div>
     </section>
 
-    <!-- Ad Banner Middle4 -->
-    <div class="container">
-      <div class="ad-banner ad-banner-inline" id="ad-mid4">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-1807204397327154"
-           data-ad-slot="SOSTITUISCI_CON_SLOT_ID"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    </div>
-    </div>
 
     <!-- Blog Preview -->
     <section class="hero" style="padding:40px 0">
@@ -566,6 +522,8 @@
       document.getElementById('cookie-banner').style.display = 'flex';
       document.body.style.overflow = 'hidden';
       document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
+    } else if (consent === 'rejected') {
+      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
     } else if (consent === 'accepted') {
       document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.adsbygoogle').forEach(function() {
@@ -583,7 +541,10 @@
       });
     };
     window.rejectCookies = function() {
-      window.location.href = 'https://www.google.com';
+      localStorage.setItem('cookieConsent', 'rejected');
+      document.getElementById('cookie-banner').style.display = 'none';
+      document.body.style.overflow = '';
+      document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
     };
   })();
 </script>

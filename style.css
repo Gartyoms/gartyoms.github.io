@@ -264,9 +264,21 @@ svg {
   min-height: 90px;
   text-align: center;
   display: block;
-  background: var(--bg-secondary);
-  border: 1px dashed var(--border-subtle);
+  background: transparent;
+  border: none;
   border-radius: var(--radius-md);
+  position: relative;
+}
+
+.ad-banner::before {
+  content: "Pubblicità";
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
 }
 
 .ad-banner-inline {
