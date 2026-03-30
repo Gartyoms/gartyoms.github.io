@@ -19,6 +19,7 @@
     <meta property="og:title" content="Calcolatore Legge di Ohm — ToolBox Online">
     <meta property="og:description"
         content="Calcola tensione, corrente, resistenza e potenza con la Legge di Ohm. Gratuito e online.">
+    <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.toolboxonline.it/ohm-calculator.html">
   <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
   <meta property="og:site_name" content="ToolBox Online">
@@ -218,6 +219,27 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come usare il calcolatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">Inserisci due dei quattro valori (Tensione V, Corrente I, Resistenza R, Potenza P) e gli altri due vengono calcolati automaticamente. La Legge di Ohm vale V = I &times; R; la potenza si ricava da P = V &times; I = I&sup2; &times; R = V&sup2;/R. Lascia vuoti i campi da calcolare e clicca 'Calcola' o digita direttamente.</p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Resistore in un circuito Arduino (5V, 20mA):</strong> V=5, I=0,02 &rarr; R = 250 &Omega; (usa 270 &Omega; standard), P = 100 mW. Verifica che la potenza sia inferiore alla dissipazione massima del resistore (tipicamente 250 mW o 1/4 W).</li>
+                    <li><strong>Fusibile auto (12V, 10A):</strong> P = 12 &times; 10 = 120 W. R del circuito = 12/10 = 1,2 &Omega;. Se la resistenza scende sotto 1,2 &Omega; (cortocircuito) la corrente supera 10A e il fusibile salta.</li>
+                    <li><strong>Lampadina a filamento (230V, 60W):</strong> I = 60/230 &asymp; 261 mA, R = 230/0,261 &asymp; 882 &Omega;. Attenzione: a freddo la resistenza del tungsteno &egrave; 10 volte inferiore; la corrente di spunto all'accensione &egrave; 10 volte maggiore.</li>
+                    <li><strong>Riscaldatore elettrico (230V, 1000W):</strong> I = 1000/230 &asymp; 4,35 A, R = 230/4,35 &asymp; 52,9 &Omega;. Corrente assorbita: 4,35 A. Verifica che la presa sia da almeno 10 A.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Domande frequenti</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>La Legge di Ohm vale per tutti i componenti elettronici?</strong> No. Vale solo per i conduttori ohmici come resistori e fili metallici a temperatura costante, dove il rapporto V/I &egrave; costante. Non vale per diodi, LED e transistor (V/I non lineare) n&eacute; per condensatori e induttori in corrente alternata, dove si parla di reattanza e impedenza.<br><br>
+                    <strong>Perch&eacute; i resistori si scaldano?</strong> Per la legge di Joule: l'energia elettrica si converte in calore con potenza P = I&sup2; &times; R. Maggiore &egrave; la corrente o la resistenza, pi&ugrave; calore viene prodotto. Ecco perch&eacute; i resistori hanno una potenza massima nominale (1/4 W, 1/2 W, 1 W) da non superare per evitare danni.
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"

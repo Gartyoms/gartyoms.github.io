@@ -221,6 +221,27 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come usare il calcolatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">Inserisci la tensione V e la corrente I per calcolare la potenza dissipata P = V &times; I, oppure usa resistenza e corrente (P = I&sup2; &times; R) o tensione e resistenza (P = V&sup2; / R). Il risultato mostra anche l'energia consumata in un'ora (Wh) e il costo indicativo mensile, utile per stimare i consumi domestici.</p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Resistore nel circuito:</strong> V=5V, I=20mA &rarr; P = 0,1 W = 100 mW. Il resistore deve avere rating di potenza 1/4 W (250 mW): siamo abbondantemente nei limiti. Per sicurezza usa sempre un componente con rating almeno doppio rispetto alla potenza calcolata.</li>
+                    <li><strong>Transistor come switch:</strong> Vce=0,2V (saturo), Ic=500mA &rarr; P = 0,1 W. Bassa, ma se sale a Vce=1V la potenza diventa 0,5 W: potrebbe servire un dissipatore. Verifica sempre la potenza massima dal datasheet del transistor.</li>
+                    <li><strong>Frigorifero (compressore 150W, 24h/giorno):</strong> energia giornaliera = 150 W &times; 24 h = 3,6 kWh. In un mese: 3,6 &times; 30 = 108 kWh. A 0,25 &euro;/kWh = 27 &euro;/mese solo per il frigorifero.</li>
+                    <li><strong>PC desktop in stand-by (5W):</strong> 5 W &times; 8.760 h/anno = 43,8 kWh/anno &asymp; 11 &euro;/anno sprecati. Moltiplicato per i dispositivi in stand-by di una casa (TV, decoder, caricabatterie, router) si arriva facilmente a 80&ndash;120 &euro;/anno.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Domande frequenti</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>Differenza tra potenza e energia?</strong> La potenza (W) &egrave; la velocit&agrave; con cui viene consumata o dissipata energia in un istante. L'energia (Wh o kWh) &egrave; la potenza moltiplicata per il tempo: quanta ne viene usata in totale. La bolletta elettrica si paga sull'energia (kWh), non sulla potenza istantanea.<br><br>
+                    <strong>Cos'&egrave; il fattore di potenza?</strong> Nei circuiti in corrente alternata (CA), la potenza reale (W) pu&ograve; essere inferiore alla potenza apparente (VA) se corrente e tensione non sono in fase. Il rapporto P/S si chiama fattore di potenza (cos&phi;). Un motore con cos&phi;=0,8 che assorbe 1.000 VA eroga solo 800 W di lavoro utile.
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"

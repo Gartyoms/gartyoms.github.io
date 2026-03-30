@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="google-adsense-account" content="ca-pub-1807204397327154">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Convertitore dB online. Converti tra dB, tensione, potenza e dBm/Watt.">
+    <meta name="description" content="Convertitore dB online gratuito. Converti tra decibel, tensione, potenza e dBm/Watt con formule e risultati istantanei.">
     <meta property="og:title" content="Convertitore dB — ToolBox Online">
     <meta property="og:description" content="Convertitore dB online. Converti tra dB, tensione, potenza e dBm/Watt.">
     <meta property="og:type" content="website">
@@ -235,6 +235,27 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come usare il calcolatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">Seleziona la modalit&agrave; di conversione: dBV (tensione), dBm (potenza su 50 &Omega; o 600 &Omega;) o rapporto di potenza/tensione. Inserisci il valore e ottieni la conversione in entrambe le direzioni. Il decibel &egrave; una scala logaritmica: +3 dB raddoppia la potenza, +6 dB raddoppia la tensione, +20 dB moltiplica la tensione per 10.</p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Amplificatore audio (+20 dB):</strong> tensione ingresso 0,1 V &rarr; uscita = 0,1 &times; 10 = 1 V (poich&eacute; +20 dB tensione = &times;10). Potenza: se aumenta la tensione &times;10 su stessa resistenza, la potenza aumenta &times;100 = +20 dB potenza.</li>
+                    <li><strong>Segnale Wi-Fi (&minus;70 dBm):</strong> segnale accettabile ma non ottimale. &minus;50 dBm = ottimo, &minus;67 dBm = affidabile, &minus;70 dBm = minimo per streaming video, &minus;80 dBm = connessione instabile. Ogni &minus;3 dBm dimezza la potenza del segnale ricevuto.</li>
+                    <li><strong>Attenuatore &minus;6 dB (tensione):</strong> riduce la tensione a met&agrave; (fattore 0,5). Un cavo coassiale di 10 m a 1 GHz pu&ograve; attenuare il segnale di &minus;3 a &minus;6 dB: importante nei sistemi antenna TV e satellite.</li>
+                    <li><strong>Soglia del dolore uditivo (120 dB SPL):</strong> 0 dB SPL = soglia di udibilit&agrave; (20 &mu;Pa). 120 dB SPL = 20 Pa, un milione di volte pi&ugrave; intensa. La scala logaritmica permette di rappresentare l'enorme range dinamico dell'udito umano (0&ndash;140 dB) in numeri gestibili.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Domande frequenti</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>Perch&eacute; il dB per la tensione usa il fattore 20 e per la potenza 10?</strong> Il dB &egrave; definito per la potenza: dB = 10 &times; log10(P2/P1). Poich&eacute; la potenza &egrave; proporzionale al quadrato della tensione (P = V&sup2;/R), per esprimere un rapporto di tensioni si usa 20 &times; log10(V2/V1) (il fattore 2 del quadrato esce davanti al log). Risultato: +20 dB tensione corrisponde a +20 dB potenza solo se la resistenza &egrave; la stessa.<br><br>
+                    <strong>Cos'&egrave; il dBm e quando si usa?</strong> Il dBm esprime la potenza in decibel rispetto a 1 milliwatt: 0 dBm = 1 mW, +10 dBm = 10 mW, &minus;30 dBm = 1 &mu;W. Si usa in RF, telecomunicazioni e misure audio professionali perch&eacute; fornisce un riferimento assoluto. Un telefono cellulare trasmette tipicamente a +23 dBm (200 mW).
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"

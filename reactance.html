@@ -19,6 +19,7 @@
     <meta property="og:title" content="Calcolatore Reattanza e Impedenza — ToolBox Online">
     <meta property="og:description"
         content="Calcola reattanza capacitiva (XC), induttiva (XL) e impedenza (Z) per circuiti in corrente alternata.">
+    <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.toolboxonline.it/reactance.html">
   <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
   <meta property="og:site_name" content="ToolBox Online">
@@ -234,6 +235,27 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come usare il calcolatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">Inserisci la frequenza f in Hz, la capacit&agrave; C in farad e l'induttanza L in henry. Il calcolatore fornisce la reattanza capacitiva Xc = 1/(2&pi;fC), la reattanza induttiva XL = 2&pi;fL, l'impedenza totale Z = |XL &minus; XC| e la frequenza di risonanza fr = 1/(2&pi;&radic;LC) in cui XL = XC e l'impedenza &egrave; minima.</p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Condensatore da 100 nF a 50 Hz (rete):</strong> XC = 1/(2&pi;&times;50&times;100&times;10&sup;&minus;&sup8;) &asymp; 31,8 k&Omega;. A 50 Hz il condensatore blocca praticamente la corrente alternata. Lo stesso condensatore a 1 MHz avr&agrave; XC &asymp; 1,6 &Omega;: quasi un cortocircuito per i segnali RF.</li>
+                    <li><strong>Induttore da 10 mH a 50 Hz:</strong> XL = 2&pi;&times;50&times;0,01 &asymp; 3,14 &Omega;. A 1 MHz XL = 2&pi;&times;10&sup6;&times;0,01 &asymp; 62,8 k&Omega;: un induttore blocca efficacemente i segnali ad alta frequenza (filtro EMI).</li>
+                    <li><strong>Circuito LC risonante per radio AM:</strong> L=250 &mu;H, C=100 pF &rarr; fr = 1/(2&pi;&radic;(250&times;10&sup;&minus;&sup6;&times;100&times;10&sup;&#x2D;&#xB9;&sup2;)) &asymp; 1 MHz. Seleziona la stazione radio in banda AM (530&ndash;1600 kHz) variando C con il condensatore variabile.</li>
+                    <li><strong>Alimentatore switching (100 kHz):</strong> induttore da 47 &mu;H &rarr; XL = 29,5 &Omega; a 100 kHz. Condensatore da 10 &mu;F &rarr; XC = 0,16 &Omega;. Il condensatore shunta il ripple HF; l'induttore limita la variazione di corrente.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Domande frequenti</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>Differenza tra resistenza e reattanza?</strong> La resistenza R dissipa energia convertendola in calore. La reattanza X (capacitiva o induttiva) non dissipa energia ma la immagazzina temporaneamente nel campo elettrico (condensatore) o nel campo magnetico (induttore) e la restituisce al circuito. L'impedenza Z combina entrambe: Z = &radic;(R&sup2; + X&sup2;).<br><br>
+                    <strong>Cos'&egrave; la risonanza e perch&eacute; &egrave; utile?</strong> Alla frequenza di risonanza fr, XL = XC e si annullano a vicenda: l'impedenza del circuito LC &egrave; minima (idealmente zero). Il circuito assorbe il massimo di corrente a fr e attenua tutte le altre frequenze. Questo principio &egrave; alla base di radio, filtri notch, antenne e circuiti oscillatori.
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"

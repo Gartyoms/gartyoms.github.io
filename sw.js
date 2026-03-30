@@ -2,12 +2,13 @@
 // Strategia: Cache-First con fallback Network
 // Per aggiornare la cache incrementare CACHE_NAME (es: toolbox-v3)
 
-const CACHE_NAME = 'toolbox-v3';
+const CACHE_NAME = 'toolbox-v4';
 
 const PRECACHE_URLS = [
   // Assets statici
   '/style.css',
   '/favicon.svg',
+  '/icona.svg',
   '/og-image.svg',
   '/manifest.json',
 

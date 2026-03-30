@@ -115,7 +115,8 @@ npx -y http-server . -p 8080
 gartyoms.github.io/
 ├── index.html              # Homepage con tutte le card
 ├── style.css               # Design system completo
-├── favicon.svg             # Icona del sito
+├── icona.svg               # Icona del sito (favicon, PWA, og:image)
+├── favicon.svg             # Alias/copia di icona.svg
 ├── word-counter.html       # Contatore parole
 ├── password-generator.html # Generatore password
 ├── unit-converter.html     # Convertitore unità

@@ -19,6 +19,7 @@
     <meta property="og:title" content="Calcolatore Filtri RC — ToolBox Online">
     <meta property="og:description"
         content="Progetta filtri passa basso, passa alto, passa banda e notch. Calcola frequenza di taglio.">
+    <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.toolboxonline.it/filters.html">
   <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
   <meta property="og:site_name" content="ToolBox Online">
@@ -318,6 +319,27 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come usare il calcolatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">Seleziona il tipo di filtro (Passa-Basso LP, Passa-Alto HP o Passa-Banda BP), inserisci R e C, e il calcolatore mostra la frequenza di taglio fc = 1/(2&pi;RC). Nella banda passante il segnale attraversa indisturbato; oltre fc ogni decade (&times;10 in frequenza) il segnale si attenua di 20 dB per un filtro RC del primo ordine.</p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Filtro LP per alimentatore:</strong> R = 100 &Omega;, C = 100 &mu;F &rarr; fc &asymp; 16 Hz. Attenua il ripple a 50 Hz (o 100 Hz a doppia semionda) dell'alimentatore raddrizzato, fornendo in uscita una tensione pi&ugrave; pulita.</li>
+                    <li><strong>Filtro HP per microfono:</strong> R = 10 k&Omega;, C = 1 &mu;F &rarr; fc &asymp; 16 Hz. Elimina le vibrazioni meccaniche di bassissima frequenza (calpestio, traffico) che saturerebbero il preamplificatore senza contribuire al segnale audio utile.</li>
+                    <li><strong>Filtro LP audio a 1 kHz:</strong> R = 10 k&Omega;, C = 16 nF &rarr; fc &asymp; 1 kHz. Usato come crossover passivo per inviare le basse frequenze ai woofer. Con un secondo stadio RC identico si ottiene un filtro del 2&deg; ordine con &minus;40 dB/decade.</li>
+                    <li><strong>Filtro BP per radio FM:</strong> combinando un LP con fc = 108 MHz e un HP con fc = 88 MHz si ottiene un filtro che seleziona la banda FM (88&ndash;108 MHz), attenuando tutte le stazioni fuori banda.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Domande frequenti</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>Cosa significa attenuazione &minus;3 dB?</strong> La frequenza di taglio fc &egrave; quella alla quale la potenza del segnale &egrave; dimezzata (&minus;3 dB) e l'ampiezza scende al 70,7% (1/&radic;2). Non significa che il segnale sia completamente bloccato: oltre fc continua a passare ma con attenuazione crescente di 20 dB per ogni decade.<br><br>
+                    <strong>Come ottenere un filtro pi&ugrave; selettivo?</strong> Un singolo stadio RC ha pendenza &minus;20 dB/decade (1&deg; ordine). Per maggiore selettivit&agrave; si cascadano pi&ugrave; stadi RC oppure si usano filtri attivi con op-amp: Butterworth per risposta piatta in banda, Chebyshev per massima pendenza, Bessel per risposta al gradino ottimale.
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"

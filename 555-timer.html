@@ -19,6 +19,7 @@
     <meta property="og:title" content="Calcolatore 555 Timer — ToolBox Online">
     <meta property="og:description"
         content="Progetta circuiti con il 555 Timer. Calcola frequenza, periodo e duty cycle per modo Astabile e Monostabile.">
+    <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.toolboxonline.it/555-timer.html">
   <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
   <meta property="og:site_name" content="ToolBox Online">
@@ -325,6 +326,27 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come usare il calcolatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">Inserisci i valori di R1, R2 e C per calcolare frequenza, periodo, duty cycle e tempi di carica/scarica in modalit&agrave; astabile. In modalit&agrave; monostabile inserisci R e C per ottenere la durata dell'impulso T = 1,1 &times; R &times; C. I risultati si aggiornano in tempo reale al variare dei componenti.</p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>LED lampeggiante a 1 Hz (modalit&agrave; astabile):</strong> R1=1 k&Omega;, R2=68 k&Omega;, C=10 &mu;F &rarr; f&asymp;1 Hz, periodo 1s, duty cycle &asymp;50%. Il LED si accende e si spegne ogni mezzo secondo, tipico degli indicatori di stato.</li>
+                    <li><strong>Tono audio a 1 kHz (piezo buzzer):</strong> R1=1 k&Omega;, R2=680 &Omega;, C=1 &mu;F &rarr; f&asymp;1 kHz. Collegando il pin 3 a un buzzer piezoelettrico si ottiene un tono udibile. Variando R2 si cambia la frequenza del suono.</li>
+                    <li><strong>Timer da 10 secondi (monostabile):</strong> R=910 k&Omega;, C=10 &mu;F &rarr; T = 1,1 &times; 910.000 &times; 0,00001 &asymp; 10 s. Premendo il trigger si accende un relay per 10 secondi poi si spegne automaticamente: utile per luci temporizzate.</li>
+                    <li><strong>PWM motore DC:</strong> variando R2 con un potenziometro si controlla il duty cycle e quindi la velocit&agrave; di rotazione del motore. Frequenza consigliata 1&ndash;20 kHz per evitare il fischio udibile e ridurre le perdite nel driver.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Domande frequenti</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>Differenza tra modalit&agrave; astabile e monostabile?</strong> In modalit&agrave; astabile il 555 genera un'onda quadra continua senza trigger esterno: oscilla autonomamente tra 0 e 1 in modo indefinito. In modalit&agrave; monostabile (one-shot) il 555 &egrave; normalmente a riposo (uscita bassa) e produce un solo impulso di durata T ogni volta che riceve un segnale di trigger.<br><br>
+                    <strong>Perch&eacute; il 555 &egrave; ancora cos&igrave; popolare?</strong> Introdotto nel 1972 da Signetics, il NE555 &egrave; ancora oggi uno dei chip pi&ugrave; venduti al mondo. Costa pochi centesimi, funziona da 4,5V a 15V, pu&ograve; erogare fino a 200 mA e richiede pochissimi componenti esterni. &Egrave; affidabilissimo e documentatissimo: il datasheet originale del 1972 &egrave; ancora valido.
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"

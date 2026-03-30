@@ -19,6 +19,7 @@
     <meta property="og:title" content="Calcolatore RC Timer — ToolBox Online">
     <meta property="og:description"
         content="Calcola la costante di tempo RC, frequenza di taglio e tensione durante carica/scarica.">
+    <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.toolboxonline.it/rc-calculator.html">
   <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
   <meta property="og:site_name" content="ToolBox Online">
@@ -266,6 +267,27 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come usare il calcolatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">Inserisci il valore della resistenza R in ohm e della capacit&agrave; C in farad (usa i prefissi: 10k = 10.000 &Omega;, 100n = 100 nF). Il calcolatore fornisce la costante di tempo &tau; = R&times;C in secondi e la frequenza di taglio fc = 1/(2&pi;RC) in Hz. Utile per progettare filtri, timer e circuiti di ritardo.</p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Antirimbalzo pulsante:</strong> R = 10 k&Omega;, C = 100 nF &rarr; &tau; = 1 ms, fc &asymp; 159 Hz. Il ritardo di 1 ms elimina i rimbalzi meccanici dei pulsanti (che durano 1&ndash;10 ms) senza rallentare la risposta percepita.</li>
+                    <li><strong>Filtro anti-alias audio:</strong> R = 1 k&Omega;, C = 10 nF &rarr; fc &asymp; 15,9 kHz. Inserito prima di un ADC che campiona a 44,1 kHz, attenua le frequenze oltre il limite di Nyquist evitando l'aliasing.</li>
+                    <li><strong>Ritardo accensione LED:</strong> R = 100 k&Omega;, C = 47 &mu;F &rarr; &tau; &asymp; 4,7 s. Il LED si accende gradualmente dopo circa 5 secondi dall'applicazione della tensione, utile per indicatori di carica.</li>
+                    <li><strong>Timer monostabile 555:</strong> R = 47 k&Omega;, C = 10 &mu;F &rarr; impulso = 1,1&times;R&times;C &asymp; 0,52 s. La formula del 555 in modalit&agrave; monostabile usa il fattore 1,1 rispetto al semplice RC.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Domande frequenti</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>Cosa significa la costante di tempo &tau;?</strong> Dopo un tempo &tau; = R&times;C, la tensione sul condensatore raggiunge il 63,2% del valore finale durante la carica (o scende al 36,8% durante la scarica). Dopo 5&tau; la carica &egrave; praticamente completa al 99,3%. Regola pratica: considera un circuito RC 'completamente carico' dopo 5 costanti di tempo.<br><br>
+                    <strong>Differenza tra filtro RC e filtro LC?</strong> Il filtro RC (resistore + condensatore) &egrave; economico e semplice ma dissipa energia nella resistenza. Il filtro LC (induttore + condensatore) non dissipa energia, ha pendenza di rolloff pi&ugrave; ripida (&minus;40 dB/decade) ed &egrave; preferito negli alimentatori switching e nei circuiti RF.
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"

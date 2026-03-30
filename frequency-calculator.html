@@ -195,6 +195,27 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come usare il calcolatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">Inserisci uno dei tre valori (frequenza f in Hz, periodo T in secondi o lunghezza d'onda &lambda; in metri) e gli altri due vengono calcolati usando f = 1/T e &lambda; = c/f (con c = velocit&agrave; della luce 299.792.458 m/s per onde EM). Il convertitore gestisce automaticamente i prefissi: kHz, MHz, GHz, &mu;s, ns.</p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Rete elettrica italiana (50 Hz):</strong> T = 1/50 = 20 ms. La tensione alterna compie un ciclo completo ogni 20 millisecondi. Questo causa il flickering delle luci a fluorescenza a 100 Hz (100 cicli di illuminazione/spegnimento al secondo, doppio della frequenza di rete).</li>
+                    <li><strong>Frequenza radio FM (100 MHz):</strong> &lambda; = 300.000.000 / 100.000.000 = 3 m. L'antenna dipolo per FM deve essere lunga &lambda;/4 = 0,75 m (75 cm). Spiega perch&eacute; le antenne FM sono cos&igrave; lunghe rispetto a quelle Wi-Fi.</li>
+                    <li><strong>Wi-Fi 2,4 GHz:</strong> &lambda; = 299.792.458 / 2.400.000.000 &asymp; 12,5 cm. L'antenna interna del router &egrave; lunga circa 6 cm (&lambda;/2). A 5 GHz: &lambda; &asymp; 6 cm, antenne pi&ugrave; corte ma minor penetrazione attraverso muri e solai.</li>
+                    <li><strong>Ultrasuoni (40 kHz, sensore HC-SR04):</strong> velocit&agrave; del suono &asymp; 343 m/s. &lambda; = 343 / 40.000 &asymp; 8,6 mm. T = 1/40.000 = 25 &mu;s. Questi sensori misurano la distanza cronometrando l'eco: ogni 1 ms di ritardo corrisponde a circa 17 cm di distanza.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Domande frequenti</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>Differenza tra frequenza e periodo?</strong> Sono l'inverso l'uno dell'altro: f = 1/T e T = 1/f. La frequenza indica quante oscillazioni avvengono in un secondo (Hz = cicli/s). Il periodo indica quanto dura una singola oscillazione. Un suono a 440 Hz (nota La) ha periodo T = 1/440 &asymp; 2,27 ms.<br><br>
+                    <strong>La lunghezza d'onda vale per tutti i tipi di onda?</strong> No, la formula &lambda; = c/f usa la velocit&agrave; della luce (c &asymp; 3&times;10&sup8; m/s) e vale solo per le onde elettromagnetiche (luce, radio, microonde, raggi X). Per le onde sonore si usa la velocit&agrave; del suono (340 m/s in aria a 20&deg;C). Per le onde sismiche le velocit&agrave; sono diverse ancora.
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"

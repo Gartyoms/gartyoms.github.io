@@ -19,6 +19,7 @@
     <meta property="og:title" content="Partitore di Tensione — ToolBox Online">
     <meta property="og:description"
         content="Calcola il partitore di tensione resistivo con due resistenze. Risultati istantanei.">
+    <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.toolboxonline.it/voltage-divider.html">
   <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
   <meta property="og:site_name" content="ToolBox Online">
@@ -256,6 +257,27 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come usare il calcolatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">Inserisci la tensione di ingresso Vin e i valori di R1 e R2: la tensione di uscita Vout = Vin &times; R2/(R1+R2) viene calcolata immediatamente insieme a corrente e potenza dissipata. Il partitore &egrave; valido solo con carico ad alta impedenza (almeno 10 volte R2); in caso contrario la tensione di uscita si abbassa per effetto di carico.</p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Adattatore di livello 5V &rarr; 3,3V (Arduino + sensore):</strong> Vin=5V, R1=1,8 k&Omega;, R2=3,3 k&Omega; &rarr; Vout = 5 &times; 3300/5100 &asymp; 3,24 V. Corrente = 5/5100 &asymp; 0,98 mA, trascurabile.</li>
+                    <li><strong>Lettura batteria (12V &rarr; 5V, ADC Arduino):</strong> R1=7 k&Omega;, R2=5 k&Omega; &rarr; Vout = 12 &times; 5/12 = 5 V. Abbassa la tensione della batteria al range dell'ADC (0&ndash;5V). Con R1=68 k&Omega;, R2=33 k&Omega; si riduce la corrente e si risparmia batteria.</li>
+                    <li><strong>Rilevatore luce con LDR:</strong> R1=LDR (varia 1 k&Omega;&ndash;10 M&Omega;), R2=10 k&Omega;. Al buio LDR&asymp;1 M&Omega; &rarr; Vout &asymp; 4,95V. In piena luce LDR&asymp;1 k&Omega; &rarr; Vout &asymp; 2,5V. Il microcontrollore legge la tensione e determina la luminosit&agrave;.</li>
+                    <li><strong>Regolazione volume audio (potenziometro):</strong> R1+R2 = resistenza totale del pot (es. 10 k&Omega;). Ruotando il cursore cambia il rapporto R1/R2, variando Vout e quindi il volume. &Egrave; il principio del partitore applicato a tutti i controlli di volume analogici.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Domande frequenti</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>Perch&eacute; il partitore non si usa per alimentare carichi?</strong> Quando si collega un carico RL in parallelo a R2, la resistenza equivalente scende e con essa Vout. Un carico che assorbe corrente variabile causa una tensione di uscita instabile. Per tensioni stabili sotto carico si usa un regolatore di tensione (LDO o buck converter) invece di un partitore resistivo.<br><br>
+                    <strong>Come scelgo i valori di R1 e R2?</strong> Regola pratica: la corrente del partitore deve essere almeno 10 volte maggiore della corrente assorbita dal carico. Se il carico assorbe 1 mA, la corrente del partitore deve essere almeno 10 mA, quindi R_totale = Vin/10mA. Poi distribuisci tra R1 e R2 nel rapporto corretto.
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"

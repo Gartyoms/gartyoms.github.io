@@ -19,6 +19,7 @@
     <meta property="og:title" content="Serie e Parallelo R/C — ToolBox Online">
     <meta property="og:description"
         content="Calcola resistenze e condensatori in serie e parallelo. Aggiungi fino a 10 componenti.">
+    <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.toolboxonline.it/series-parallel.html">
   <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
   <meta property="og:site_name" content="ToolBox Online">
@@ -209,6 +210,27 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="tool-content" style="margin-top: 20px;">
+                <h3>Come usare il calcolatore</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">Seleziona il tipo di componente (Resistori o Condensatori) e la configurazione (Serie o Parallelo). Aggiungi i valori cliccando '+ Aggiungi': il risultato equivalente viene calcolato in tempo reale. Per resistori in serie i valori si sommano; in parallelo si usa 1/Req = 1/R1 + 1/R2 + &hellip; Per condensatori la logica &egrave; inversa: si sommano in parallelo e si usano gli inversi in serie.</p>
+
+                <h3 style="margin-top:24px;">Esempi pratici</h3>
+                <ul style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;padding-left:24px;">
+                    <li><strong>Resistori in parallelo per LED:</strong> 3 resistori da 330 &Omega; in parallelo &rarr; Req = 110 &Omega;. La corrente totale &egrave; triplicata a parit&agrave; di tensione, ma ogni resistore porta solo 1/3 della corrente: meno calore su ogni singolo componente.</li>
+                    <li><strong>Banco di condensatori:</strong> 2 condensatori da 100 &mu;F in parallelo &rarr; 200 &mu;F totali. Raddoppia la capacit&agrave; e dimezza l'ESR: tecnica classica negli alimentatori switching per filtrare meglio il ripple.</li>
+                    <li><strong>Divisore di corrente:</strong> 2 resistori in parallelo da 1 k&Omega; e 2 k&Omega; &rarr; Req = 667 &Omega;. La corrente si divide: 2/3 nel ramo da 1 k&Omega; e 1/3 nel ramo da 2 k&Omega;.</li>
+                    <li><strong>Condensatori in serie per tensione elevata:</strong> 2 condensatori da 10 &mu;F / 25 V in serie &rarr; Ctot = 5 &mu;F ma tensione massima raddoppiata a 50 V. Usato quando non si trovano componenti con la tensione di lavoro richiesta.</li>
+                </ul>
+
+                <h3 style="margin-top:24px;">Domande frequenti</h3>
+                <p style="color:var(--text-secondary);line-height:1.8;font-size:0.92rem;">
+                    <strong>Quando si usa serie e quando parallelo?</strong> Serie: aumenta la resistenza totale, la stessa corrente attraversa tutti i componenti, la tensione si divide tra loro. Parallelo: abbassa la resistenza equivalente, la tensione &egrave; uguale su tutti i rami, la corrente si divide proporzionalmente.<br><br>
+                    <strong>Come calcolo 3 resistori in parallelo?</strong> Formula: 1/Req = 1/R1 + 1/R2 + 1/R3. Esempio: 10 &Omega;, 20 &Omega;, 30 &Omega; &rarr; 1/Req = 0,1 + 0,05 + 0,033 = 0,183 &rarr; Req &asymp; 5,45 &Omega;. Il valore equivalente &egrave; sempre inferiore al minore dei resistori.
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="ad-banner ad-banner-inline" id="ad-bottom">
       <ins class="adsbygoogle"

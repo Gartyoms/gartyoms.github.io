@@ -1,3 +1,6 @@
+# Claude Code memory (non pubblicare)
+.claude/
+
 # Logs
 logs
 *.log
