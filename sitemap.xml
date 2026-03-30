@@ -217,36 +217,43 @@
   </url>
   <url>
     <loc>https://www.toolboxonline.it/blog-555-timer-guida.html</loc>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.toolboxonline.it/blog-filtri-rc.html</loc>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.toolboxonline.it/blog-partitore-tensione.html</loc>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.toolboxonline.it/blog-resistore-led.html</loc>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.toolboxonline.it/blog-legge-di-ohm.html</loc>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.toolboxonline.it/blog-come-leggere-resistori.html</loc>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.toolboxonline.it/blog-qr-code-guida.html</loc>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -254,6 +261,7 @@
   <!-- Pagine Informative -->
   <url>
     <loc>https://www.toolboxonline.it/chi-siamo.html</loc>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -261,6 +269,7 @@
   <!-- Pagine Legali -->
   <url>
     <loc>https://www.toolboxonline.it/privacy.html</loc>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

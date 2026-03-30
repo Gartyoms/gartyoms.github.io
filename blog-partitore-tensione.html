@@ -23,6 +23,7 @@
   <meta property="og:image" content="https://www.toolboxonline.it/icona.svg">
   <meta property="og:site_name" content="ToolBox Online">
     <title>Come Funziona il Partitore di Tensione — ToolBox Online</title>
+    <link rel="canonical" href="https://www.toolboxonline.it/blog-partitore-tensione.html">
     <link rel="icon" href="icona.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icona.svg">
@@ -334,6 +335,12 @@
       document.querySelectorAll('.ad-banner').forEach(function(el) { el.style.display = 'none'; });
     };
   })();
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+  }
 </script>
 </body>
 
